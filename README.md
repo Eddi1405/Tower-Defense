@@ -1,7 +1,5 @@
 # Tower-Defense
 
-### Tower Defense
-
 Tower Defense oder Tower Defence oder kurz TD bezeichnet ein Subgenre von Echtzeit-Strategiespielen. Aufgabe in diesen Spielen ist es, auf einer Karte verschiedene Arten von Verteidigungsanlagen (meistens Wach- oder Geschütztürme, daher der Begriff) zu errichten, die anschließend mehrere Anstürme unterschiedlicher Gegner daran hindern sollen, die Karte zu durchqueren.
 
 ### **Verschiedene Tower**
