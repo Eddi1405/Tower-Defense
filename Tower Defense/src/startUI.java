@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class startUI extends JFrame {
-//Deklaration der Buttons
+    //Deklaration der Buttons
     private JPanel panel1;
     private JButton startButton;
     private JButton exitButton;
@@ -28,7 +28,7 @@ public class startUI extends JFrame {
         exitButton.setBorderPainted(false);
         exitButton.setContentAreaFilled(false);
 
-//Listener Event wartet auf User Aktion - Startknopf
+        //Listener Event wartet auf User Aktion - Startknopf
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
