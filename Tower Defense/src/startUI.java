@@ -24,6 +24,9 @@ public class startUI extends JFrame {
         startButton.setBorderPainted(false);
         startButton.setContentAreaFilled(false);
 
+        exitButton.setFocusPainted(false);
+        exitButton.setBorderPainted(false);
+        exitButton.setContentAreaFilled(false);
 
 
         startButton.addActionListener(new ActionListener() {
@@ -44,7 +47,15 @@ public class startUI extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("Exit");
+
+                try {
+                    Image img = ImageIO.read(getClass().getResource("Bilder/button_exit_2.png"));
+                    exitButton.setPressedIcon(new ImageIcon(img));
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
             }
         });
     }
