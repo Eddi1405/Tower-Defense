@@ -27,7 +27,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <icon value="Bilder/button_exit_1.png"/>
+          <icon value="Bilder/button2.1.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -37,7 +37,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <icon value="Bilder/button_start_1.png"/>
+          <icon value="Bilder/button2.png"/>
           <text value=""/>
         </properties>
       </component>
