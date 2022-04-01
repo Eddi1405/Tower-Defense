@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class startUI extends JFrame {
     //Deklaration der Buttons
@@ -19,6 +20,16 @@ public class startUI extends JFrame {
         setSize(500, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+
+
+        try {
+           Image img2 = ImageIO.read(getClass().getResource("Bilder/icon.png"));
+            setIconImage(img2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
 
 
