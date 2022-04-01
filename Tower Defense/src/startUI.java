@@ -10,13 +10,13 @@ public class startUI extends JFrame {
     private JPanel panel1;
     private JButton startButton;
     private JButton exitButton;
-
+    private JButton aufloesungButton;
 
 
     public startUI(){
         //Festlegen der Fenster Eigenschaften: Hoehe, Breite, On close Action
         setContentPane(panel1);
-        setTitle("Start");
+        setTitle("Tower Defense");
         setSize(500, 300);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -45,12 +45,12 @@ public class startUI extends JFrame {
             System.out.println(ex);
         }
 
+
         //Es wird geprüft ob der Button start gedrückt wurde
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Start");
-
 
             }
         });
@@ -73,6 +73,27 @@ public class startUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 System.out.println("Exit");
+
+            }
+        });
+
+        //aufloesungButton
+        aufloesungButton.setFocusPainted(false);
+        aufloesungButton.setBorderPainted(false);
+        aufloesungButton.setContentAreaFilled(false);
+
+        try {
+            Image img = ImageIO.read(getClass().getResource("Bilder/button_aufloesung.1.png"));
+            aufloesungButton.setPressedIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+        aufloesungButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new aufloesung();
 
             }
         });
