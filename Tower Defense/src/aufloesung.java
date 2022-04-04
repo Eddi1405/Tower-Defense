@@ -15,7 +15,7 @@ public class aufloesung extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-    }
+    }//
 
     public static void main(String[] args) {
         aufloesung myFrame = new aufloesung();

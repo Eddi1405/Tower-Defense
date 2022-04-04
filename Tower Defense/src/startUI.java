@@ -21,7 +21,7 @@ public class startUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-
+//sad
         try {
            Image img2 = ImageIO.read(getClass().getResource("Bilder/icon.png"));
             setIconImage(img2);
