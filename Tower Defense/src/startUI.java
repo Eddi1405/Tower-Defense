@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import Tiles.GamePanel;
 import Tiles.main2;
+import javax.swing.JFrame;
+
 
 public class startUI extends JFrame {
     //Deklaration der Buttons
@@ -53,8 +56,33 @@ public class startUI extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Start");
-                new main2();
+                    System.out.println("Start");
+                    new main2();
+
+
+
+
+
+
+
+                        JFrame window = new JFrame();
+                        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        window.setResizable(false);
+                        window.setTitle("Test");
+
+                        GamePanel gamepanel = new GamePanel();
+                        window.add(gamepanel);
+
+                        window.pack();
+
+                        window.setLocationRelativeTo(null);
+                        window.setVisible(true);
+
+                        gamepanel.startGameThread();
+
+
+
+
 
             }
         });
