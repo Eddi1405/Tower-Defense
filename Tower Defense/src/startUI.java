@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import Tiles.main2;
+
 public class startUI extends JFrame {
     //Deklaration der Buttons
     private JPanel panel1;
@@ -52,6 +54,7 @@ public class startUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Start");
+                new main2();
 
             }
         });
@@ -74,6 +77,7 @@ public class startUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 System.out.println("Exit");
+                System.exit(0);
 
             }
         });
