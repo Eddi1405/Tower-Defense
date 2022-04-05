@@ -59,12 +59,6 @@ public class startUI extends JFrame {
                     System.out.println("Start");
                     new main2();
 
-
-
-
-
-
-
                         JFrame window = new JFrame();
                         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         window.setResizable(false);
@@ -79,10 +73,6 @@ public class startUI extends JFrame {
                         window.setVisible(true);
 
                         gamepanel.startGameThread();
-
-
-
-
 
             }
         });
