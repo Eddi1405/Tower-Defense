@@ -23,7 +23,7 @@ public class startUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-//sad
+        //reinladen der Bilder
         try {
            Image img2 = ImageIO.read(getClass().getResource("Bilder/icon.png"));
             setIconImage(img2);
@@ -35,11 +35,12 @@ public class startUI extends JFrame {
 
 
 
-        //Startbutton design
+        //Startbutton Design
         startButton.setFocusPainted(false);
         startButton.setBorderPainted(false);
         startButton.setContentAreaFilled(false);
-        //ändert das icon wenn gedrückt
+
+        //Ändert das Icon wenn gedrückt
         try {
             Image img = ImageIO.read(getClass().getResource("Bilder/button_start.1.png"));
             startButton.setPressedIcon(new ImageIcon(img));
@@ -58,7 +59,7 @@ public class startUI extends JFrame {
             }
         });
 
-        //Exitbutton design
+        //Exitbutton Design
         exitButton.setFocusPainted(false);
         exitButton.setBorderPainted(false);
         exitButton.setContentAreaFilled(false);

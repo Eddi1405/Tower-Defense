@@ -1,5 +1,6 @@
 import javax.swing.*;
-
+    /*Deklarierung der genutzten Buttons Aufruf der nötigen Ressource,
+    Window via Swing, Swing wurde gewählt weil es standard ist für Intellij*/
 public class aufloesung extends JFrame{
     private JButton button1;
     private JButton button2;
@@ -7,6 +8,8 @@ public class aufloesung extends JFrame{
     private JButton button4;
     private JPanel panel2;
 
+
+    /*Window mit Titel standard Groeße von 500*300, default schließ Verhalten */
     public aufloesung(){
 
 
@@ -17,6 +20,7 @@ public class aufloesung extends JFrame{
 
     }//
 
+    /*Erstellen eines neuen Turmes*/
     public static void main(String[] args) {
         aufloesung myFrame = new aufloesung();
     }
