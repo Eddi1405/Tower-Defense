@@ -1,5 +1,5 @@
 public class main {
-
+    //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     public main(){
 
     }

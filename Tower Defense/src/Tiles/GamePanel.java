@@ -15,8 +15,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
 
+    //Erzeugung einer neuen Map
     mapGen tileM = new mapGen(this);
-
+    //Gamethread für Performance
     Thread gameThread;
 
 
