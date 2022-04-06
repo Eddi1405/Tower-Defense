@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 
@@ -15,10 +16,10 @@ public class startUI {
     private JButton startButton;
     private JButton exitButton;
     private JButton aufloesungButton;
-
+    JFrame window = new JFrame();
 
     public startUI(){
-        JFrame window = new JFrame();
+
         //Festlegen der Fenster Eigenschaften: Hoehe, Breite, On close Action
         window.setContentPane(panel1);
         window.setTitle("Tower Defense");
@@ -59,10 +60,6 @@ public class startUI {
             public void actionPerformed(ActionEvent e) {
                     System.out.println("Start");
 
-
-
-
-
                         GamePanel gamepanel = new GamePanel();
                         //window.add(gamepanel);
 
@@ -99,32 +96,21 @@ public class startUI {
             }
         });
 
-        //aufloesungButton
-        aufloesungButton.setFocusPainted(false);
-        aufloesungButton.setBorderPainted(false);
-        aufloesungButton.setContentAreaFilled(false);
-
-        try {
-            Image img = ImageIO.read(getClass().getResource("Bilder/button_aufloesung.1.png"));
-            aufloesungButton.setPressedIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-
-        aufloesungButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
 
-            }
-        });
     }
 
 
 
     public static void main(String[] args) {
         startUI myFrame = new startUI();
-    }
+
+
+        //if (event. getKeyCode() == KeyEvent. VK_ESCAPE){
+
+
+        }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
