@@ -62,7 +62,7 @@ public class startUI {
 
 
 
-
+                        //Altcode? Habe ich mal auskommentiert.
                         GamePanel gamepanel = new GamePanel();
                         //window.add(gamepanel);
 
