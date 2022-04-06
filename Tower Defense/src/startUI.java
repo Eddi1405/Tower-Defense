@@ -59,12 +59,12 @@ public class startUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                     System.out.println("Start");
-
+                        Mapmenu MM = new Mapmenu();
                         GamePanel gamepanel = new GamePanel();
                         //window.add(gamepanel);
 
                         //window.pack();
-                        window.setContentPane(gamepanel);
+                        window.setContentPane(MM.panel2);
 
                         window.setVisible(true);
 
