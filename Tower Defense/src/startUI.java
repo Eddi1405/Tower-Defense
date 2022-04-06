@@ -5,12 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import Tiles.GamePanel;
-import Tiles.main2;
+
 import javax.swing.JFrame;
 
 
-public class startUI extends JFrame {
+public class startUI {
     //Deklaration der Buttons
     private JPanel panel1;
     private JButton startButton;
@@ -19,17 +18,19 @@ public class startUI extends JFrame {
 
 
     public startUI(){
+        JFrame window = new JFrame();
         //Festlegen der Fenster Eigenschaften: Hoehe, Breite, On close Action
-        setContentPane(panel1);
-        setTitle("Tower Defense");
-        setSize(500, 300);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+        window.setContentPane(panel1);
+        window.setTitle("Tower Defense");
+        window.setSize(768, 576);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setVisible(true);
+        window.setLocationRelativeTo(null);
 
         //reinladen der Bilder
         try {
            Image img2 = ImageIO.read(getClass().getResource("Bilder/icon.png"));
-            setIconImage(img2);
+            window.setIconImage(img2);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,32 +58,20 @@ public class startUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                     System.out.println("Start");
-                    new main2();
 
 
 
 
-
-
-
-                        JFrame window = new JFrame();
-                        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        window.setResizable(false);
-                        window.setTitle("Test");
 
                         GamePanel gamepanel = new GamePanel();
-                        window.add(gamepanel);
+                        //window.add(gamepanel);
 
-                        window.pack();
+                        //window.pack();
+                        window.setContentPane(gamepanel);
 
-                        window.setLocationRelativeTo(null);
                         window.setVisible(true);
 
                         gamepanel.startGameThread();
-
-
-
-
 
             }
         });
