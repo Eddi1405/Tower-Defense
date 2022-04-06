@@ -6,14 +6,11 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JPanel {
 
-
-
     private JPanel panel1;
     private JButton exitButton;
     private JButton weiterButton;
 
     public Menu(){
-
 
         //Exitbutton Design
         exitButton.setFocusPainted(false);

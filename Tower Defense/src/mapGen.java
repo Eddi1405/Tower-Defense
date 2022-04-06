@@ -1,8 +1,6 @@
-
-
-
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,17 +15,15 @@ public class mapGen {
     public mapGen(GamePanel gp) {
 
         this.gp = gp;
-
         tile = new Tile[20];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
-
         getTileimage();
         loadMap();
 
     }
 
     public void getTileimage() {
-
+        //Tiles werden defieniert
         try {
 
             tile[0] = new Tile();
@@ -69,17 +65,16 @@ public class mapGen {
             tile[12] = new Tile();
             tile[12].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/baum.png"));
 
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    //Map wird geladen
     public void loadMap(){
 
         try {
+            //text datei wird eingelesen
             InputStream is = getClass().getResourceAsStream("map.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
@@ -106,10 +101,7 @@ public class mapGen {
                 }
             }
             br.close();
-        }catch (Exception e){
-
-        }
-
+        }catch (Exception e){}
     }
 
     public void draw(Graphics2D g2){
@@ -134,9 +126,7 @@ public class mapGen {
                 y += gp.tileSize;
             }
         }
-
-
-        }
+    }
 
     }
 

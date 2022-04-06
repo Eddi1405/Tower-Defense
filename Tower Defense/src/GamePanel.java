@@ -1,14 +1,12 @@
-
-
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel implements Runnable{
 
     //Screen Settings
     final int originalTileSize = 16; //16x16
     final int scale = 3;
-
     final int tileSize = originalTileSize * scale; //48x48
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
@@ -19,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable{
     mapGen tileM = new mapGen(this);
 
     //Gamethread für Performance
+    keyListener kl = new keyListener();
     Thread gameThread;
 
     //Panel definieren
@@ -27,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
+        this.setKeyListener(kl);
 
     }
 
@@ -51,7 +51,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
 
-
+        if(kl.esc_pressed == true){
+            System.out.println("geht");
+        }
+        System.out.println(kl.esc_pressed+""+ kl.code);
 
     }
 
