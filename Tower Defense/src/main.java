@@ -9,8 +9,13 @@ public class main {
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
 
-    startUI sUI = new startUI();
-    UI ui = new UI();
+    Mapmenu mm = new Mapmenu();
+
+    private JButton Map1;
+    private JButton Map2;
+    private JButton Map3;
+    public JPanel panel2;
+
     public JPanel panel3;
     private JButton start_button;
     private JButton exit_button;
@@ -19,7 +24,7 @@ public class main {
 
         keyListener kl = new keyListener();
 
-
+        //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
         window.setTitle("Tower Defense");
@@ -31,12 +36,12 @@ public class main {
         window.setContentPane(panel3);
         window.addKeyListener(kl);
 
-        window.pack();
+        //window.pack();
 
         window.setVisible(true);
 
 
-        //reinladen der Bilder
+        //reinladen der Bilder für icon
         try {
             Image img2 = ImageIO.read(getClass().getResource("Bilder/icon.png"));
             window.setIconImage(img2);
@@ -68,11 +73,5 @@ public class main {
         main Frame = new main();
 
         System.out.println("-----Beginn-----");
-
-        //new startUI();
-
     }
-
-
-
 }

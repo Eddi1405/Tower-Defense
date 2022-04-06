@@ -12,6 +12,9 @@
       <component id="6b9e9" class="javax.swing.JButton" binding="Map1">
         <constraints/>
         <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <focusPainted value="false"/>
           <foreground color="-1"/>
           <horizontalAlignment value="0"/>
           <icon value="Bilder/ThumbnailM1.png"/>
@@ -36,6 +39,9 @@
       <component id="bcc8c" class="javax.swing.JButton" binding="Map2">
         <constraints/>
         <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <focusPainted value="false"/>
           <foreground color="-1"/>
           <icon value="Bilder/ThumbnailM2.png"/>
           <text value=""/>
@@ -53,7 +59,10 @@
       <component id="fd8c7" class="javax.swing.JButton" binding="Map3">
         <constraints/>
         <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
           <enabled value="true"/>
+          <focusPainted value="false"/>
           <foreground color="-1"/>
           <icon value="Bilder/ThumbnailM3.png"/>
           <text value=""/>

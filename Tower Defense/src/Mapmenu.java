@@ -14,19 +14,6 @@ public class Mapmenu {
     public JPanel panel2;
 
 
-        Map1.setFocusPainted(false);
-        Map1.setBorderPainted(false);
-        Map1.setContentAreaFilled(false);
-
-        Map2.setFocusPainted(false);
-        Map2.setBorderPainted(false);
-        Map2.setContentAreaFilled(false);
-
-        Map3.setFocusPainted(false);
-        Map3.setBorderPainted(false);
-        Map3.setContentAreaFilled(false);
-
-
     public Mapmenu() {
         Map1.addActionListener(new ActionListener() {
             @Override
