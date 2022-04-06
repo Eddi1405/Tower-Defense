@@ -4,19 +4,19 @@ Tower Defense oder Tower Defence oder kurz TD bezeichnet ein Subgenre von Echtze
 
 ### **Verschiedene Tower**
 
-Verschiedene Towers mit verschieden besonderen Eigenschaften und unterschiedlichen schaden. Ebenfalls haben alle ein verschiedens Design.
+Verschiedene Towers mit verschieden besonderen Eigenschaften und unterschiedlichem Schaden. Ebenfalls haben alle ein verschiedens Design.
 
 ### **Verschiedene Gegner**
 
-Gegner die unterschiedlich viel Leben haben und unterschiedliche Geschwindigkeiten.
+Gegner haben unterschiedlich viel Leben, Geschwindigkeit.
 
 ### **Lebensystem**
 
-Wenn der Gegener nicht besiegt wurde wird am ende wenn er durch die „Linie“ läuft wird dem Spieler leben abgezogen.
+Gegner die zum Ziel gelangen werden von den Lebenspunkten des Spielers abgerechnet.
 
 ### **Geldsystem**
 
-Für jeden besiegten Gegener wird je nach schwierigkeit mehr oder weniger Geld dem Spieler gegeben.
+Für jeden besiegten Gegener wird je nach schwierigkeit mehr oder weniger Geld dem Spieler zugeschrieben.
 
 ### Schwierigkeitsscaling
 
