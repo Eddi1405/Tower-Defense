@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     //Screen Settings
     final int originalTileSize = 16; //16x16
@@ -13,12 +16,15 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
 
+
     //Erzeugung einer neuen Map
     mapGen tileM = new mapGen(this);
 
     //Gamethread für Performance
-    keyListener kl = new keyListener();
+    //keyListener kl = new keyListener();
     Thread gameThread;
+
+
 
     //Panel definieren
     public GamePanel(){
@@ -49,13 +55,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
 
-    public void update(){
+  public void update(){
 
-        if(kl.esc_pressed == true){
+        /*if(kl.esc_pressed == true){
             System.out.println("geht");
         }
         System.out.println(kl.esc_pressed+""+ kl.code);
-
+*/
     }
 
     public void paintComponent (Graphics g){

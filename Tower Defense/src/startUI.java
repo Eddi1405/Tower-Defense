@@ -12,7 +12,7 @@ public class startUI extends JPanel{
     private JButton exitButton;
     //JFrame window = new JFrame();
     GamePanel gp = new GamePanel();
-    keyListener kl = new keyListener();
+    //keyListener kl = new keyListener();
 
 
     public startUI(){
