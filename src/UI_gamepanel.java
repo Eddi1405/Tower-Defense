@@ -52,7 +52,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     public void update(){
 
-        if(kl.esc_pressed == true){
+        if(kl.esc_pressed){
             System.out.println("geht");
         }
         //System.out.println(kl.esc_pressed+""+ kl.code);

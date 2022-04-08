@@ -3,12 +3,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.EventListener;
 
-public class UI_start {
+public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
+    UI_EscMenu em = new UI_EscMenu();
+
 
     public JPanel start_panel;
     private JButton start_button;
@@ -16,8 +21,6 @@ public class UI_start {
     int map = 0;
 
     public UI_start(){
-
-        keyListener kl = new keyListener();
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,9 +32,12 @@ public class UI_start {
         window.setSize(768, 576);
         start_panel.setPreferredSize(new Dimension(768, 576));
         window.setContentPane(start_panel);
-        window.addKeyListener(kl);
         window.setVisible(true);
 
+
+
+        //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
+        window.addKeyListener(this);
 
         //Buttons
         mm.Map1.addActionListener(new ActionListener() {
@@ -71,12 +77,17 @@ public class UI_start {
                 System.exit(0);
             }
         });
+
+
     }
+
 
     public static void main(String[] args) {
         UI_start Frame = new UI_start();
         System.out.println("-----Beginn-----");
+        Frame.addKeyListener(Frame);
     }
+
 
     public void mapAuswahl(){
         UI_gamepanel gamePanel = new UI_gamepanel();
@@ -91,4 +102,24 @@ public class UI_start {
         return map;
 
     }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+        System.out.println(keyEvent.getKeyCode());
+        if(keyEvent.getKeyCode() == 27){
+
+            window.setContentPane(em.esc_panel);
+        }
+    }
+
 }
