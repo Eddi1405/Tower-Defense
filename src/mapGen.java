@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,11 +7,12 @@ import java.io.InputStreamReader;
 
 public class mapGen {
 
-    GamePanel gp;
+    UI_start s1;
+    UI_gamepanel gp;
     Tile[] tile;
     int mapTileNum[][];
 
-    public mapGen(GamePanel gp) {
+    public mapGen(UI_gamepanel gp) {
 
         this.gp = gp;
         tile = new Tile[20];
@@ -73,9 +73,12 @@ public class mapGen {
     //Map wird geladen
     public void loadMap(){
 
+        //Problem s1 ist null variabel muss übergeben werden
+        System.out.println("asd"+s1.getMap());
         try {
             //text datei wird eingelesen
-            InputStream is = getClass().getResourceAsStream("map.txt");
+
+            InputStream is = getClass().getResourceAsStream("map"+s1.getMap()+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -101,7 +104,9 @@ public class mapGen {
                 }
             }
             br.close();
-        }catch (Exception e){}
+        }catch (Exception e){
+            System.out.println("Error Map laden");
+        }
     }
 
     public void draw(Graphics2D g2){

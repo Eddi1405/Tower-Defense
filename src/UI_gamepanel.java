@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
-public class GamePanel extends JPanel implements Runnable{
+public class UI_gamepanel extends JPanel implements Runnable{
 
     //Screen Settings
     final int originalTileSize = 16; //16x16
@@ -21,11 +20,13 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     //Panel definieren
-    public GamePanel(){
+    public UI_gamepanel(){
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
         //this.setKeyListener(kl);
 
     }
@@ -44,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
         while (gameThread != null) {
             update();
 
-            repaint();
+            //repaint();
         }
 
     }
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable{
         if(kl.esc_pressed == true){
             System.out.println("geht");
         }
-        System.out.println(kl.esc_pressed+""+ kl.code);
+        //System.out.println(kl.esc_pressed+""+ kl.code);
 
     }
 
