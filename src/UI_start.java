@@ -38,7 +38,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
-
+/*
         //Buttons
         mm.Map1.addActionListener(new ActionListener() {
             @Override
@@ -76,9 +76,41 @@ public class UI_start  extends JFrame implements KeyListener{
                 System.out.println("Exit");
                 System.exit(0);
             }
-        });
+        });*/
+        buttonListeners();
 
+    }
+    public void buttonListeners(){
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                Object o = ae.getSource();
+                if(o == mm.Map1 ){
+                    map = 1;
+                    mapAuswahl();
+                }else if (o == mm.Map2) {
+                    map = 2;
+                    mapAuswahl();
+                }else if (o == mm.Map3){
+                    map = 3;
+                    mapAuswahl();
+                }else if (o == start_button){
+                    System.out.println("Start");
+                    start_panel.setVisible(false);
+                    window.setContentPane(mm.panel2);
+                }else if (o == exit_button){
+                    System.out.println("Exit");
+                    System.exit(0);
+                }
 
+            }
+        };
+
+        mm.Map1.addActionListener(buttonListener);
+        mm.Map2.addActionListener(buttonListener);
+        mm.Map3.addActionListener(buttonListener);
+        exit_button.addActionListener(buttonListener);
+        start_button.addActionListener(buttonListener);
     }
 
 
@@ -95,6 +127,7 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
+        map = 0;
     }
 
     public int getMap(){
