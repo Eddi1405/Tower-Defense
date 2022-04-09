@@ -13,6 +13,7 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
+    mapGen mg1;
 
 
     public JPanel start_panel;
@@ -86,14 +87,22 @@ public class UI_start  extends JFrame implements KeyListener{
             public void actionPerformed(ActionEvent ae) {
                 Object o = ae.getSource();
                 if(o == mm.Map1 ){
-                    map = 1;
-                    mapAuswahl();
+                    setMap(1);
+                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    //Versuch 0pointerExc zu umgehen (geht net)
+                    mg1.loadMap(map);
+                    //mapAuswahl();
+
                 }else if (o == mm.Map2) {
-                    map = 2;
+                    setMap(2);
+                    System.out.println("Sie haben die Map "+map + " gewählt" );
                     mapAuswahl();
+
                 }else if (o == mm.Map3){
-                    map = 3;
+                    setMap(3);
+                    System.out.println("Sie haben die Map "+map + " gewählt" );
                     mapAuswahl();
+
                 }else if (o == start_button){
                     System.out.println("Start");
                     start_panel.setVisible(false);
@@ -127,13 +136,14 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
-        map = 0;
+
+    }
+    public void setMap(int map){
+        this.map = map;
     }
 
     public int getMap(){
-
         return map;
-
     }
 
     @Override
@@ -150,7 +160,7 @@ public class UI_start  extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent keyEvent) {
         System.out.println(keyEvent.getKeyCode());
         if(keyEvent.getKeyCode() == 27){
-
+            //TODO ESC Pannel richtig zuweisen der Zeitig 0             Eddi fragen how it works!
             window.setContentPane(em.esc_panel);
         }
     }
