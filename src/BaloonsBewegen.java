@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class BaloonsBewegen extends JPanel implements ActionListener, KeyListener {
 
-    //UI_gamepanel gp = new UI_gamepanel();
+    UI_gamepanel gp = new UI_gamepanel();
 
     Tile[] baloon;
 
@@ -24,13 +24,15 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
         addKeyListener(this);//KeyListner auf den Jframe zugewiesen
         setFocusable(true);
         setRequestFocusEnabled(false);
+
     }
 
     public static void main(String[] args) {
         //Windos size zum Testen wird nacher mit der Map Kombiniert damit sich das Objekt auf der Map bewegt
         JFrame frame = new JFrame();
-        frame.setSize(400,400);
 
+        frame.setSize(768,576);
+        UI_gamepanel gp = new UI_gamepanel();
         BaloonsBewegen bb = new BaloonsBewegen();
         frame.add(bb);
         frame.setVisible(true);
@@ -118,4 +120,5 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
             e.printStackTrace();
         }
     }
+
 }

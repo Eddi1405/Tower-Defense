@@ -107,10 +107,25 @@ public class UI_start  extends JFrame implements KeyListener{
                     System.out.println("Start");
                     start_panel.setVisible(false);
                     window.setContentPane(mm.panel2);
+
                 }else if (o == exit_button){
                     System.out.println("Exit");
                     System.exit(0);
+                //ESC Menü Buttons
+                }else if (o == em.continueButton){
+                    //TODO Continue machen momentan nicht Funktionabel
+                    System.out.println("Continue");
                 }
+                else if (o == em.exitButton){
+                    System.out.println("exitovermenu");
+                    System.exit(0);
+                }
+                else if (o == em.mainMenuButton){
+                    System.out.println("Main menu");
+                    window.dispose();//Schließt das window
+                    UI_start UInew = new UI_start();
+                }
+
 
             }
         };
@@ -120,6 +135,9 @@ public class UI_start  extends JFrame implements KeyListener{
         mm.Map3.addActionListener(buttonListener);
         exit_button.addActionListener(buttonListener);
         start_button.addActionListener(buttonListener);
+        em.continueButton.addActionListener(buttonListener);
+        em.exitButton.addActionListener(buttonListener);
+        em.mainMenuButton.addActionListener(buttonListener);
     }
 
 
@@ -132,6 +150,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
     public void mapAuswahl(){
         UI_gamepanel gamePanel = new UI_gamepanel();
+        BaloonsBewegen bb = new BaloonsBewegen();
         mm.panel2.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
@@ -160,11 +179,14 @@ public class UI_start  extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent keyEvent) {
         System.out.println(keyEvent.getKeyCode());
         if(keyEvent.getKeyCode() == 27){
-            //TODO ESC Pannel richtig zuweisen der Zeitig 0             Eddi fragen how it works!
-            window.setContentPane(em.panel1);
+
             em.panel1.setVisible(true);
-            window.setFocusable(true);
-            window.requestFocusInWindow();
+            em.panel1.setFocusable(true);
+            em.panel1.requestFocusInWindow();
+            window.setContentPane(em.panel1);
+            SwingUtilities.updateComponentTreeUI(window);
+
+
         }
     }
 

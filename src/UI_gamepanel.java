@@ -14,7 +14,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     //Erzeugung einer neuen Map
     mapGen tileM = new mapGen(this);
-
+    BaloonsBewegen bb = new BaloonsBewegen();
     //Gamethread für Performance
     keyListener kl = new keyListener();
     Thread gameThread;
@@ -64,6 +64,5 @@ public class UI_gamepanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         tileM.draw(g2);
         g2.dispose();
-
     }
 }
