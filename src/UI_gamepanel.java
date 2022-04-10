@@ -14,7 +14,6 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     //Erzeugung einer neuen Map
     mapGen tileM = new mapGen(this);
-    BaloonsBewegen bb = new BaloonsBewegen();
     //Gamethread für Performance
     keyListener kl = new keyListener();
     Thread gameThread;
@@ -27,7 +26,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
-        //this.setKeyListener(kl);
+        //this.addKeyListener(kl);
 
     }
 

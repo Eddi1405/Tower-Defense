@@ -7,15 +7,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class BaloonsBewegen extends JPanel implements ActionListener, KeyListener {
+public class BaloonsBewegen extends JPanel implements ActionListener, KeyListener { //TODO  Sinnhaftigkeit diese Klasse überprüfen !
 
-    UI_gamepanel gp = new UI_gamepanel();
+//TODO Möglicher denkfehler bei der Erstellung der "Gegner"
 
     Tile[] baloon;
 
     Timer timer = new Timer(5,this);
     //Koordinaten
     int x = 0 , y = 0, velX = 0, velY = 0;
+    //UI_gamepanel gp = new UI_gamepanel();
 
     public BaloonsBewegen(){
 
@@ -30,9 +31,7 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
     public static void main(String[] args) {
         //Windos size zum Testen wird nacher mit der Map Kombiniert damit sich das Objekt auf der Map bewegt
         JFrame frame = new JFrame();
-
         frame.setSize(768,576);
-        UI_gamepanel gp = new UI_gamepanel();
         BaloonsBewegen bb = new BaloonsBewegen();
         frame.add(bb);
         frame.setVisible(true);

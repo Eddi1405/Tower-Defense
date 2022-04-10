@@ -150,7 +150,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
     public void mapAuswahl(){
         UI_gamepanel gamePanel = new UI_gamepanel();
-        BaloonsBewegen bb = new BaloonsBewegen();
+        //BaloonsBewegen bb = new BaloonsBewegen();
         mm.panel2.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
@@ -189,5 +189,6 @@ public class UI_start  extends JFrame implements KeyListener{
 
         }
     }
+
 
 }
