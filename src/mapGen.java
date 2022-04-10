@@ -11,7 +11,7 @@ public class mapGen {
     UI_gamepanel gp;
     Tile[] tile;
     int mapTileNum[][];
-    int map;
+    int map = 1;
 
     public mapGen(UI_gamepanel gp) {
 

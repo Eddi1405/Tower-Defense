@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class UI_EscMenu {
-    public JPanel esc_panel;
+
     public JPanel panel1;
     public JButton exitButton;
     public JButton continueButton;

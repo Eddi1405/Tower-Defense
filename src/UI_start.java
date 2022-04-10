@@ -90,8 +90,8 @@ public class UI_start  extends JFrame implements KeyListener{
                     setMap(1);
                     System.out.println("Sie haben die Map "+map + " gewählt" );
                     //Versuch 0pointerExc zu umgehen (geht net)
-                    mg1.loadMap(map);
-                    //mapAuswahl();
+                    //mg1.loadMap(map);
+                    mapAuswahl();
 
                 }else if (o == mm.Map2) {
                     setMap(2);
@@ -161,7 +161,10 @@ public class UI_start  extends JFrame implements KeyListener{
         System.out.println(keyEvent.getKeyCode());
         if(keyEvent.getKeyCode() == 27){
             //TODO ESC Pannel richtig zuweisen der Zeitig 0             Eddi fragen how it works!
-            window.setContentPane(em.esc_panel);
+            window.setContentPane(em.panel1);
+            em.panel1.setVisible(true);
+            window.setFocusable(true);
+            window.requestFocusInWindow();
         }
     }
 
