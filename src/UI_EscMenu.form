@@ -9,31 +9,37 @@
     <children>
       <component id="51697" class="javax.swing.JButton" binding="weiter_button">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <text value="Weiter"/>
+          <icon value="pictures_ui/button_weiter.png"/>
+          <label value=""/>
+          <pressedIcon value="pictures_ui/button_weiter.1.png"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="30410" class="javax.swing.JButton" binding="menu_button">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <text value="Menu"/>
+          <icon value="pictures_ui/button_menu.png"/>
+          <label value=""/>
+          <pressedIcon value="pictures_ui/button_menu.1.png"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="24d18" class="javax.swing.JButton" binding="exit_button">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -48,32 +54,22 @@
       </component>
       <vspacer id="9a400">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
       <vspacer id="701b8">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
       <vspacer id="8256">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
-      <component id="732f7" class="javax.swing.JLabel" binding="menu">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <font name="URW Bookman" size="26"/>
-          <text value="Menu"/>
-        </properties>
-      </component>
     </children>
   </grid>
 </form>

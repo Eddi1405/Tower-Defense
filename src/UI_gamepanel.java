@@ -15,26 +15,16 @@ public class UI_gamepanel extends JPanel implements Runnable{
     //Erzeugung einer neuen Map
     mapGen tileM = new mapGen(this);
     //Gamethread für Performance
-    keyListener kl = new keyListener();
     Thread gameThread;
 
     //Panel definieren
     public UI_gamepanel(){
-
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        //this.addKeyListener(kl);
-
     }
 
     public void startGameThread(){
-
         gameThread = new Thread(this);
         gameThread.start();
-
     }
 
 
@@ -51,10 +41,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     public void update(){
 
-        if(kl.esc_pressed){
-            System.out.println("geht");
-        }
-        //System.out.println(kl.esc_pressed+""+ kl.code);
+
 
     }
 

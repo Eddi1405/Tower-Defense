@@ -1,12 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.EventListener;
+
 
 public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
@@ -26,64 +23,25 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(true);
+
+        window.setResizable(false);
+
         window.setTitle("Tower Defense");
         window.setLocationRelativeTo(null);
+
         window.setFocusable(true);
         window.requestFocusInWindow();
-        window.setSize(1920,  1080);
-        start_panel.setPreferredSize(new Dimension(768, 576));
+        //window.setSize(1920,  1080);
         window.setContentPane(start_panel);
-        //window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);
         window.setVisible(true);
 
-
-
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
-/*
-        //Buttons
-        mm.Map1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                map = 1;
-                System.out.println(map);
-                mapAuswahl();
-            }
-        });
-        mm.Map2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                map = 2;
-                mapAuswahl();
-            }
-        });
-        mm.Map3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                map = 3;
-                mapAuswahl();
-            }
-        });
-        start_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Start");
-                start_panel.setVisible(false);
-                window.setContentPane(mm.panel2);
-            }
-        });
-        exit_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Exit");
-                System.exit(0);
-            }
-        });*/
         buttonListeners();
-
     }
+
     public void buttonListeners(){
         ActionListener buttonListener = new ActionListener() {
             @Override
@@ -109,8 +67,8 @@ public class UI_start  extends JFrame implements KeyListener{
                 }else if (o == start_button){
                     System.out.println("Start");
                     start_panel.setVisible(false);
-                    window.setContentPane(mm.panel2);
-
+                    window.setContentPane(mm.menu_panel);
+                    mm.menu_panel.setVisible(true);
                 }else if (o == exit_button){
                     System.out.println("Exit");
                     System.exit(0);
@@ -125,8 +83,11 @@ public class UI_start  extends JFrame implements KeyListener{
                 }
                 else if (o == em.menu_button){
                     System.out.println("Main menu");
-                    window.dispose();//Schließt das window
-                    UI_start UInew = new UI_start();
+
+                    em.esc_panel.setVisible(false);
+                    window.setContentPane(start_panel);
+                    start_panel.setVisible(true);
+
                 }
 
 
@@ -154,7 +115,7 @@ public class UI_start  extends JFrame implements KeyListener{
     public void mapAuswahl(){
 
         //BaloonsBewegen bb = new BaloonsBewegen();
-        mm.panel2.setVisible(false);
+        mm.menu_panel.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
@@ -162,10 +123,6 @@ public class UI_start  extends JFrame implements KeyListener{
     }
     public void setMap(int map){
         this.map = map;
-    }
-
-    public int getMap(){
-        return map;
     }
 
     @Override

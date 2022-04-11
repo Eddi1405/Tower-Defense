@@ -79,7 +79,7 @@ public class mapGen {
         System.out.println("asd"+map);
         try {
             //text datei wird eingelesen
-
+            //TODO map unterscheidliche
             InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
@@ -87,18 +87,12 @@ public class mapGen {
             int row = 0;
 
             while (col < gp.maxScreenCol && row < gp.maxScreenRow){
-
                 String line = br.readLine();
-
                 while (col < gp.maxScreenCol ){
-
                     String numbers[] = line.split(" ");
-
                     int num = Integer.parseInt(numbers[col]);
-
                     mapTileNum[col][row] = num;
                     col++;
-
                 }
                 if(col == gp.maxScreenCol){
                     col = 0;
@@ -115,14 +109,11 @@ public class mapGen {
 
         int col = 0;
         int row = 0;
-
         int x = 0;
         int y = 0;
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
-
             int tileNum = mapTileNum[col][row];
-
             g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             col++;
             x += gp.tileSize;

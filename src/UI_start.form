@@ -13,7 +13,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <font name="URW Bookman" size="36"/>
+          <font name="Clarendon Lt BT" size="48"/>
           <text value="Tower-Defense"/>
         </properties>
       </component>
