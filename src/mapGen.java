@@ -72,7 +72,7 @@ public class mapGen {
             e.printStackTrace();
         }
     }
-
+    //
     //Map wird geladen
     public void loadMap(int map){
         //int map = s1.getMap();

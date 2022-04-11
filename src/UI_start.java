@@ -31,7 +31,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
         window.setTitle("Tower Defense");
         window.setLocationRelativeTo(null);
-
+        //
         window.setFocusable(true);
         window.requestFocusInWindow();
         //window.setSize(1920,  1080);
