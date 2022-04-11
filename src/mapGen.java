@@ -11,7 +11,8 @@ public class mapGen {
     UI_gamepanel gp;
     Tile[] tile;
     int mapTileNum[][];
-    int map = 1;
+
+
 
     public mapGen(UI_gamepanel gp) {
 
@@ -19,7 +20,8 @@ public class mapGen {
         tile = new Tile[20];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileimage();
-        loadMap(map);
+        loadMap(gp.map);
+        System.out.println("ese ist nix"+gp.map);
 
     }
 
@@ -76,11 +78,11 @@ public class mapGen {
         //int map = s1.getMap();
         //int map = 1;
         //Problem s1 ist null variabel muss übergeben werden
-        System.out.println("asd"+map);
+        System.out.println("Es ist map---"+gp.map);
         try {
             //text datei wird eingelesen
             //TODO map unterscheidliche
-            InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
+            InputStream is = getClass().getResourceAsStream("map/map"+gp.map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;

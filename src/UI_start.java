@@ -17,9 +17,12 @@ public class UI_start  extends JFrame implements KeyListener{
     private JButton start_button;
     private JButton exit_button;
     int map = 0;
-    UI_gamepanel gamePanel = new UI_gamepanel();
+
 
     public UI_start(){
+        //TODO dont work
+        ImageIcon img = new ImageIcon("pictures_map/icon.png");
+        window.setIconImage(img.getImage());
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,6 +119,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //BaloonsBewegen bb = new BaloonsBewegen();
         mm.menu_panel.setVisible(false);
+        UI_gamepanel gamePanel = new UI_gamepanel(map);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
