@@ -20,6 +20,7 @@ public class UI_start  extends JFrame implements KeyListener{
     private JButton start_button;
     private JButton exit_button;
     int map = 0;
+    UI_gamepanel gamePanel = new UI_gamepanel();
 
     public UI_start(){
 
@@ -30,9 +31,11 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setLocationRelativeTo(null);
         window.setFocusable(true);
         window.requestFocusInWindow();
-        window.setSize(768, 576);
+        window.setSize(1920,  1080);
         start_panel.setPreferredSize(new Dimension(768, 576));
         window.setContentPane(start_panel);
+        //window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //window.setUndecorated(true);
         window.setVisible(true);
 
 
@@ -112,15 +115,15 @@ public class UI_start  extends JFrame implements KeyListener{
                     System.out.println("Exit");
                     System.exit(0);
                 //ESC Menü Buttons
-                }else if (o == em.continueButton){
+                }else if (o == em.weiter_button){
                     //TODO Continue machen momentan nicht Funktionabel
                     System.out.println("Continue");
                 }
-                else if (o == em.exitButton){
+                else if (o == em.exit_button){
                     System.out.println("exitovermenu");
                     System.exit(0);
                 }
-                else if (o == em.mainMenuButton){
+                else if (o == em.menu_button){
                     System.out.println("Main menu");
                     window.dispose();//Schließt das window
                     UI_start UInew = new UI_start();
@@ -135,9 +138,9 @@ public class UI_start  extends JFrame implements KeyListener{
         mm.Map3.addActionListener(buttonListener);
         exit_button.addActionListener(buttonListener);
         start_button.addActionListener(buttonListener);
-        em.continueButton.addActionListener(buttonListener);
-        em.exitButton.addActionListener(buttonListener);
-        em.mainMenuButton.addActionListener(buttonListener);
+        em.weiter_button.addActionListener(buttonListener);
+        em.exit_button.addActionListener(buttonListener);
+        em.menu_button.addActionListener(buttonListener);
     }
 
 
@@ -149,7 +152,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
 
     public void mapAuswahl(){
-        UI_gamepanel gamePanel = new UI_gamepanel();
+
         //BaloonsBewegen bb = new BaloonsBewegen();
         mm.panel2.setVisible(false);
         window.setContentPane(gamePanel);
@@ -180,11 +183,13 @@ public class UI_start  extends JFrame implements KeyListener{
         System.out.println(keyEvent.getKeyCode());
         if(keyEvent.getKeyCode() == 27){
 
-            em.panel1.setVisible(true);
-            em.panel1.setFocusable(true);
-            em.panel1.requestFocusInWindow();
-            window.setContentPane(em.panel1);
+            em.esc_panel.setVisible(true);
+            em.esc_panel.setFocusable(true);
+            em.esc_panel.requestFocusInWindow();
+            window.setContentPane(em.esc_panel);
             SwingUtilities.updateComponentTreeUI(window);
+
+            //get actual panal und dan später das alte auftrufen bei weiter
 
 
         }

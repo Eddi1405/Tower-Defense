@@ -1,13 +1,11 @@
 import javax.swing.*;
 
 public class UI_EscMenu {
-
-
-
-    public JPanel panel1;
-    public JButton exitButton;
-    public JButton continueButton;
-    public JButton mainMenuButton;
+    public JButton weiter_button;
+    public JButton menu_button;
+    public JButton exit_button;
+    public JLabel menu;
+    public JPanel esc_panel;
 
     public UI_EscMenu(){}
 
