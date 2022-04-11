@@ -86,7 +86,6 @@ public class UI_start  extends JFrame implements KeyListener{
                 }
                 else if (o == em.menu_button){
                     System.out.println("Main menu");
-
                     em.esc_panel.setVisible(false);
                     window.setContentPane(start_panel);
                     start_panel.setVisible(true);

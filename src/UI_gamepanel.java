@@ -21,7 +21,6 @@ public class UI_gamepanel extends JPanel implements Runnable{
     public UI_gamepanel(int map1){
         this.setDoubleBuffered(true);
         map = map1;
-        System.out.println("Es ist map:::"+map);
     }
 
     //Erzeugung einer neuen Map
@@ -50,7 +49,6 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     public void paintComponent (Graphics g){
         mapGen tileM = new mapGen(this);
-        System.out.println("teszt");
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         tileM.draw(g2);

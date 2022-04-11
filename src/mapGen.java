@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 
 public class mapGen {
 
-    UI_start s1;
     UI_gamepanel gp;
     Tile[] tile;
     int mapTileNum[][];
@@ -21,8 +20,6 @@ public class mapGen {
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileimage();
         loadMap(gp.map);
-        System.out.println("ese ist nix"+gp.map);
-
     }
 
     public void getTileimage() {
@@ -72,16 +69,12 @@ public class mapGen {
             e.printStackTrace();
         }
     }
-    //
+
     //Map wird geladen
     public void loadMap(int map){
-        //int map = s1.getMap();
-        //int map = 1;
-        //Problem s1 ist null variabel muss übergeben werden
-        System.out.println("Es ist map---"+gp.map);
+
         try {
             //text datei wird eingelesen
-            //TODO map unterscheidliche
             InputStream is = getClass().getResourceAsStream("map/map"+gp.map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
