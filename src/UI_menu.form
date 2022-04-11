@@ -17,7 +17,7 @@
           <focusPainted value="false"/>
           <foreground color="-1"/>
           <horizontalAlignment value="0"/>
-          <icon value="Bilder/ThumbnailM1.png"/>
+          <icon value="pictures_ui/ThumbnailM1.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -43,7 +43,7 @@
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
           <foreground color="-1"/>
-          <icon value="Bilder/ThumbnailM2.png"/>
+          <icon value="pictures_ui/ThumbnailM2.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -64,7 +64,7 @@
           <enabled value="true"/>
           <focusPainted value="false"/>
           <foreground color="-1"/>
-          <icon value="Bilder/ThumbnailM3.png"/>
+          <icon value="pictures_ui/ThumbnailM3.png"/>
           <text value=""/>
         </properties>
       </component>

@@ -107,13 +107,13 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
         try {
             //Baloons werden hier geladen
             baloon[0] = new Tile();
-            baloon[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/baloon.png"));//TODO Baloons.png erstellen
+            baloon[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon.png"));//TODO Baloons.png erstellen
 
             baloon[1] = new Tile();
-            baloon[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/baloon2.png"));
+            baloon[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon2.png"));
 
             baloon[2] = new Tile();
-            baloon[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/baloon3.png"));
+            baloon[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon3.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

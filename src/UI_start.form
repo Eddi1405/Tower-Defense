@@ -26,8 +26,8 @@
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <icon value="Bilder/button_start.png"/>
-          <pressedIcon value="Bilder/button_start.1.png"/>
+          <icon value="pictures_ui/button_start.png"/>
+          <pressedIcon value="pictures_ui/button_start.1.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -40,8 +40,8 @@
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <icon value="Bilder/button_exit.png"/>
-          <pressedIcon value="Bilder/button_exit.1.png"/>
+          <icon value="pictures_ui/button_exit.png"/>
+          <pressedIcon value="pictures_ui/button_exit.1.png"/>
           <text value=""/>
         </properties>
       </component>
