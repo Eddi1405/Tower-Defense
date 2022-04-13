@@ -146,6 +146,10 @@ public class UI_start  extends JFrame implements KeyListener{
             em.esc_panel.setVisible(true);
             em.esc_panel.setFocusable(true);
             em.esc_panel.requestFocusInWindow();
+
+            //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
+            //window.add(em.esc_panel);
+
             window.setContentPane(em.esc_panel);
             SwingUtilities.updateComponentTreeUI(window);
 
