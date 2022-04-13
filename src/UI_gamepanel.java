@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class UI_gamepanel extends JPanel implements Runnable{
+public class UI_gamepanel extends JPanel implements Runnable {
 
     //Screen Settings
     final int originalTileSize = 16; //16x16
@@ -11,27 +11,29 @@ public class UI_gamepanel extends JPanel implements Runnable{
     final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
-    double StartX,StartY;
-
+    double StartX, StartY;
+    DragPanel dp =new DragPanel();
     //Gamethread für Performance
     Thread gameThread;
 
-            int map;
-    IngameShop is = new IngameShop();
+    int map;
+    //IngameShop is = new IngameShop();
     //Enemy em = new Enemy(StartX,StartY);
 
 
     mapGen tileM = new mapGen(this);
+
     //Panel definieren
-    public UI_gamepanel(int map){
+    public UI_gamepanel(int map) {
         this.setDoubleBuffered(true);
         tileM.loadMap(map);
+
     }
 
     //Erzeugung einer neuen Map
 
 
-    public void startGameThread(){
+    public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -48,18 +50,24 @@ public class UI_gamepanel extends JPanel implements Runnable{
 
     }
 
-    public void update(){
+    public void update() {
 
     }
 
-    public void paintComponent (Graphics g){
+    public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         g2.dispose();
-
         //em.render(g);
-       //System.out.println("Bild");
+        //System.out.println("Bild");
+        this.add(dp);
+        this.dp.setVisible(true);
+        //this.dp.setSize(300,300);
+        this.dp.setBounds(1625,0,300,1100);
+
+        //this.dp.setBackground(Color.blue);
+        this.setVisible(true);
     }
 }
