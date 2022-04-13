@@ -11,12 +11,14 @@ public class UI_gamepanel extends JPanel implements Runnable{
     final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
+    double StartX,StartY;
 
     //Gamethread für Performance
     Thread gameThread;
 
     int map;
     IngameShop is = new IngameShop();
+    //Enemy em = new Enemy(StartX,StartY);
 
     //Panel definieren
     public UI_gamepanel(int map1){
@@ -54,5 +56,8 @@ public class UI_gamepanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         tileM.draw(g2);
         g2.dispose();
+
+        //em.render(g);
+       //System.out.println("Bild");
     }
 }
