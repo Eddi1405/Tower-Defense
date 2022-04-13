@@ -10,6 +10,7 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
+    //MenuBar mb = new MenuBar();
     mapGen mg1;
 
 
@@ -43,6 +44,9 @@ public class UI_start  extends JFrame implements KeyListener{
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
         buttonListeners();
+
+
+
     }
 
     public void buttonListeners(){
@@ -79,6 +83,15 @@ public class UI_start  extends JFrame implements KeyListener{
                 }else if (o == em.weiter_button){
                     //TODO Continue machen momentan nicht Funktionabel
                     System.out.println("Continue");
+                    em.esc_panel.setVisible(false);
+                    em.esc_panel.setFocusable(false);
+                    SwingUtilities.updateComponentTreeUI(window);
+
+                    // Werden Entitys gespeichert ??! //TODO TEsten
+                    UI_gamepanel gamePanel = new UI_gamepanel(map);
+                    window.setContentPane(gamePanel);
+                    gamePanel.startGameThread();
+                    gamePanel.repaint();
                 }
                 else if (o == em.exit_button){
                     System.out.println("exitovermenu");

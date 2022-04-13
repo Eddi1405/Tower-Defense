@@ -16,6 +16,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
     Thread gameThread;
 
     int map;
+    IngameShop is = new IngameShop();
 
     //Panel definieren
     public UI_gamepanel(int map1){
