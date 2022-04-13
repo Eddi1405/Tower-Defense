@@ -15,13 +15,13 @@ public class UI_gamepanel extends JPanel implements Runnable{
     //Gamethread für Performance
     Thread gameThread;
 
-    int map;
-    IngameShop is = new IngameShop();
 
+    IngameShop is = new IngameShop();
+    mapGen tileM = new mapGen(this);
     //Panel definieren
-    public UI_gamepanel(int map1){
+    public UI_gamepanel(int map){
         this.setDoubleBuffered(true);
-        map = map1;
+        tileM.loadMap(map);
     }
 
     //Erzeugung einer neuen Map
@@ -49,7 +49,7 @@ public class UI_gamepanel extends JPanel implements Runnable{
     }
 
     public void paintComponent (Graphics g){
-        mapGen tileM = new mapGen(this);
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         tileM.draw(g2);
