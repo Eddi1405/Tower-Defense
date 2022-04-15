@@ -35,7 +35,7 @@ public class UI_start  extends JFrame implements KeyListener{
         //
         window.setFocusable(true);
         window.requestFocusInWindow();
-        //window.setSize(1920,  1080);
+        //window.setSize(2048,  1080); //1920*1080
         window.setContentPane(start_panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);
@@ -56,19 +56,19 @@ public class UI_start  extends JFrame implements KeyListener{
                 Object o = ae.getSource();
                 if(o == mm.Map1 ){
                     setMap(1);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     //Versuch 0pointerExc zu umgehen (geht net)
                     //mg1.loadMap(map);
                     mapAuswahl();
 
                 }else if (o == mm.Map2) {
                     setMap(2);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     mapAuswahl();
 
                 }else if (o == mm.Map3){
                     setMap(3);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     mapAuswahl();
 
                 }else if (o == start_button){

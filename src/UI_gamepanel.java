@@ -7,8 +7,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int originalTileSize = 16; //16x16
     final int scale = 6;
     final int tileSize = originalTileSize * scale; //48x48
-    final int maxScreenCol = 17;
-    final int maxScreenRow = 12;
+    final int maxScreenCol = 17; //17
+    final int maxScreenRow = 12; //12
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
     double StartX, StartY;
