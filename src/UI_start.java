@@ -96,6 +96,8 @@ public class UI_start  extends JFrame implements KeyListener{
                     // Werden Entitys gespeichert ??! //TODO TEsten
                     UI_gamepanel gamePanel = new UI_gamepanel(map);
                     window.setContentPane(gamePanel);
+                    em.esc_panel.setVisible(false);
+                    em.esc_panel.setFocusable(false);
                     gamePanel.startGameThread();
                     gamePanel.repaint();
                 }
