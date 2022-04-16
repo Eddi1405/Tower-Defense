@@ -21,7 +21,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
     int map;
     //IngameShop is = new IngameShop();
-    //Enemy em = new Enemy(StartX,StartY);
+    Enemy em = new Enemy(StartX,StartY);
 
 
     mapGen tileM = new mapGen(this);
@@ -65,14 +65,20 @@ public class UI_gamepanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         g2.dispose();
-        //em.render(g);
-        //System.out.println("Bild");
-        this.add(dp);
-        this.dp.setVisible(true);
-        //this.dp.setSize(300,300);
-        this.dp.setBounds(1625,0,300,1100);
-        this.dp.setBackground(Color.blue);
 
-        this.setVisible(true);
+        //System.out.println("Bild");
+/*
+        this.add(dp.is.IngameShop);
+        dp.is.setVisible(true);
+        //this.dp.setSize(300,300);
+        dp.is.setBounds(1625,0,300,1100);
+        dp.is.setBackground(Color.blue);
+
+        //this.setVisible(true);
+
+        em.render(g);
+
+ */
+
     }
 }

@@ -22,7 +22,7 @@ public class Enemy {
 
     public void render(Graphics g) {
 
-        g.drawImage(tex.Enemy, (int) x, (int) y, null);
+        g.drawImage(tex.EnemyYellow, (int) x, (int) y, null);
     }
 
 
