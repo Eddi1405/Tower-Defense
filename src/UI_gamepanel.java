@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UI_gamepanel extends JPanel implements Runnable {
-
+    //TODO Get Res vom Monitor und dann Dynamisch anpassen.
+    //TODO den Müll aufräumen, unused Variablen, Alte Mains etc, THREAD FREIGEBEN
     //Screen Settings
     final int originalTileSize = 16; //16x16
     final int scale = 6;
@@ -53,7 +54,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public void update() {
 
     }
-
+    //TODO Unused Müll
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);

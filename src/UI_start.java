@@ -21,7 +21,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
 
     public UI_start(){
-        //TODO dont work
+        //TODO dont work ||WAT?
         ImageIcon img = new ImageIcon("pictures_map/icon.png");
         window.setIconImage(img.getImage());
 
@@ -54,6 +54,7 @@ public class UI_start  extends JFrame implements KeyListener{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Object o = ae.getSource();
+                //TODO Switch
                 if(o == mm.Map1 ){
                     setMap(1);
                     System.out.println("Sie haben die Map "+map + " gewaehlt" );
@@ -108,7 +109,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
             }
         };
-
+        //TODO Auslagern in eine Class
         mm.Map1.addActionListener(buttonListener);
         mm.Map2.addActionListener(buttonListener);
         mm.Map3.addActionListener(buttonListener);
