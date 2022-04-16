@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,9 @@ public class UI_start  extends JFrame implements KeyListener{
     UI_EscMenu em = new UI_EscMenu();
     //MenuBar mb = new MenuBar();
     mapGen mg1;
+
+    public boolean nstart;
+    public boolean escopen;
 
 
     public JPanel start_panel;
@@ -76,6 +80,7 @@ public class UI_start  extends JFrame implements KeyListener{
                     start_panel.setVisible(false);
                     window.setContentPane(mm.menu_panel);
                     mm.menu_panel.setVisible(true);
+                    nstart = true;
                 }else if (o == exit_button){
                     System.out.println("Exit");
                     System.exit(0);
@@ -102,7 +107,7 @@ public class UI_start  extends JFrame implements KeyListener{
                     em.esc_panel.setVisible(false);
                     window.setContentPane(start_panel);
                     start_panel.setVisible(true);
-
+                    nstart = false;
                 }
 
 
@@ -154,21 +159,31 @@ public class UI_start  extends JFrame implements KeyListener{
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         System.out.println(keyEvent.getKeyCode());
-        if(keyEvent.getKeyCode() == 27){
+        if(keyEvent.getKeyCode() == 27 && nstart){
+            if(escopen){
+                em.esc_panel.setVisible(false );
+                escopen = false;
+                System.out.println("asda");
+            }
+            else {
+                escopen = true;
+                em.esc_panel.setVisible(true);
+                //em.esc_panel.setFocusable(true);
+                //em.esc_panel.requestFocusInWindow();
 
-            em.esc_panel.setVisible(true);
-            em.esc_panel.setFocusable(true);
-            em.esc_panel.requestFocusInWindow();
+                //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
+                Rectangle r = window.getBounds();
+                window.setLayout(null);
+                //em.esc_panel.setLayout(null);
+                window.add(em.esc_panel);
+                em.esc_panel.setBounds(0, 0, r.width, r.height);
 
-            //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
-            //window.add(em.esc_panel);
+                //window.setContentPane(em.esc_panel);
+                SwingUtilities.updateComponentTreeUI(window);
 
-            window.setContentPane(em.esc_panel);
-            SwingUtilities.updateComponentTreeUI(window);
+                //get actual panal und dan später das alte auftrufen bei weiter
 
-            //get actual panal und dan später das alte auftrufen bei weiter
-
-
+            }
         }
     }
 

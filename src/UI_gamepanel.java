@@ -34,8 +34,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
 
     public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start();
+
+        if(gameThread != null) {
+            gameThread = new Thread(this);
+            gameThread.start();
+        }
     }
 
 
