@@ -11,16 +11,13 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
-
     //DragPanel dp =new DragPanel();
     IngameShop is = new IngameShop();
-    //MenuBar mb = new MenuBar();
-    mapGen mg1;
+    Gegner gg = new Gegner();
 
 
     public boolean nstart;
     public boolean escopen;
-
 
     public JPanel start_panel;
     private JButton start_button;
@@ -67,8 +64,6 @@ public class UI_start  extends JFrame implements KeyListener{
                 if(o == mm.Map1 ){
                     setMap(1);
                     System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    //Versuch 0pointerExc zu umgehen (geht net)
-                    //mg1.loadMap(map);
                     mapAuswahl();
 
                 }else if (o == mm.Map2) {
@@ -155,8 +150,6 @@ public class UI_start  extends JFrame implements KeyListener{
         window.add(is.IngameShop);
         is.IngameShop.setBounds(1631,0,300,1100);
         is.IngameShop.setVisible(true);
-
-
 
     }
     public void setMap(int map){
