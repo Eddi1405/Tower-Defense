@@ -5,6 +5,7 @@ public class Tower {
 
     //public static final Tower ballista = new TowerBallista(0).ImageIO.read(getClass().getResourceAsStream("/pictures_map/ballista.png"));
 
+
     public int id;
     public Tower(int id)
     {
