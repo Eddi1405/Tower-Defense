@@ -15,7 +15,7 @@ public class DragPanel extends JPanel {
     IngameShop is = new IngameShop();
 
     DragPanel() {
-        is.overlay.setVisible(true);
+        //is.overlay.setVisible(true);
         imageCorner = new Point(0, 0);
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();

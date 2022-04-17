@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
 public class UI_gamepanel extends JPanel implements Runnable {
     //TODO Get Res vom Monitor und dann Dynamisch anpassen.
     //TODO den Müll aufräumen, unused Variablen, Alte Mains etc, THREAD FREIGEBEN
@@ -14,14 +13,15 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
     double StartX, StartY;
+
     DragPanel dp =new DragPanel();
+
     //Gamethread für Performance
     Thread gameThread;
 
-
     int map;
-    IngameShop is = new IngameShop();
-    //Enemy em = new Enemy(StartX,StartY);
+    //IngameShop is = new IngameShop();
+    Enemy em = new Enemy(StartX,StartY);
 
 
     mapGen tileM = new mapGen(this);
@@ -61,22 +61,24 @@ public class UI_gamepanel extends JPanel implements Runnable {
     }
     //TODO Unused Müll
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         g2.dispose();
-        //em.render(g);
+
         //System.out.println("Bild");
-        this.add(dp);
-        this.dp.setVisible(true);
+/*
+        this.add(dp.is.IngameShop);
+        dp.is.setVisible(true);
         //this.dp.setSize(300,300);
-        this.dp.setBounds(1625,0,300,1100);
+        dp.is.setBounds(1625,0,300,1100);
+        dp.is.setBackground(Color.blue);
 
-        //this.dp.setBackground(Color.blue);
-        this.setVisible(true);
+        //this.setVisible(true);
+
+        em.render(g);
+
+ */
+
     }
-
-
-
 }

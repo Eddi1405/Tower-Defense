@@ -11,8 +11,12 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
+
+    //DragPanel dp =new DragPanel();
+    IngameShop is = new IngameShop();
     //MenuBar mb = new MenuBar();
     mapGen mg1;
+
 
     public boolean nstart;
     public boolean escopen;
@@ -47,6 +51,7 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
+
         buttonListeners();
 
 
@@ -132,6 +137,7 @@ public class UI_start  extends JFrame implements KeyListener{
         UI_start Frame = new UI_start();
         System.out.println("-----Beginn-----");
         Frame.addKeyListener(Frame);
+
     }
 
 
@@ -143,6 +149,14 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
+
+        // Rectangle r = window.getBounds();
+        window.setLayout(null);
+        window.add(is.IngameShop);
+        is.IngameShop.setBounds(1631,0,300,1100);
+        is.IngameShop.setVisible(true);
+
+
 
     }
     public void setMap(int map){
@@ -167,6 +181,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 em.esc_panel.setVisible(false );
                 escopen = false;
                 System.out.println("asda");
+                is.IngameShop.setVisible(true);
             }
             else {
                 escopen = true;
@@ -180,7 +195,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 //em.esc_panel.setLayout(null);
                 window.add(em.esc_panel);
                 em.esc_panel.setBounds(0, 0, r.width, r.height);
-
+                is.IngameShop.setVisible(false);
                 //window.setContentPane(em.esc_panel);
                 SwingUtilities.updateComponentTreeUI(window);
 
