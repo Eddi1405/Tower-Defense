@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class IngameShop extends JPanel {
+public class IngameShop extends JPanel  {
 
 
     JPanel overlay = new JPanel();
@@ -21,6 +21,6 @@ public class IngameShop extends JPanel {
         overlay.add(tower4Button);
         overlay.add(schadensBonusButton);
         overlay.add(extraHPButton);
-    }
 
+    }
 }

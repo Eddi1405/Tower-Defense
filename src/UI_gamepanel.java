@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+
 public class UI_gamepanel extends JPanel implements Runnable {
     //TODO Get Res vom Monitor und dann Dynamisch anpassen.
     //TODO den Müll aufräumen, unused Variablen, Alte Mains etc, THREAD FREIGEBEN
@@ -17,8 +18,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Gamethread für Performance
     Thread gameThread;
 
+
     int map;
-    //IngameShop is = new IngameShop();
+    IngameShop is = new IngameShop();
     //Enemy em = new Enemy(StartX,StartY);
 
 
@@ -74,4 +76,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
         //this.dp.setBackground(Color.blue);
         this.setVisible(true);
     }
+
+
+
 }
