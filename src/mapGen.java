@@ -108,14 +108,14 @@ public class mapGen {
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.w_tileSize, gp.h_tileSize, null);
             col++;
-            x += gp.tileSize;
+            x += gp.w_tileSize;
             if(col == gp.maxScreenCol){
                 col = 0;
                 x = 0;
                 row++;
-                y += gp.tileSize;
+                y += gp.h_tileSize;
             }
         }
     }

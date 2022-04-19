@@ -9,14 +9,16 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Screen Settings
     final int originalTileSize = 16; //16x16
     int scale = 6;
-     int tileSize = originalTileSize * scale; //48x48
+    int tileSize = originalTileSize * scale; //48x48
     final int maxScreenCol = 17; //17
     final int maxScreenRow = 12; //12
     final int screenWidth = tileSize * maxScreenCol; // 768
     final int screenHeight = tileSize * maxScreenRow; // 576
+    int w_tileSize;
+    int h_tileSize;
 
     DragPanel dp =new DragPanel();
-    Gegner gg = new Gegner();
+    Gegner gg = new Gegner(w_tileSize,h_tileSize);
     //Gamethread für Performance
     Thread gameThread;
 
@@ -31,8 +33,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         tileM.loadMap(map);
         this.setOpaque(true);
-        tileSize = round((width/10*8)/maxScreenCol);
-        System.out.println(tileSize);
+        w_tileSize = round((width/10*8)/maxScreenCol);
+        h_tileSize = round(height/maxScreenRow);
+
 
     }
 

@@ -13,7 +13,7 @@ public class UI_start  extends JFrame implements KeyListener{
     UI_EscMenu em = new UI_EscMenu();
     //DragPanel dp =new DragPanel();
     IngameShop is = new IngameShop();
-    Gegner gg = new Gegner();
+    //Gegner gg = new Gegner();
 
 
     public boolean nstart;
@@ -148,7 +148,7 @@ public class UI_start  extends JFrame implements KeyListener{
         // Rectangle r = window.getBounds();
         window.setLayout(null);
         window.add(is.IngameShop);
-        is.IngameShop.setBounds(1631,0,300,1100);
+        is.IngameShop.setBounds(r.width/10*8,0,r.width/10*2,r.height);
         is.IngameShop.setVisible(true);
 
     }
