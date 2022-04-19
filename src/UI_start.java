@@ -5,18 +5,20 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class UI_start  extends JFrame implements KeyListener{
+public class UI_start  extends JFrame implements KeyListener,ActionListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
-    mapGen mg1;
 
 
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
     int map = 0;
+
+    Timer timer = new Timer(50,this);
+
 
 
     public UI_start(){
@@ -56,16 +58,22 @@ public class UI_start  extends JFrame implements KeyListener{
                     //Versuch 0pointerExc zu umgehen (geht net)
                     //mg1.loadMap(map);
                     mapAuswahl();
+                    //Aufbau zeit vor dem Spawnen der GEgner
+                    timer.start();
 
                 }else if (o == mm.Map2) {
                     setMap(2);
                     System.out.println("Sie haben die Map "+map + " gewählt" );
                     mapAuswahl();
+                    //Aufbau zeit vor dem Spawnen der GEgner
+                    timer.start();
 
                 }else if (o == mm.Map3){
                     setMap(3);
                     System.out.println("Sie haben die Map "+map + " gewählt" );
                     mapAuswahl();
+                    //Aufbau zeit vor dem Spawnen der GEgner
+                    timer.start();
 
                 }else if (o == start_button){
                     System.out.println("Start");
@@ -77,8 +85,18 @@ public class UI_start  extends JFrame implements KeyListener{
                     System.exit(0);
                 //ESC Menü Buttons
                 }else if (o == em.weiter_button){
-                    //TODO Continue machen momentan nicht Funktionabel
                     System.out.println("Continue");
+                    em.esc_panel.setVisible(false);
+                    em.esc_panel.setFocusable(false);
+                    SwingUtilities.updateComponentTreeUI(window);
+
+                    // Werden Entitys gespeichert ??! //TODO TEsten
+                    UI_gamepanel gamePanel = new UI_gamepanel(map);
+                    window.setContentPane(gamePanel);
+                    gamePanel.startGameThread();
+                    gamePanel.repaint();
+
+
                 }
                 else if (o == em.exit_button){
                     System.out.println("exitovermenu");
@@ -142,14 +160,12 @@ public class UI_start  extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent keyEvent) {
         System.out.println(keyEvent.getKeyCode());
         if(keyEvent.getKeyCode() == 27){
-
             em.esc_panel.setVisible(true);
             em.esc_panel.setFocusable(true);
             em.esc_panel.requestFocusInWindow();
 
             //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
             //window.add(em.esc_panel);
-
             window.setContentPane(em.esc_panel);
             SwingUtilities.updateComponentTreeUI(window);
 
@@ -160,4 +176,16 @@ public class UI_start  extends JFrame implements KeyListener{
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //Idee fürs Spawnen
+        if(timer.isRunning()){
+            int gegnerAnzahl = 10;
+            for(int i = 0; i <=  gegnerAnzahl;i++){
+                // Gegner gg = new Gegner();
+                //gg.draw();
+            }
+
+        }
+    }
 }
