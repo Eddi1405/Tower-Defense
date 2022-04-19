@@ -29,7 +29,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //ist wie eine Schleife
     public void startGameThread() {
 
-        if(gameThread != null) {
+        if(gameThread == null) {
             gameThread = new Thread(this);
             gameThread.start();
         }
@@ -40,8 +40,13 @@ public class UI_gamepanel extends JPanel implements Runnable {
     @Override
     public void run() {
         while (gameThread != null) {
+            try {
+                gameThread.sleep(2000);
+                System.out.println("sleep");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             gg.move();
-
             //paintComponent(Graphics g)
             repaint();
         }

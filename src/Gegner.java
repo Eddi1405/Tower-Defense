@@ -15,17 +15,18 @@ public class Gegner {
     //für die dynamische größe der Gegner.wird in gamepanel übergeben.
     private int wtilesize;
     private int htilesize;
+    //Timer timer = new Timer(5,this);
     public Gegner(int w_tilesize,int h_tilesize) {    //Set skin and enemy position
 
         ImageIcon ii = new ImageIcon(this.getClass().getResource(EnemyY));
         image = ii.getImage();
         x = 10;
         y = 180;
-        dx= 300;
-        dy = 300;
+        dx= 1;
+        dy = 1;
         //Dynamische größe wird in eine variable gepackt
-        wtilesize=w_tilesize;
-        htilesize=h_tilesize;
+        wtilesize = w_tilesize;
+        htilesize = h_tilesize;
     }
 
     public int getX() { //Get function
@@ -41,9 +42,28 @@ public class Gegner {
     }
 
     public void move() {    //Movement with delay
-            x += dx;
-            y += dy;
 
+        if(x < 0){
+            dx = 0;
+            x = 0;
+        }
+        if(x > wtilesize){
+            dx = 0;
+            x = 500;
+        }
+
+        if(y < 0){
+            dy = 0;
+            x = 0;
+        }
+        if(y > htilesize){
+            dy = 0;
+            y = 500;
+        }
+
+        x = x + dy;
+        System.out.println(x);
+        y = y + dy;
     }
     
     public void draw(Graphics2D g2) {
