@@ -19,7 +19,6 @@ public class mapGen {
         tile = new Tile[20];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileimage();
-        loadMap(gp.map);
     }
 
     public void getTileimage() {
@@ -27,7 +26,7 @@ public class mapGen {
         try {
 
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/1.png"));
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.1.png"));
@@ -39,31 +38,31 @@ public class mapGen {
             tile[3].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.3.png"));
 
             tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.1.png"));
+            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.4.png"));
 
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.2.png"));
+            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.5.png"));
 
             tile[6] = new Tile();
-            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.3.png"));
+            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.6.png"));
 
             tile[7] = new Tile();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.1.png"));
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.7.png"));
 
             tile[8] = new Tile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.2.png"));
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.8.png"));
 
             tile[9] = new Tile();
-            tile[9].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.3.png"));
+            tile[9].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.9.png"));
 
             tile[10] = new Tile();
-            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.4.png"));
+            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.10.png"));
 
             tile[11] = new Tile();
-            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass4.png"));
+            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass4.11.png"));
 
             tile[12] = new Tile();
-            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baum.png"));
+            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baum.12.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,7 +74,7 @@ public class mapGen {
 
         try {
             //text datei wird eingelesen
-            InputStream is = getClass().getResourceAsStream("map/map"+gp.map+".txt");
+            InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -109,14 +108,14 @@ public class mapGen {
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.w_tileSize, gp.h_tileSize, null);
             col++;
-            x += gp.tileSize;
+            x += gp.w_tileSize;
             if(col == gp.maxScreenCol){
                 col = 0;
                 x = 0;
                 row++;
-                y += gp.tileSize;
+                y += gp.h_tileSize;
             }
         }
     }

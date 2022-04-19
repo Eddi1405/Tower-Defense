@@ -11,6 +11,8 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
 
 //TODO Möglicher denkfehler bei der Erstellung der "Gegner"
 
+    //TODO Denglish detected
+
     Tile[] baloon;
 
     Timer timer = new Timer(5,this);
@@ -46,6 +48,7 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
+        //TODO CASE
         if(x < 0){
             velX = 0;
             x = 0;
@@ -77,6 +80,7 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         //Hört auf Tasten druck und ändert auf trigger die Koordinaten
+        //TODO CASE
         if(keyEvent.getKeyCode() == KeyEvent.VK_W){
             velX = 0;
             velY = -1;
@@ -107,7 +111,7 @@ public class BaloonsBewegen extends JPanel implements ActionListener, KeyListene
         try {
             //Baloons werden hier geladen
             baloon[0] = new Tile();
-            baloon[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon.png"));//TODO Baloons.png erstellen
+            baloon[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon.png"));
 
             baloon[1] = new Tile();
             baloon[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baloon2.png"));

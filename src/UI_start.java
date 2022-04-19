@@ -1,28 +1,32 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class UI_start  extends JFrame implements KeyListener,ActionListener{
+public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
+    //DragPanel dp =new DragPanel();
+    IngameShop is = new IngameShop();
+    //Gegner gg = new Gegner();
 
+
+    public boolean nstart;
+    public boolean escopen;
 
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
     int map = 0;
 
-    Timer timer = new Timer(50,this);
-
-
 
     public UI_start(){
-        //TODO dont work
+        //TODO dont work ||WAT?
         ImageIcon img = new ImageIcon("pictures_map/icon.png");
         window.setIconImage(img.getImage());
 
@@ -36,7 +40,7 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
         //
         window.setFocusable(true);
         window.requestFocusInWindow();
-        //window.setSize(1920,  1080);
+        //window.setSize(2048,  1080); //1920*1080
         window.setContentPane(start_panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);
@@ -44,7 +48,11 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
 
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
+
         buttonListeners();
+
+
+
     }
 
     public void buttonListeners(){
@@ -52,51 +60,46 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 Object o = ae.getSource();
+                //TODO Switch
                 if(o == mm.Map1 ){
                     setMap(1);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
-                    //Versuch 0pointerExc zu umgehen (geht net)
-                    //mg1.loadMap(map);
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     mapAuswahl();
-                    //Aufbau zeit vor dem Spawnen der GEgner
-                    timer.start();
 
                 }else if (o == mm.Map2) {
                     setMap(2);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     mapAuswahl();
-                    //Aufbau zeit vor dem Spawnen der GEgner
-                    timer.start();
 
                 }else if (o == mm.Map3){
                     setMap(3);
-                    System.out.println("Sie haben die Map "+map + " gewählt" );
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
                     mapAuswahl();
-                    //Aufbau zeit vor dem Spawnen der GEgner
-                    timer.start();
 
                 }else if (o == start_button){
                     System.out.println("Start");
                     start_panel.setVisible(false);
                     window.setContentPane(mm.menu_panel);
                     mm.menu_panel.setVisible(true);
+                    nstart = true;
                 }else if (o == exit_button){
                     System.out.println("Exit");
                     System.exit(0);
                 //ESC Menü Buttons
                 }else if (o == em.weiter_button){
+                    //TODO Continue machen momentan nicht Funktionabel
                     System.out.println("Continue");
                     em.esc_panel.setVisible(false);
                     em.esc_panel.setFocusable(false);
                     SwingUtilities.updateComponentTreeUI(window);
-
+                    Rectangle r = window.getBounds();
                     // Werden Entitys gespeichert ??! //TODO TEsten
-                    UI_gamepanel gamePanel = new UI_gamepanel(map);
+                    UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
                     window.setContentPane(gamePanel);
+                    em.esc_panel.setVisible(false);
+                    em.esc_panel.setFocusable(false);
                     gamePanel.startGameThread();
                     gamePanel.repaint();
-
-
                 }
                 else if (o == em.exit_button){
                     System.out.println("exitovermenu");
@@ -107,13 +110,13 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
                     em.esc_panel.setVisible(false);
                     window.setContentPane(start_panel);
                     start_panel.setVisible(true);
-
+                    nstart = false;
                 }
 
 
             }
         };
-
+        //TODO Auslagern in eine Class
         mm.Map1.addActionListener(buttonListener);
         mm.Map2.addActionListener(buttonListener);
         mm.Map3.addActionListener(buttonListener);
@@ -129,17 +132,24 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
         UI_start Frame = new UI_start();
         System.out.println("-----Beginn-----");
         Frame.addKeyListener(Frame);
+
     }
 
 
     public void mapAuswahl(){
-
+        Rectangle r = window.getBounds();
         //BaloonsBewegen bb = new BaloonsBewegen();
         mm.menu_panel.setVisible(false);
-        UI_gamepanel gamePanel = new UI_gamepanel(map);
+        UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
+
+        // Rectangle r = window.getBounds();
+        window.setLayout(null);
+        window.add(is.IngameShop);
+        is.IngameShop.setBounds(r.width/10*8,0,r.width/10*2,r.height);
+        is.IngameShop.setVisible(true);
 
     }
     public void setMap(int map){
@@ -159,33 +169,34 @@ public class UI_start  extends JFrame implements KeyListener,ActionListener{
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         System.out.println(keyEvent.getKeyCode());
-        if(keyEvent.getKeyCode() == 27){
-            em.esc_panel.setVisible(true);
-            em.esc_panel.setFocusable(true);
-            em.esc_panel.requestFocusInWindow();
-
-            //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
-            //window.add(em.esc_panel);
-            window.setContentPane(em.esc_panel);
-            SwingUtilities.updateComponentTreeUI(window);
-
-            //get actual panal und dan später das alte auftrufen bei weiter
-
-
-        }
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //Idee fürs Spawnen
-        if(timer.isRunning()){
-            int gegnerAnzahl = 10;
-            for(int i = 0; i <=  gegnerAnzahl;i++){
-                // Gegner gg = new Gegner();
-                //gg.draw();
+        if(keyEvent.getKeyCode() == 27 && nstart){
+            if(escopen){
+                em.esc_panel.setVisible(false );
+                escopen = false;
+                System.out.println("asda");
+                is.IngameShop.setVisible(true);
             }
+            else {
+                escopen = true;
+                em.esc_panel.setVisible(true);
+                //em.esc_panel.setFocusable(true);
+                //em.esc_panel.requestFocusInWindow();
 
+                //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
+                Rectangle r = window.getBounds();
+                window.setLayout(null);
+                //em.esc_panel.setLayout(null);
+                window.add(em.esc_panel);
+                em.esc_panel.setBounds(0, 0, r.width, r.height);
+                is.IngameShop.setVisible(false);
+                //window.setContentPane(em.esc_panel);
+                SwingUtilities.updateComponentTreeUI(window);
+
+                //get actual panal und dan später das alte auftrufen bei weiter
+
+            }
         }
     }
+
+
 }
