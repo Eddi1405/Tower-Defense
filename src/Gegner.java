@@ -12,23 +12,24 @@ public class Gegner {
     private final int strength=10;
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
-    //für die dynamische größe der Gegner.wird in gamepanel übergeben.
-    private int wtilesize;
-    private int htilesize;
+    UI_gamepanel gp;
     //Timer timer = new Timer(5,this);
-    public Gegner(int w_tilesize,int h_tilesize) {    //Set skin and enemy position
-
+    public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
+        this.gp = gp;
         ImageIcon ii = new ImageIcon(this.getClass().getResource(EnemyY));
         image = ii.getImage();
-        x = 10;
-        y = 180;
+        startPoint();
         dx= 1;
         dy = 1;
         //Dynamische größe wird in eine variable gepackt
-        wtilesize = w_tilesize;
-        htilesize = h_tilesize;
     }
 
+    public void startPoint(){
+        int stepH = gp.h_tileSize;
+        x = 10;
+        y = stepH *2;
+
+    }
     public int getX() { //Get function
         return x;
     }
@@ -42,7 +43,7 @@ public class Gegner {
     }
 
     public void move() {    //Movement with delay
-
+        /**
         if(x < 0){
             dx = 0;
             x = 0;
@@ -63,12 +64,16 @@ public class Gegner {
 
         x = x + dy;
         System.out.println(x);
-        y = y + dy;
+        y = y + dy;*/
+
+        x = x+10;
+
     }
     
     public void draw(Graphics2D g2) {
         //TODO dynamische größe bei den Gegnern
-        g2.drawImage(image , getX(),getY(),80,80, null);
+        System.out.println(gp.w_tileSize+"sss"+gp.h_tileSize);
+        g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
 
  /*

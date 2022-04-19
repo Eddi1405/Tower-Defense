@@ -11,7 +11,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int maxScreenRow = 12; //12
     int w_tileSize;
     int h_tileSize;
-    Gegner gg = new Gegner(w_tileSize,h_tileSize);
+    Gegner gg = new Gegner(this);
     //Gamethread für Performance
     Thread gameThread;
     mapGen tileM = new mapGen(this);
