@@ -26,7 +26,7 @@ public class mapGen {
         try {
 
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/1.png"));
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.1.png"));
