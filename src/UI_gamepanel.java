@@ -1,13 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 
+import static java.lang.Math.round;
+
 public class UI_gamepanel extends JPanel implements Runnable {
     //TODO Get Res vom Monitor und dann Dynamisch anpassen.
     //TODO den Müll aufräumen, unused Variablen, Alte Mains etc, THREAD FREIGEBEN
     //Screen Settings
     final int originalTileSize = 16; //16x16
-    final int scale = 6;
-    final int tileSize = originalTileSize * scale; //48x48
+    int scale = 6;
+     int tileSize = originalTileSize * scale; //48x48
     final int maxScreenCol = 17; //17
     final int maxScreenRow = 12; //12
     final int screenWidth = tileSize * maxScreenCol; // 768
@@ -25,9 +27,12 @@ public class UI_gamepanel extends JPanel implements Runnable {
     mapGen tileM = new mapGen(this);
 
     //Panel definieren
-    public UI_gamepanel(int map) {
+    public UI_gamepanel(int map,int width,int height) {
         this.setDoubleBuffered(true);
         tileM.loadMap(map);
+        this.setOpaque(true);
+        tileSize = round((width/10*8)/maxScreenCol);
+        System.out.println(tileSize);
 
     }
 

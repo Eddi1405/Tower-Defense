@@ -3,9 +3,11 @@
   <grid id="27dc6" binding="IngameShop" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="true" same-size-vertically="true" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="718" y="38" width="260" height="438"/>
+      <xy x="718" y="38" width="332" height="438"/>
     </constraints>
-    <properties/>
+    <properties>
+      <opaque value="true"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="544eb" class="javax.swing.JButton" binding="schadensBonusButton" default-binding="true">

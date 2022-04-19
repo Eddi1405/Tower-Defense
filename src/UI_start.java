@@ -92,9 +92,9 @@ public class UI_start  extends JFrame implements KeyListener{
                     em.esc_panel.setVisible(false);
                     em.esc_panel.setFocusable(false);
                     SwingUtilities.updateComponentTreeUI(window);
-
+                    Rectangle r = window.getBounds();
                     // Werden Entitys gespeichert ??! //TODO TEsten
-                    UI_gamepanel gamePanel = new UI_gamepanel(map);
+                    UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
                     window.setContentPane(gamePanel);
                     em.esc_panel.setVisible(false);
                     em.esc_panel.setFocusable(false);
@@ -137,10 +137,10 @@ public class UI_start  extends JFrame implements KeyListener{
 
 
     public void mapAuswahl(){
-
+        Rectangle r = window.getBounds();
         //BaloonsBewegen bb = new BaloonsBewegen();
         mm.menu_panel.setVisible(false);
-        UI_gamepanel gamePanel = new UI_gamepanel(map);
+        UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
