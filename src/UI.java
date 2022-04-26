@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 import static java.lang.Math.round;
@@ -13,12 +14,13 @@ public class UI {
     public UI(UI_gamepanel gp){
 
         this.gp = gp;
-
+        setFont();
         arial_40 = new Font("Seven Segment",Font.PLAIN,60);
 
         tower = new Tile[20];
 
         getImageTower();
+
     }
 
     public void draw(Graphics2D g2){
@@ -42,11 +44,11 @@ public class UI {
         g2.drawImage(tower[3].image,gp.screen+(int) round(breite*10),(int) round(gp.h_tileSize*1.2)+50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
 
 
-        g2.drawImage(tower[4].image,gp.screen+245,5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
-        g2.drawString(String.valueOf(leben),gp.screen+305,50);
+        g2.drawImage(tower[4].image,gp.screen+(int) round(breite*81.7),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
+        g2.drawString(String.valueOf(leben),gp.screen+(int) round(breite*101.7),50);
 
-        g2.drawImage(tower[5].image,gp.screen+15,5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
-        g2.drawString(String.valueOf(coins),gp.screen+70,50);
+        g2.drawImage(tower[5].image,gp.screen+(int) round(breite*5),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
+        g2.drawString(String.valueOf(coins),gp.screen+(int) round(breite*23.3),50);
 
 
     }
@@ -69,6 +71,17 @@ public class UI {
         } catch (IOException e) {
             System.out.println("bild fehler");
             e.printStackTrace();
+        }
+    }
+
+    public void setFont(){
+
+        try {
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Seven Segment.ttf")));
+        } catch (IOException|FontFormatException e) {
+            //Handle exception
         }
     }
 }
