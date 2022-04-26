@@ -45,6 +45,7 @@ public class UI_start  extends JFrame implements KeyListener{
         window.addKeyListener(this);
 
         buttonListeners();
+
     }
 
     public void buttonListeners(){
@@ -118,6 +119,7 @@ public class UI_start  extends JFrame implements KeyListener{
         UI_start Frame = new UI_start();
         System.out.println("-----Beginn-----");
         Frame.addKeyListener(Frame);
+        System.out.println(System.getProperty("os.name"));
 
     }
 
