@@ -15,7 +15,7 @@ public class UI {
 
         this.gp = gp;
         setFont();
-        arial_40 = new Font("Seven Segment",Font.PLAIN,60);
+        arial_40 = new Font("Seven Segment",Font.TRUETYPE_FONT,60);
 
         tower = new Tile[20];
 
