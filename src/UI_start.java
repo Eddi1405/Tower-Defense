@@ -146,10 +146,11 @@ public class UI_start  extends JFrame implements KeyListener{
         gamePanel.repaint();
 
         // Rectangle r = window.getBounds();
+        /**
         window.setLayout(null);
         window.add(is.IngameShop);
         is.IngameShop.setBounds(r.width/10*8,0,r.width/10*2,r.height);
-        is.IngameShop.setVisible(true);
+        is.IngameShop.setVisible(true);*/
 
     }
     public void setMap(int map){

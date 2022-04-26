@@ -15,6 +15,10 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Gamethread für Performance
     Thread gameThread;
     mapGen tileM = new mapGen(this);
+    public UI ui = new UI(this);
+
+    public int width;
+    public int height;
 
     //Panel definieren
     public UI_gamepanel(int map,int width,int height) {
@@ -24,6 +28,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
         Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height*/
         w_tileSize = round((width/10*8)/maxScreenCol);
         h_tileSize = round(height/maxScreenRow);
+
+        this.width = width;
+        this.height = height;
     }
 
     //ist wie eine Schleife
@@ -57,8 +64,17 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        //Map
         tileM.draw(g2);
+
+        //Gegner
         gg.draw(g2);
+
+        //UI
+        ui.draw(g2);
+
         g2.dispose();
+
+
     }
 }
