@@ -7,23 +7,19 @@ import static java.lang.Math.round;
 public class UI {
     private int coins = 10;
     private int leben = 150;
-
     private String system = System.getProperty("os.name").toLowerCase();
     UI_gamepanel gp;
     Font Seven;
     Tile[] tower;
     public UI(UI_gamepanel gp){
-
+        tower = new Tile[20];
         this.gp = gp;
         setFont();
-
-        tower = new Tile[20];
-
         getImageTower();
-
     }
 
     public void draw(Graphics2D g2){
+        //Schriftart wird gesetzt
         g2.setFont(Seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,60));
 
@@ -32,11 +28,14 @@ public class UI {
         g2.setColor(c);
         g2.fillRect(gp.screen,0,gp.width-gp.screen,gp.height);
         g2.setColor(Color.BLACK);
+        //zeichnet einen schwarzen Strich um Map und Shop zu trennen
         g2.setStroke(new BasicStroke(5));
         g2.drawLine(gp.screen,0,gp.screen,gp.height);
 
+        //Breite wird defeniert damit alles dynamisch angepasst werden kann
         double breite = (gp.width-gp.screen)/100;
-        //zeichnet den tower
+
+        //zeichnet die Towers
         //1 reihe
         g2.drawImage(tower[0].image,gp.screen+(int) round(breite*10),50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
         g2.drawImage(tower[1].image,gp.screen+(int) round(breite*10)+(int) round(gp.w_tileSize*1.2),50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
@@ -44,6 +43,7 @@ public class UI {
         //2 reihe
         g2.drawImage(tower[3].image,gp.screen+(int) round(breite*10),(int) round(gp.h_tileSize*1.2)+50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
 
+        //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         if(system.contains("nix") || system.contains("nux")){
             //Leben
             g2.drawImage(tower[4].image,gp.screen+(int) round(breite*81.7),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
@@ -62,10 +62,9 @@ public class UI {
             g2.drawString(String.valueOf(coins),gp.screen+(int) round(breite*18.3),50);
         }
 
-
-
     }
 
+    //Hier werden die Bilder geladen
     public void getImageTower(){
 
         try{
@@ -87,12 +86,12 @@ public class UI {
         }
     }
 
+    //hier wird die Schriftart geladen
     public void setFont(){
 
         try {
             InputStream is = getClass().getResourceAsStream("/font/SevenSegment.ttf");
             Seven = Font.createFont(Font.TRUETYPE_FONT,is);
-
         }catch (FontFormatException e){
             e.printStackTrace();
         }catch (IOException e){

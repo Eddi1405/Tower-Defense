@@ -1,5 +1,7 @@
 import javax.swing.*;
-
+/**
+ * Ist nur da damit die Form benutzt werden kann.
+ */
 public class UI_menu {
 
     public JButton Map1;
