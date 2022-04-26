@@ -42,12 +42,12 @@ public class UI {
         //2 reihe
         g2.drawImage(tower[3].image,gp.screen+(int) round(breite*10),(int) round(gp.h_tileSize*1.2)+50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
 
-        //leben
-        g2.drawImage(tower[4].image,gp.screen+(int) round(breite*81.7),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
-        g2.drawString(String.valueOf(leben),gp.screen+(int) round(breite*101.7),50);
+        //leben 81.7 101.7
+        g2.drawImage(tower[4].image,gp.screen+(int) round(breite*62.7),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
+        g2.drawString(String.valueOf(leben),gp.screen+(int) round(breite*75.7),50);
         //coins
         g2.drawImage(tower[5].image,gp.screen+(int) round(breite*5),5,(int) round(gp.w_tileSize*0.6),(int) round(gp.h_tileSize*0.6),null);
-        g2.drawString(String.valueOf(coins),gp.screen+(int) round(breite*23.3),50);
+        g2.drawString(String.valueOf(coins),gp.screen+(int) round(breite*18.3),50);
 
 
     }
