@@ -1,5 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 import static java.lang.Math.round;
 
@@ -20,6 +22,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public int width;
     public int height;
 
+    public int screen;
+
     //Panel definieren
     public UI_gamepanel(int map,int width,int height) {
         this.setDoubleBuffered(true);
@@ -27,7 +31,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
         /**80% des screens wird für die map verwendet deswegen /10+8.
         Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height*/
         w_tileSize = round((width/10*8)/maxScreenCol);
-        h_tileSize = round(height/maxScreenRow);
+        h_tileSize = round(height/maxScreenRow)+1;
+
+        screen = w_tileSize*maxScreenCol;
 
         this.width = width;
         this.height = height;

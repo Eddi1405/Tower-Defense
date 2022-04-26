@@ -33,7 +33,7 @@ public class UI_start  extends JFrame implements KeyListener{
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        window.setResizable(false);
+        window.setResizable(true);
 
         window.setTitle("Tower Defense");
         window.setLocationRelativeTo(null);
@@ -45,6 +45,8 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);
         window.setVisible(true);
+
+        //window.setSize(1600,900);
 
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
