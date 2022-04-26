@@ -11,9 +11,6 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
-    //DragPanel dp =new DragPanel();
-    IngameShop is = new IngameShop();
-    //Gegner gg = new Gegner();
 
 
     public boolean nstart;
@@ -26,9 +23,9 @@ public class UI_start  extends JFrame implements KeyListener{
 
 
     public UI_start(){
-        //TODO dont work ||WAT?
-        ImageIcon img = new ImageIcon("pictures_map/icon.png");
-        window.setIconImage(img.getImage());
+        //TODO Das icon vom Programm. Sollte jetzt klappen. Muss noch getestet werden.
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_map/icon.png"));
+        window.setIconImage(icon.getImage());
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,65 +55,62 @@ public class UI_start  extends JFrame implements KeyListener{
     }
 
     public void buttonListeners(){
-        ActionListener buttonListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                Object o = ae.getSource();
-                //TODO Switch
-                if(o == mm.Map1 ){
-                    setMap(1);
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+        ActionListener buttonListener = ae -> {
+            Object o = ae.getSource();
+            //TODO switch geht nicht
+            if(o == mm.Map1 ){
+                setMap(1);
+                System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                mapAuswahl();
 
-                }else if (o == mm.Map2) {
-                    setMap(2);
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+            }else if (o == mm.Map2) {
+                setMap(2);
+                System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                mapAuswahl();
 
-                }else if (o == mm.Map3){
-                    setMap(3);
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+            }else if (o == mm.Map3){
+                setMap(3);
+                System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                mapAuswahl();
 
-                }else if (o == start_button){
-                    System.out.println("Start");
-                    start_panel.setVisible(false);
-                    window.setContentPane(mm.menu_panel);
-                    mm.menu_panel.setVisible(true);
-                    nstart = true;
-                }else if (o == exit_button){
-                    System.out.println("Exit");
-                    System.exit(0);
-                //ESC Menü Buttons
-                }else if (o == em.weiter_button){
-                    //TODO Continue machen momentan nicht Funktionabel
-                    System.out.println("Continue");
-                    em.esc_panel.setVisible(false);
-                    em.esc_panel.setFocusable(false);
-                    SwingUtilities.updateComponentTreeUI(window);
-                    Rectangle r = window.getBounds();
-                    // Werden Entitys gespeichert ??! //TODO TEsten
-                    UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
-                    window.setContentPane(gamePanel);
-                    em.esc_panel.setVisible(false);
-                    em.esc_panel.setFocusable(false);
-                    gamePanel.startGameThread();
-                    gamePanel.repaint();
-                }
-                else if (o == em.exit_button){
-                    System.out.println("exitovermenu");
-                    System.exit(0);
-                }
-                else if (o == em.menu_button){
-                    System.out.println("Main menu");
-                    em.esc_panel.setVisible(false);
-                    window.setContentPane(start_panel);
-                    start_panel.setVisible(true);
-                    nstart = false;
-                }
-
-
+            }else if (o == start_button){
+                System.out.println("Start");
+                start_panel.setVisible(false);
+                window.setContentPane(mm.menu_panel);
+                mm.menu_panel.setVisible(true);
+                nstart = true;
+            }else if (o == exit_button){
+                System.out.println("Exit");
+                System.exit(0);
+            //ESC Menü Buttons
+            }else if (o == em.weiter_button){
+                //TODO Continue resetet das spiel
+                System.out.println("Continue");
+                em.esc_panel.setVisible(false);
+                em.esc_panel.setFocusable(false);
+                SwingUtilities.updateComponentTreeUI(window);
+                Rectangle r = window.getBounds();
+                // Werden Entitys gespeichert ??! //TODO TEsten
+                UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
+                window.setContentPane(gamePanel);
+                em.esc_panel.setVisible(false);
+                em.esc_panel.setFocusable(false);
+                gamePanel.startGameThread();
+                gamePanel.repaint();
             }
+            else if (o == em.exit_button){
+                System.out.println("exitovermenu");
+                System.exit(0);
+            }
+            else if (o == em.menu_button){
+                System.out.println("Main menu");
+                em.esc_panel.setVisible(false);
+                window.setContentPane(mm.menu_panel);
+                start_panel.setVisible(true);
+                nstart = false;
+            }
+
+
         };
         //TODO Auslagern in eine Class
         mm.Map1.addActionListener(buttonListener);
@@ -146,14 +140,6 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
-
-        // Rectangle r = window.getBounds();
-        /**
-        window.setLayout(null);
-        window.add(is.IngameShop);
-        is.IngameShop.setBounds(r.width/10*8,0,r.width/10*2,r.height);
-        is.IngameShop.setVisible(true);*/
-
     }
     public void setMap(int map){
         this.map = map;
@@ -177,7 +163,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 em.esc_panel.setVisible(false );
                 escopen = false;
                 System.out.println("asda");
-                is.IngameShop.setVisible(true);
+
             }
             else {
                 escopen = true;
@@ -191,7 +177,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 //em.esc_panel.setLayout(null);
                 window.add(em.esc_panel);
                 em.esc_panel.setBounds(0, 0, r.width, r.height);
-                is.IngameShop.setVisible(false);
+
                 //window.setContentPane(em.esc_panel);
                 SwingUtilities.updateComponentTreeUI(window);
 

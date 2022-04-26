@@ -1,13 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 import static java.lang.Math.round;
 
 public class UI_gamepanel extends JPanel implements Runnable {
-    //TODO Get Res vom Monitor und dann Dynamisch anpassen.
-    //TODO den Müll aufräumen, unused Variablen, Alte Mains etc, THREAD FREIGEBEN
     //Screen Settings
     final int maxScreenCol = 17; //17
     final int maxScreenRow = 12; //12
@@ -28,10 +24,12 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public UI_gamepanel(int map,int width,int height) {
         this.setDoubleBuffered(true);
         tileM.loadMap(map);
-        /**80% des screens wird für die map verwendet deswegen /10+8.
-        Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height*/
-        w_tileSize = round((width/10*8)/maxScreenCol);
-        h_tileSize = round(height/maxScreenRow)+1;
+        /**
+         * 80% des screens wird für die map verwendet deswegen /10+8.
+         * Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
+         */
+        w_tileSize = (int) round((width/10*8)/maxScreenCol);
+        h_tileSize = (int) round(height/maxScreenRow)+1;
 
         screen = w_tileSize*maxScreenCol;
 
@@ -60,7 +58,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
                 e.printStackTrace();
             }
             gg.move();
-            //paintComponent(Graphics g)
             repaint();
         }
 
