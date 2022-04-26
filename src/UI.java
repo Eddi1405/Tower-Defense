@@ -22,7 +22,6 @@ public class UI {
     }
 
     public void draw(Graphics2D g2){
-        System.out.println(gp.width+"asd"+gp.height);
         g2.setFont(Seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,60));
 

@@ -71,8 +71,6 @@ public class Gegner {
     }
     
     public void draw(Graphics2D g2) {
-        //TODO dynamische größe bei den Gegnern
-        System.out.println(gp.w_tileSize+"sss"+gp.h_tileSize);
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
 

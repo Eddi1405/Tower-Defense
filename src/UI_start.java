@@ -15,12 +15,13 @@ public class UI_start  extends JFrame implements KeyListener{
 
     public boolean nstart;
     public boolean escopen;
+    public boolean nmenu;
 
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
     int map = 0;
-
+    UI_gamepanel gamePanel;
 
     public UI_start(){
         //TODO Das icon vom Programm. Sollte jetzt klappen. Muss noch getestet werden.
@@ -29,12 +30,9 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         window.setResizable(true);
-
         window.setTitle("Tower Defense");
         window.setLocationRelativeTo(null);
-        //
         window.setFocusable(true);
         window.requestFocusInWindow();
         //window.setSize(2048,  1080); //1920*1080
@@ -43,74 +41,66 @@ public class UI_start  extends JFrame implements KeyListener{
         //window.setUndecorated(true);
         window.setVisible(true);
 
-        //window.setSize(1600,900);
-
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
         window.addKeyListener(this);
 
         buttonListeners();
-
-
-
     }
 
     public void buttonListeners(){
-        ActionListener buttonListener = ae -> {
-            Object o = ae.getSource();
-            //TODO switch geht nicht
-            if(o == mm.Map1 ){
-                setMap(1);
-                System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                mapAuswahl();
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                Object o = ae.getSource();
+                //TODO switch geht nicht
+                if(o == mm.Map1 ){
+                    setMap(1);
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    mapAuswahl();
 
-            }else if (o == mm.Map2) {
-                setMap(2);
-                System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                mapAuswahl();
+                }else if (o == mm.Map2) {
+                    setMap(2);
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    mapAuswahl();
 
-            }else if (o == mm.Map3){
-                setMap(3);
-                System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                mapAuswahl();
+                }else if (o == mm.Map3){
+                    setMap(3);
+                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    mapAuswahl();
 
-            }else if (o == start_button){
-                System.out.println("Start");
-                start_panel.setVisible(false);
-                window.setContentPane(mm.menu_panel);
-                mm.menu_panel.setVisible(true);
-                nstart = true;
-            }else if (o == exit_button){
-                System.out.println("Exit");
-                System.exit(0);
-            //ESC Menü Buttons
-            }else if (o == em.weiter_button){
-                //TODO Continue resetet das spiel
-                System.out.println("Continue");
-                em.esc_panel.setVisible(false);
-                em.esc_panel.setFocusable(false);
-                SwingUtilities.updateComponentTreeUI(window);
-                Rectangle r = window.getBounds();
-                // Werden Entitys gespeichert ??! //TODO TEsten
-                UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
-                window.setContentPane(gamePanel);
-                em.esc_panel.setVisible(false);
-                em.esc_panel.setFocusable(false);
-                gamePanel.startGameThread();
-                gamePanel.repaint();
+                }else if (o == start_button){
+                    System.out.println("Start");
+                    start_panel.setVisible(false);
+                    window.setContentPane(mm.menu_panel);
+                    mm.menu_panel.setVisible(true);
+                    nstart = true;
+                    nmenu = true;
+                }else if (o == exit_button){
+                    System.out.println("Exit");
+                    System.exit(0);
+                //ESC Menü Buttons
+                }else if (o == em.weiter_button){
+                    //TODO Läuft noch im Hintergrund weiter
+                    System.out.println("Continue");
+                    em.esc_panel.setVisible(false);
+                    escopen = false;
+                }
+                else if (o == em.exit_button){
+                    System.out.println("exitovermenu");
+                    System.exit(0);
+                }
+                else if (o == em.menu_button){
+                    System.out.println("Main menu");
+                    em.esc_panel.setVisible(false);
+                    window.setContentPane(mm.menu_panel);
+                    mm.menu_panel.setVisible(true);
+                    nstart = true;
+                    escopen = false;
+                    nmenu = true;
+                }
+
+
             }
-            else if (o == em.exit_button){
-                System.out.println("exitovermenu");
-                System.exit(0);
-            }
-            else if (o == em.menu_button){
-                System.out.println("Main menu");
-                em.esc_panel.setVisible(false);
-                window.setContentPane(mm.menu_panel);
-                start_panel.setVisible(true);
-                nstart = false;
-            }
-
-
         };
         //TODO Auslagern in eine Class
         mm.Map1.addActionListener(buttonListener);
@@ -131,15 +121,14 @@ public class UI_start  extends JFrame implements KeyListener{
 
     }
 
-
     public void mapAuswahl(){
         Rectangle r = window.getBounds();
-        //BaloonsBewegen bb = new BaloonsBewegen();
+        gamePanel = new UI_gamepanel(map,r.width,r.height);
         mm.menu_panel.setVisible(false);
-        UI_gamepanel gamePanel = new UI_gamepanel(map,r.width,r.height);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.repaint();
+        nmenu = false;
     }
     public void setMap(int map){
         this.map = map;
@@ -162,27 +151,24 @@ public class UI_start  extends JFrame implements KeyListener{
             if(escopen){
                 em.esc_panel.setVisible(false );
                 escopen = false;
-                System.out.println("asda");
-
+                System.out.println("close");
             }
             else {
                 escopen = true;
                 em.esc_panel.setVisible(true);
-                //em.esc_panel.setFocusable(true);
-                //em.esc_panel.requestFocusInWindow();
-
                 //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
                 Rectangle r = window.getBounds();
                 window.setLayout(null);
-                //em.esc_panel.setLayout(null);
                 window.add(em.esc_panel);
+                if(nmenu){
+                    em.menu_button.setVisible(false);
+                }
+                else{
+                    em.menu_button.setVisible(true);
+                }
                 em.esc_panel.setBounds(0, 0, r.width, r.height);
-
-                //window.setContentPane(em.esc_panel);
                 SwingUtilities.updateComponentTreeUI(window);
-
-                //get actual panal und dan später das alte auftrufen bei weiter
-
+                System.out.println("open");
             }
         }
     }

@@ -52,8 +52,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public void run() {
         while (gameThread != null) {
             try {
-                gameThread.sleep(2000);
-                System.out.println("sleep");
+                gameThread.sleep(1000);
+                //System.out.println("sleep");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
