@@ -8,7 +8,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int maxScreenRow = 12; //12
     protected int w_tileSize;
     protected int h_tileSize;
-
+    int mapCache;
+    int map;
+    boolean rel = false;
     protected int width;
     protected int height;
 
@@ -30,7 +32,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
         h_tileSize = (int) round(height/maxScreenRow)+1;
 
         screen = w_tileSize*maxScreenCol;
-
+        this.map = map;
         this.width = width;
         this.height = height;
     }
@@ -48,15 +50,16 @@ public class UI_gamepanel extends JPanel implements Runnable {
     @Override
     public void run() {
         while (gameThread != null) {
-            try {
+            /**try {
                 gameThread.sleep(1000);
                 //System.out.println("sleep");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }//TODO delay ohne thread.sleep
-
+*/
             //TODO map nur zeichnen wenn neu geladen oder noch nicht gezeichnet
             gg.move();
+
             repaint();
         }
 
@@ -68,8 +71,10 @@ public class UI_gamepanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         //Map
-        tileM.draw(g2);
-
+        if(mapCache != map ||rel == true)  {
+            tileM.getTileimage();
+            tileM.draw(g2);
+        }
         //Gegner
         gg.draw(g2);
 

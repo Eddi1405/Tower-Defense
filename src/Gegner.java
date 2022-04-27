@@ -45,7 +45,7 @@ public class Gegner {
         return image;
     }
 
-    public Runnable move() {    //Movement with delay
+    public void move() {    //Movement with delay
         /**
         if(x < 0){
             dx = 0;
@@ -70,10 +70,10 @@ public class Gegner {
         y = y + dy;*/
 
         x = x+10;
-
-        return null;
     }
-    
+
+
+
     public void draw(Graphics2D g2) {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }

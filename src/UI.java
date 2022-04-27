@@ -124,6 +124,10 @@ public class UI {
         public void mousePressed(MouseEvent e) {
             prevPt = e.getPoint();
         }
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            gp.rel = false;
+        }
     }
 
     private class DragListener extends MouseMotionAdapter {
@@ -134,7 +138,8 @@ public class UI {
                     (int) (currentPt.getY() - prevPt.getY())
             );
             prevPt = currentPt;
-            //repaint();
+
+            gp.rel = true;
 
         }
     }
