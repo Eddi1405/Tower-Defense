@@ -69,7 +69,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
         tileM.draw(g2);
 
         //Gegner
-        //gg.draw(g2);
+        gg.draw(g2);
 
         //UI
         ui.draw(g2);
