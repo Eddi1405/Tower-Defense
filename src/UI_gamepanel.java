@@ -53,7 +53,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
                 //System.out.println("sleep");
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }//TODO delay ohne thread.sleep
+
+            //TODO map nur zeichnen wenn neu geladen oder noch nicht gezeichnet
             gg.move();
             repaint();
         }

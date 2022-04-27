@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Gegner {
     //static Random randomGenerator = new Random();
@@ -42,7 +45,7 @@ public class Gegner {
         return image;
     }
 
-    public void move() {    //Movement with delay
+    public Runnable move() {    //Movement with delay
         /**
         if(x < 0){
             dx = 0;
@@ -68,6 +71,7 @@ public class Gegner {
 
         x = x+10;
 
+        return null;
     }
     
     public void draw(Graphics2D g2) {
