@@ -36,6 +36,7 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setFocusable(true);
         window.requestFocusInWindow();
         //window.setSize(2048,  1080); //1920*1080
+        DragPanel dp = new DragPanel();
         window.setContentPane(start_panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);

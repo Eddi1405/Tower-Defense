@@ -1,5 +1,9 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.*;
 
 import static java.lang.Math.round;
@@ -11,11 +15,25 @@ public class UI {
     UI_gamepanel gp;
     Font Seven;
     Tile[] tower;
+    //dragpanel
+    ImageIcon tower1 = new ImageIcon(this.getClass().getResource("/pictures_map/fire.png"));
+    Image tower2 = tower1.getImage();
+    final int width = tower1.getIconWidth();
+    final int height = tower1.getIconHeight();
+
+    Point imageCorner;
+    Point prevPt;
     public UI(UI_gamepanel gp){
         tower = new Tile[20];
         this.gp = gp;
         setFont();
         getImageTower();
+        //Dragpanel
+        imageCorner = new Point(0, 0);
+        ClickListener clickListener = new ClickListener();
+        DragListener dragListener = new DragListener();
+        gp.addMouseListener(clickListener);
+        gp.addMouseMotionListener(dragListener);
     }
 
     public void draw(Graphics2D g2){
@@ -41,7 +59,8 @@ public class UI {
         g2.drawImage(tower[1].image,gp.screen+(int) round(breite*10)+(int) round(gp.w_tileSize*1.2),50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
         g2.drawImage(tower[2].image,gp.screen+(int) round(breite*10)+(int) round(gp.w_tileSize*1.2)*2,50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
         //2 reihe
-        g2.drawImage(tower[3].image,gp.screen+(int) round(breite*10),(int) round(gp.h_tileSize*1.2)+50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
+        g2.drawImage(tower[3].image,gp.screen+(int) round(breite*10)+(int) imageCorner.getX(),(int) round(gp.h_tileSize*1.2)+50+(int) imageCorner.getY(),(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
+        g2.drawImage(tower[6].image,gp.screen+(int) round(breite*10)+(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2)+50,(int) round(gp.w_tileSize*1.2),(int) round(gp.h_tileSize*1.2),null);
 
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         if(system.contains("nix") || system.contains("nux")){
@@ -76,6 +95,8 @@ public class UI {
             tower[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/water.png"));
             tower[3] = new Tile();
             tower[3].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower2.png"));
+            tower[6] = new Tile();
+            tower[6].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower3.png"));
             tower[4] = new Tile();
             tower[4].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Heart.png"));
             tower[5] = new Tile();
@@ -96,6 +117,25 @@ public class UI {
             e.printStackTrace();
         }catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    private class ClickListener extends MouseAdapter {
+        public void mousePressed(MouseEvent e) {
+            prevPt = e.getPoint();
+        }
+    }
+
+    private class DragListener extends MouseMotionAdapter {
+        public void mouseDragged(MouseEvent e) {
+            Point currentPt = e.getPoint();
+            imageCorner.translate(
+                    (int) (currentPt.getX() - prevPt.getX()),
+                    (int) (currentPt.getY() - prevPt.getY())
+            );
+            prevPt = currentPt;
+            //repaint();
+
         }
     }
 }
