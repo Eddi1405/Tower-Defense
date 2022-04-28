@@ -5,8 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class DragPanel extends JPanel {
-    ImageIcon tower1 = new ImageIcon("/pictures_map/chest_01.png");
-
+    ImageIcon tower1 = new ImageIcon(this.getClass().getResource("/pictures_map/fire.png"));
+    Image tower = tower1.getImage();
     final int width = tower1.getIconWidth();
     final int height = tower1.getIconHeight();
 
@@ -24,7 +24,7 @@ public class DragPanel extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        tower1.paintIcon(this, g, (int) imageCorner.getX(), (int) imageCorner.getY());
+        g.drawImage(tower, (int) imageCorner.getX(), (int) imageCorner.getY(),100,100,null);
     }
 
     private class ClickListener extends MouseAdapter {

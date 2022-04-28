@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Gegner {
     //static Random randomGenerator = new Random();
@@ -67,9 +70,10 @@ public class Gegner {
         y = y + dy;*/
 
         x = x+10;
-
     }
-    
+
+
+
     public void draw(Graphics2D g2) {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }

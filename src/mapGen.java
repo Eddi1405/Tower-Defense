@@ -12,7 +12,6 @@ public class mapGen {
     int mapTileNum[][];
 
 
-
     public mapGen(UI_gamepanel gp) {
 
         this.gp = gp;
@@ -24,9 +23,17 @@ public class mapGen {
     public void getTileimage() {
         //Tiles werden defieniert
         try {
+            if(gp.rel == true){
+                tile[0] = new Tile();
+                tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grid.png"));
 
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass.png"));
+            }
+            else{
+
+                tile[0] = new Tile();
+                tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass.png"));
+            }
+
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.1.png"));
