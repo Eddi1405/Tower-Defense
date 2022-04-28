@@ -74,19 +74,5 @@ public class Gegner {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
 
- /*
-    public void attacked (){    //Function that is activated when enemy's attacked
-        hp -=Cazzillo.getS();
-        if (hp<=0)
-            death();
-    }
-
-
-    public void death (){
-        x=randomGenerator.nextInt(1024);
-        y=randomGenerator.nextInt(700);
-        hp=100;
-    }
-    */
 }
 
