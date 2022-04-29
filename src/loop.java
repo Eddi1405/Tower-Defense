@@ -2,6 +2,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+//TODO Kommentare fehlen hier, was passiert hier?
 public class loop {
 
     public loop(){
