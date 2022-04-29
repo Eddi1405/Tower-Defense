@@ -9,6 +9,7 @@ import java.io.*;
 import static java.lang.Math.round;
 
 public class UI {
+    //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
     private int coins = 10;
     private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
@@ -61,6 +62,7 @@ public class UI {
         g2.setFont(Seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60));
 
+
         //zeichnet ein rechteck
         Color c = new Color(196, 157, 73);
         g2.setColor(c);
@@ -103,6 +105,7 @@ public class UI {
     }
 
     //Hier werden die Bilder geladen
+    //TODO Gruppieren in MAP/Tower/Sidebar, Modularer
     public void getImageTower() {
 
         try {

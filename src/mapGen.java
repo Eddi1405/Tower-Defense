@@ -81,7 +81,7 @@ public class mapGen {
     public void loadMap(int map){
 
         try {
-            //text datei wird eingelesen
+            //Textdatei wird eingelesen
             InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 

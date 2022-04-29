@@ -46,6 +46,7 @@ public class Gegner {
     }
 
     public void move() {    //Movement with delay
+        //TODO komplett rewroken, ohne sleep und ohne Kopplung an Andere Entities.
         /**
         if(x < 0){
             dx = 0;
@@ -77,7 +78,7 @@ public class Gegner {
     public void draw(Graphics2D g2) {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
-
+//TODO Damage Funktion
  /*
     public void attacked (){    //Function that is activated when enemy's attacked
         hp -=Cazzillo.getS();
