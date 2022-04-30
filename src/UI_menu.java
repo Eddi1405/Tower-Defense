@@ -12,7 +12,7 @@ public class UI_menu {
     public JPanel menu_panel;
 
     public UI_menu() {
-        //Icons werden scaliert
+        //Map Preview Bilder werden scaliert
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_ui/map1.png"));
         Image image = icon.getImage();
         Image sImage = image.getScaledInstance(300,200, Image.SCALE_SMOOTH);

@@ -1,3 +1,5 @@
+package old;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,6 +15,7 @@ public class DragPanel extends JPanel {
     Point imageCorner;
     Point prevPt;
 
+    //Mausklick wird hier geprueft
     DragPanel() {
         //is.overlay.setVisible(true);
         imageCorner = new Point(0, 0);

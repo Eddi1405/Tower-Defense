@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 public class mapGen {
 
     UI_gamepanel gp;
@@ -23,7 +24,7 @@ public class mapGen {
     public void getTileimage() {
         //Tiles werden defieniert
         try {
-            if(gp.rel == true){
+            if(gp.rel){
                 tile[0] = new Tile();
                 tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grid.png"));
 
@@ -80,7 +81,7 @@ public class mapGen {
     public void loadMap(int map){
 
         try {
-            //text datei wird eingelesen
+            //Textdatei wird eingelesen
             InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 

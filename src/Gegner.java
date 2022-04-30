@@ -16,7 +16,6 @@ public class Gegner {
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
     UI_gamepanel gp;
-
     //Timer timer = new Timer(5,this);
     public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
         this.gp = gp;
@@ -47,30 +46,31 @@ public class Gegner {
     }
 
     public void move() {    //Movement with delay
-/*
+        //TODO komplett rewroken, ohne sleep und ohne Kopplung an Andere Entities.
+        /**
         if(x < 0){
             dx = 0;
             x = 0;
         }
-        if(x > gp.w_tileSize){
+        if(x > wtilesize){
             dx = 0;
-            x = 10;
+            x = 500;
         }
 
         if(y < 0){
             dy = 0;
             x = 0;
         }
-        if(y > gp.h_tileSize){
+        if(y > htilesize){
             dy = 0;
-            y = gp.h_tileSize / 2;
+            y = 500;
         }
 
         x = x + dy;
         System.out.println(x);
         y = y + dy;*/
 
-        x = x + 1;
+        x = x+10;
     }
 
 
@@ -78,6 +78,20 @@ public class Gegner {
     public void draw(Graphics2D g2) {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
+//TODO Damage Funktion
+ /*
+    public void attacked (){    //Function that is activated when enemy's attacked
+        hp -=Cazzillo.getS();
+        if (hp<=0)
+            death();
+    }
 
+
+    public void death (){
+        x=randomGenerator.nextInt(1024);
+        y=randomGenerator.nextInt(700);
+        hp=100;
+    }
+    */
 }
 
