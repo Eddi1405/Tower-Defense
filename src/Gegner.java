@@ -16,6 +16,7 @@ public class Gegner {
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
     UI_gamepanel gp;
+
     //Timer timer = new Timer(5,this);
     public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
         this.gp = gp;
@@ -46,30 +47,30 @@ public class Gegner {
     }
 
     public void move() {    //Movement with delay
-        /**
+/*
         if(x < 0){
             dx = 0;
             x = 0;
         }
-        if(x > wtilesize){
+        if(x > gp.w_tileSize){
             dx = 0;
-            x = 500;
+            x = 10;
         }
 
         if(y < 0){
             dy = 0;
             x = 0;
         }
-        if(y > htilesize){
+        if(y > gp.h_tileSize){
             dy = 0;
-            y = 500;
+            y = gp.h_tileSize / 2;
         }
 
         x = x + dy;
         System.out.println(x);
         y = y + dy;*/
 
-        x = x+10;
+        x = x + 1;
     }
 
 

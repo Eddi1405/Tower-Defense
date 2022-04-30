@@ -107,7 +107,7 @@ public class UI {
 
         try {
             tower[0] = new Tile();
-            tower[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/strike.png"));
+            //tower[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/strike.png"));
             tower[1] = new Tile();
             tower[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/fire.png"));
             tower[2] = new Tile();
@@ -117,7 +117,7 @@ public class UI {
             tower[6] = new Tile();
             tower[6].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower3.png"));
             tower[7] = new Tile();
-            tower[7].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower1.png"));
+            tower[7].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/tower1.png"));
             tower[4] = new Tile();
             tower[4].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Heart.png"));
             tower[5] = new Tile();

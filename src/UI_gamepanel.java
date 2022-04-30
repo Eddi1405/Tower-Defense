@@ -22,6 +22,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     Gegner gg = new Gegner(this);
     mapGen tileM = new mapGen(this);
     UI ui = new UI(this);
+    //Spawner s = new Spawner(this);
+
     //Panel definieren
     public UI_gamepanel(int map,int width,int height) {
         this.setDoubleBuffered(true);
@@ -50,7 +52,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     @Override
     public void run() {
         while (gameThread != null) {
-            /**try {
+            /*try {
                 gameThread.sleep(1000);
                 //System.out.println("sleep");
             } catch (InterruptedException e) {
@@ -75,7 +77,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
             tileM.getTileimage();
             tileM.draw(g2);
         }
-        //Gegner
+        //Gegner Ist vom Loop mit betroffen ergo unendlich
+        /*for(int i = 0;i < 5; i++ ){
+            System.out.println("Gegner gespawnt");
+            gg.draw(g2);
+        }*/
         gg.draw(g2);
 
         //UI
