@@ -19,6 +19,8 @@ public class UI_start  extends JFrame implements KeyListener{
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
+
+
     int map = 0;
     UI_gamepanel gamePanel;
 
