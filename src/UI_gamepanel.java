@@ -57,7 +57,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
                 e.printStackTrace();
             }//TODO delay ohne thread.sleep
 */
-            //TODO map nur zeichnen wenn neu geladen oder noch nicht gezeichnet
+
             gg.move();
 
             repaint();
@@ -70,8 +70,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //Map
-        if(mapCache != map ||rel == true)  {
+        //Map wird gezeichnet wenn nötig
+        if(mapCache != map || rel)  {
             tileM.getTileimage();
             tileM.draw(g2);
         }

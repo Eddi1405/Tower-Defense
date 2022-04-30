@@ -24,7 +24,7 @@ public class mapGen {
     public void getTileimage() {
         //Tiles werden defieniert
         try {
-            if(gp.rel == true){
+            if(gp.rel){
                 tile[0] = new Tile();
                 tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grid.png"));
 
