@@ -16,7 +16,7 @@ public class Gegner {
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
     UI_gamepanel gp;
-    loop lp = new loop();
+    static loop lp = new loop();
     //Timer timer = new Timer(5,this);
     public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
         this.gp = gp;
@@ -25,7 +25,7 @@ public class Gegner {
         startPoint();
         dx= 1;
         dy = 1;
-        lp.start();
+        lp.start(Gegner::move,0,100);
         //Dynamische größe wird in eine variable gepackt
     }
 
@@ -74,7 +74,10 @@ public class Gegner {
 
 
             x = x+5;
+        if (x == 50){
 
+            lp.stop();
+        }
         System.out.println(x);
     }
 

@@ -196,8 +196,6 @@ public class UI {
                 gp.rel = true;
             }
             prevPt = currentPt;
-
-
         }
     }
 }
