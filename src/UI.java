@@ -149,6 +149,7 @@ public class UI {
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             prevPt = e.getPoint();
+            //Damit nur wenn auf das bild geklickt wird sich das bild bewegt
             dragValid[0] = (e.getPoint().getX() > imageCorner[0].getX()) &&
                     (e.getPoint().getX() < (imageCorner[0].getX() + (int) round(gp.w_tileSize * 1.2))) &&
                     (e.getPoint().getY() > imageCorner[0].getY()) &&
@@ -174,6 +175,7 @@ public class UI {
     private class DragListener extends MouseMotionAdapter {
         public void mouseDragged(MouseEvent e) {
             Point currentPt = e.getPoint();
+            //Checkt für jedes bild ob es bewegt werden darf
             if (dragValid[0]) {
                 imageCorner[0].translate(
                         (int) (currentPt.getX() - prevPt.getX()),
