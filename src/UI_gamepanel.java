@@ -60,7 +60,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             }//TODO delay ohne thread.sleep
 */
 
-            gg.move();
+            //gg.move();
 
             repaint();
         }

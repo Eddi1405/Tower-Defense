@@ -4,16 +4,28 @@ import java.util.concurrent.TimeUnit;
 
 //Test anstadt Thread.sleep
 public class loop {
-
+    public static int i = 1;
     public loop(){
     }
     //Die Methode myTask wird nach 1 Sekunde startzeit gestartet und wird dann jede 2 Sekunden ausgeführt
-    public static void main(String[] args) {
+    public static void start() {
         final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(loop::myTask, 1, 2, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(Gegner::move,0,100,TimeUnit.MILLISECONDS);
     }
 
-    private static void myTask() {
-        System.out.println("Running");
+    private static int myTask() {
+        if(i <11){
+            System.out.println("Running"+i);
+            i++;
+
+        }
+        else{
+
+            System.out.println("stop");
+        }
+
+        return i;
+
     }
+
 }
