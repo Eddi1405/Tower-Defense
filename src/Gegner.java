@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Gegner {
     //static Random randomGenerator = new Random();
-    private int x;
+    private static int x;
     private int y;
     private Image image;
     private int dx;
@@ -16,6 +16,7 @@ public class Gegner {
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
     UI_gamepanel gp;
+    static loop lp = new loop();
     //Timer timer = new Timer(5,this);
     public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
         this.gp = gp;
@@ -24,6 +25,7 @@ public class Gegner {
         startPoint();
         dx= 1;
         dy = 1;
+        lp.start(Gegner::move,0,100);
         //Dynamische größe wird in eine variable gepackt
     }
 
@@ -45,7 +47,8 @@ public class Gegner {
         return image;
     }
 
-    public Runnable move() {    //Movement with delay
+    public static void move() {    //Movement with delay
+        //TODO komplett rewroken, ohne sleep und ohne Kopplung an Andere Entities.
         /**
         if(x < 0){
             dx = 0;
@@ -69,15 +72,21 @@ public class Gegner {
         System.out.println(x);
         y = y + dy;*/
 
-        x = x+10;
 
-        return null;
+            x = x+5;
+        if (x == 50){
+
+            lp.stop();
+        }
+        System.out.println(x);
     }
-    
+
+
+
     public void draw(Graphics2D g2) {
         g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
     }
-
+//TODO Damage Funktion
  /*
     public void attacked (){    //Function that is activated when enemy's attacked
         hp -=Cazzillo.getS();

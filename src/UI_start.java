@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
@@ -20,11 +19,12 @@ public class UI_start  extends JFrame implements KeyListener{
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
+
+
     int map = 0;
     UI_gamepanel gamePanel;
 
     public UI_start(){
-        //TODO Das icon vom Programm. Sollte jetzt klappen. Muss noch getestet werden.
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_map/icon.png"));
         window.setIconImage(icon.getImage());
 
@@ -36,7 +36,6 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setFocusable(true);
         window.requestFocusInWindow();
         //window.setSize(2048,  1080); //1920*1080
-        DragPanel dp = new DragPanel();
         window.setContentPane(start_panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);
@@ -82,7 +81,6 @@ public class UI_start  extends JFrame implements KeyListener{
                     System.exit(0);
                 //ESC Menü Buttons
                 }else if (o == em.weiter_button){
-                    //TODO Läuft noch im Hintergrund weiter
                     System.out.println("Continue");
                     em.esc_panel.setVisible(false);
                     escopen = false;
@@ -163,12 +161,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 Rectangle r = window.getBounds();
                 window.setLayout(null);
                 window.add(em.esc_panel);
-                if(nmenu){
-                    em.menu_button.setVisible(false);
-                }
-                else{
-                    em.menu_button.setVisible(true);
-                }
+                em.menu_button.setVisible(!nmenu);
                 em.esc_panel.setBounds(0, 0, r.width, r.height);
                 SwingUtilities.updateComponentTreeUI(window);
                 System.out.println("open");
