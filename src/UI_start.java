@@ -54,15 +54,15 @@ public class UI_start  extends JFrame implements KeyListener{
                 Object o = ae.getSource();
                 //TODO switch geht nicht
                 if(o == mm.Map1 ){
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    System.out.println("Sie haben die Map 1 gewaehlt" );
                     mapAuswahl(1);
 
                 }else if (o == mm.Map2) {
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    System.out.println("Sie haben die Map 2 gewaehlt" );
                     mapAuswahl(2);
 
                 }else if (o == mm.Map3){
-                    System.out.println("Sie haben die Map "+map + " gewaehlt" );
+                    System.out.println("Sie haben die Map 3 gewaehlt" );
                     mapAuswahl(3);
 
                 }else if (o == start_button){

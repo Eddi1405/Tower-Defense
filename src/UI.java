@@ -156,9 +156,9 @@ public class UI {
             prevPt = e.getPoint();
             //Damit nur wenn auf das bild geklickt wird sich das bild bewegt
             dragValid[0] = (e.getPoint().getX() > imageCorner[0].getX()) &&
-                    (e.getPoint().getX() < (imageCorner[0].getX() + (int) round(gp.w_tileSize * 1.2))) &&
+                    (e.getPoint().getX() < (imageCorner[0].getX() + (int) round(gp.w_tileSize * 1.0))) &&
                     (e.getPoint().getY() > imageCorner[0].getY()) &&
-                    (e.getPoint().getY() < (imageCorner[0].getY() + (int) round(gp.w_tileSize * 1.2)));
+                    (e.getPoint().getY() < (imageCorner[0].getY() + (int) round(gp.w_tileSize * 1.0)));
 
             dragValid[1] = (e.getPoint().getX() > imageCorner[1].getX()) &&
                     (e.getPoint().getX() < (imageCorner[1].getX() + (int) round(gp.w_tileSize * 1.2))) &&
