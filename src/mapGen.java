@@ -29,7 +29,6 @@ public class mapGen {
 
         } else {
             setup(0, "grass");
-            System.out.println("grass");
         }
 
         setup(2, "grass1.2");

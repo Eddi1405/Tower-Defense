@@ -54,19 +54,16 @@ public class UI_start  extends JFrame implements KeyListener{
                 Object o = ae.getSource();
                 //TODO switch geht nicht
                 if(o == mm.Map1 ){
-                    setMap(1);
                     System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+                    mapAuswahl(1);
 
                 }else if (o == mm.Map2) {
-                    setMap(2);
                     System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+                    mapAuswahl(2);
 
                 }else if (o == mm.Map3){
-                    setMap(3);
                     System.out.println("Sie haben die Map "+map + " gewaehlt" );
-                    mapAuswahl();
+                    mapAuswahl(3);
 
                 }else if (o == start_button){
                     System.out.println("Start");
@@ -121,16 +118,17 @@ public class UI_start  extends JFrame implements KeyListener{
 
     }
 
-    public void mapAuswahl(){
+    public void mapAuswahl(int map){
         Rectangle r = window.getBounds();
-        gamePanel = new UI_gamepanel(map,r.width,r.height);
+        if(gamePanel == null) {
+            gamePanel = new UI_gamepanel(map,r.width,r.height);
+        }
         mm.menu_panel.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
+        gamePanel.newMap(map);
+        gamePanel.mapCache = true;
         nmenu = false;
-    }
-    public void setMap(int map){
-        this.map = map;
     }
 
     @Override

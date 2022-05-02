@@ -8,7 +8,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int maxScreenRow = 12; //12
     static int w_tileSize;
     static int h_tileSize;
-    int mapCache;
+    Boolean mapCache;
     int map;
     boolean rel = false;
     protected int width;
@@ -16,13 +16,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
     protected int screen;
 
-    //Gamethread für Performance
+    //neue Instanzen
     Thread gameThread;
     mapGen tileM;
-    //neue Instanzen
-    Gegner gg = new Gegner(this);
-
-    UI ui = new UI(this);
+    Gegner gg;
+    UI ui;
     //Spawner s = new Spawner(this);
 
     //Panel definieren
@@ -33,14 +31,18 @@ public class UI_gamepanel extends JPanel implements Runnable {
         //Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
         w_tileSize = (int) round((width/10*8)/maxScreenCol);
         h_tileSize = (int) round(height/maxScreenRow)+1;
-        System.out.println(w_tileSize+""+h_tileSize);
         screen = w_tileSize*maxScreenCol;
-        this.map = map;
         this.width = width;
         this.height = height;
-         tileM = new mapGen(this);
-        tileM.loadMap(map);
-
+        if(tileM == null){
+            tileM = new mapGen(this);
+        }
+        if(gg==null){
+            gg = new Gegner(this);
+        }
+        if(ui == null){
+            ui = new UI(this);
+        }
     }
 
     //GameThread wird gestartet
@@ -77,9 +79,10 @@ public class UI_gamepanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         //Map wird gezeichnet wenn nötig
-        if(mapCache != map || rel)  {
+        if(mapCache || rel)  {
             tileM.getTileimage();
             tileM.draw(g2);
+            mapCache = true;
         }
         //Gegner Ist vom Loop mit betroffen ergo unendlich
         /*for(int i = 0;i < 5; i++ ){
@@ -93,6 +96,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         g2.dispose();
 
+
+    }
+    public void newMap(int map){
+
+        tileM.loadMap(map);
 
     }
 }
