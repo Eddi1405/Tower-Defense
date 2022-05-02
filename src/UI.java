@@ -75,9 +75,9 @@ public class UI {
         g2.drawImage(feahigkeiten[1].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2), 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         g2.drawImage(feahigkeiten[2].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2) * 2, 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         //2 reihe
-        g2.drawImage(tower[0].image, (int) imageCorner[0].getX(), (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
-        g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
-        g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
+        g2.drawImage(tower[0].image, (int) imageCorner[0].getX(), (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
+        g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
+        g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
 
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         if (system.contains("nix") || system.contains("nux")) {
@@ -142,66 +142,64 @@ public class UI {
         }
     }
 
-    private void check(){
+    private void check(int index){
+        int imx =(int)imageCorner[index].getX();
+        int imy =(int)imageCorner[index].getY();
+        if(imx < gp.screen && imy < gp.height) {
+            double mx = imx % gp.w_tileSize;
+            int my = imy % gp.h_tileSize;
 
-        int imx =(int)imageCorner[0].getX();
-        int imy =(int)imageCorner[0].getY();
-        double mx = imx % gp.w_tileSize;
-        int my = imy % gp.h_tileSize;
+            imageCorner[index].setLocation(imx - mx, imy - my);
+        }
+    }
 
-        imageCorner[0].setLocation(imx-mx,imy-my);
+    public void drag(MouseEvent e,int index,Point currentPt){
+
+        //Checkt für jedes bild ob es bewegt werden darf
+        if (dragValid[index]) {
+            imageCorner[index].translate(
+                    (int) (currentPt.getX() - prevPt.getX()),
+                    (int) (currentPt.getY() - prevPt.getY())
+            );
+            gp.rel = true;
+        }
+
+    }
+
+    public void setDragValid(MouseEvent e,int index){
+
+        dragValid[index] = (e.getPoint().getX() > imageCorner[index].getX()) &&
+                (e.getPoint().getX() < (imageCorner[index].getX() + (int) round(gp.w_tileSize * 1.0))) &&
+                (e.getPoint().getY() > imageCorner[index].getY()) &&
+                (e.getPoint().getY() < (imageCorner[index].getY() + (int) round(gp.w_tileSize * 1.0)));
     }
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             prevPt = e.getPoint();
             //Damit nur wenn auf das bild geklickt wird sich das bild bewegt
-            dragValid[0] = (e.getPoint().getX() > imageCorner[0].getX()) &&
-                    (e.getPoint().getX() < (imageCorner[0].getX() + (int) round(gp.w_tileSize * 1.0))) &&
-                    (e.getPoint().getY() > imageCorner[0].getY()) &&
-                    (e.getPoint().getY() < (imageCorner[0].getY() + (int) round(gp.w_tileSize * 1.0)));
 
-            dragValid[1] = (e.getPoint().getX() > imageCorner[1].getX()) &&
-                    (e.getPoint().getX() < (imageCorner[1].getX() + (int) round(gp.w_tileSize * 1.2))) &&
-                    (e.getPoint().getY() > imageCorner[1].getY()) &&
-                    (e.getPoint().getY() < (imageCorner[1].getY() + (int) round(gp.w_tileSize * 1.2)));
-
-            dragValid[2] = (e.getPoint().getX() > imageCorner[2].getX()) &&
-                    (e.getPoint().getX() < (imageCorner[2].getX() + (int) round(gp.w_tileSize * 1.2))) &&
-                    (e.getPoint().getY() > imageCorner[2].getY()) &&
-                    (e.getPoint().getY() < (imageCorner[2].getY() + (int) round(gp.w_tileSize * 1.2)));
-
+            setDragValid(e,0);
+            setDragValid(e,1);
+            setDragValid(e,2);
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             gp.rel = false;
-            check();
+            //checkt ob das bild richtig sitz
+            check(0);
+            check(1);
+            check(2);
         }
     }
 
     private class DragListener extends MouseMotionAdapter {
         public void mouseDragged(MouseEvent e) {
             Point currentPt = e.getPoint();
-            //Checkt für jedes bild ob es bewegt werden darf
-            if (dragValid[0]) {
-                imageCorner[0].translate(
-                        (int) (currentPt.getX() - prevPt.getX()),
-                        (int) (currentPt.getY() - prevPt.getY())
-                );
-                gp.rel = true;
-            } else if (dragValid[1]) {
-                imageCorner[1].translate(
-                        (int) (currentPt.getX() - prevPt.getX()),
-                        (int) (currentPt.getY() - prevPt.getY())
-                );
-                gp.rel = true;
-            }else if (dragValid[2]) {
-                imageCorner[2].translate(
-                        (int) (currentPt.getX() - prevPt.getX()),
-                        (int) (currentPt.getY() - prevPt.getY())
-                );
-                gp.rel = true;
-            }
+            //ermöglicht das bewegen der Türme
+            drag(e,0,currentPt);
+            drag(e,1,currentPt);
+            drag(e,2,currentPt);
             prevPt = currentPt;
         }
     }
