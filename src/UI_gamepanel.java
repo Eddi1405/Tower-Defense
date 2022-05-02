@@ -6,8 +6,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Screen Settings
     final int maxScreenCol = 17; //17
     final int maxScreenRow = 12; //12
-    protected int w_tileSize;
-    protected int h_tileSize;
+    static int w_tileSize;
+    static int h_tileSize;
     int mapCache;
     int map;
     boolean rel = false;
@@ -18,25 +18,29 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
     //Gamethread für Performance
     Thread gameThread;
+    mapGen tileM;
     //neue Instanzen
     Gegner gg = new Gegner(this);
-    mapGen tileM = new mapGen(this);
+
     UI ui = new UI(this);
     //Spawner s = new Spawner(this);
 
     //Panel definieren
     public UI_gamepanel(int map,int width,int height) {
         this.setDoubleBuffered(true);
-        tileM.loadMap(map);
+
         //80% des screens wird für die map verwendet deswegen /10+8.
         //Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
         w_tileSize = (int) round((width/10*8)/maxScreenCol);
         h_tileSize = (int) round(height/maxScreenRow)+1;
-
+        System.out.println(w_tileSize+""+h_tileSize);
         screen = w_tileSize*maxScreenCol;
         this.map = map;
         this.width = width;
         this.height = height;
+         tileM = new mapGen(this);
+        tileM.loadMap(map);
+
     }
 
     //GameThread wird gestartet

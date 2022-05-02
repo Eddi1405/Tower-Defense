@@ -25,7 +25,7 @@ public class Gegner {
         startPoint();
         dx= 1;
         dy = 1;
-        lp.start(Gegner::move,0,100);
+        //lp.start(Gegner::move,0,100);
         //Dynamische größe wird in eine variable gepackt
     }
 
@@ -76,7 +76,7 @@ public class Gegner {
             x = x+5;
         if (x == 50){
 
-            lp.stop();
+            //lp.stop();
         }
         System.out.println(x);
     }

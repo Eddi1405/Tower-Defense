@@ -23,58 +23,35 @@ public class mapGen {
 
     public void getTileimage() {
         //Tiles werden defieniert
-        try {
-            if(gp.rel){
-                tile[0] = new Tile();
-                tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grid.png"));
 
-            }
-            else{
+        if (gp.rel) {
+            setup(0, "grid");
 
-                tile[0] = new Tile();
-                tile[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass.png"));
-            }
-
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.1.png"));
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.2.png"));
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass1.3.png"));
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.4.png"));
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.5.png"));
-
-            tile[6] = new Tile();
-            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass2.6.png"));
-
-            tile[7] = new Tile();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.7.png"));
-
-            tile[8] = new Tile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.8.png"));
-
-            tile[9] = new Tile();
-            tile[9].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.9.png"));
-
-            tile[10] = new Tile();
-            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass3.10.png"));
-
-            tile[11] = new Tile();
-            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/grass4.11.png"));
-
-            tile[12] = new Tile();
-            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/baum.12.png"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            setup(0, "grass");
+            System.out.println("grass");
         }
+
+        setup(2, "grass1.2");
+        setup(5, "grass2.5");
+        setup(7, "grass3.7");
+        setup(8, "grass3.8");
+        setup(9, "grass3.9");
+        setup(10, "grass3.10");
+        setup(11, "grass4.11");
+        setup(12, "baum.12");
+    }
+    public void setup(int index,String path){
+
+      scaling sc = new scaling();
+      try {
+          tile[index]= new Tile();
+          tile[index].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/"+path+".png"));
+          tile[index].image = sc.scale(tile[index].image, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize);
+
+      }catch (IOException e){
+          e.printStackTrace();
+      }
     }
 
     //Map wird geladen

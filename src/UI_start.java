@@ -11,7 +11,6 @@ public class UI_start  extends JFrame implements KeyListener{
     UI_menu mm = new UI_menu();
     UI_EscMenu em = new UI_EscMenu();
 
-
     public boolean nstart;
     public boolean escopen;
     public boolean nmenu;
@@ -128,7 +127,6 @@ public class UI_start  extends JFrame implements KeyListener{
         mm.menu_panel.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
-        gamePanel.repaint();
         nmenu = false;
     }
     public void setMap(int map){
