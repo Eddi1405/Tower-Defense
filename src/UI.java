@@ -14,7 +14,7 @@ public class UI {
     private String system = System.getProperty("os.name").toLowerCase();
     boolean[] dragValid;
     double breite;
-    boolean ab = true;
+    static boolean ab = true;
     UI_gamepanel gp;
     Font Seven;
     Tile[] tower;
@@ -22,7 +22,8 @@ public class UI {
     Tile[] sidebar;
     Point[] imageCorner;
     Point prevPt;
-
+    //TODO Grid
+    //TODO mehre tower von einer sorte auf dem bildschirm
     public UI(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
@@ -33,8 +34,6 @@ public class UI {
         setFont();
         getImageTower();
         //Dragpanel
-
-
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();
         gp.addMouseListener(clickListener);
@@ -45,9 +44,9 @@ public class UI {
     public void setPoint(){
         if(ab){
             breite = (gp.width - gp.screen) / 100;
-            imageCorner[0] = new Point(gp.screen + (int) round(breite * 10), (int) round(gp.h_tileSize * 1.2) + 50);
-            imageCorner[1] = new Point(gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2) + 50);
-            imageCorner[2] = new Point(gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2) * 2, (int) round(gp.h_tileSize * 1.2) + 50);
+            imageCorner[0] = new Point(gp.screen + (int) round(breite * 13), (int) round(gp.h_tileSize * 1.2) + 50);
+            imageCorner[1] = new Point(gp.screen + (int) round(breite * 13) + (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2) + 50);
+            imageCorner[2] = new Point(gp.screen + (int) round(breite * 13) + (int) round(gp.w_tileSize * 1.2) * 2, (int) round(gp.h_tileSize * 1.2) + 50);
             ab = false;
         }
 
@@ -58,7 +57,6 @@ public class UI {
         //Schriftart wird gesetzt
         g2.setFont(Seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60));
-
 
         //zeichnet ein rechteck
         Color c = new Color(196, 157, 73);
@@ -71,16 +69,15 @@ public class UI {
 
         //Breite wird defeniert damit alles dynamisch angepasst werden kann
 
-
         //zeichnet die Towers
         //1 reihe feahigkeiten
         g2.drawImage(feahigkeiten[0].image, gp.screen + (int) round(breite * 10), 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         g2.drawImage(feahigkeiten[1].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2), 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         g2.drawImage(feahigkeiten[2].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2) * 2, 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         //2 reihe
-        g2.drawImage(tower[0].image, (int) imageCorner[0].getX(), (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
-        g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
-        g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
+        g2.drawImage(tower[0].image, (int) imageCorner[0].getX(), (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
+        g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
+        g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.2), null);
 
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         if (system.contains("nix") || system.contains("nux")) {
@@ -145,6 +142,15 @@ public class UI {
         }
     }
 
+    private void check(){
+
+        int imx =(int)imageCorner[0].getX();
+        int imy =(int)imageCorner[0].getY();
+        double mx = imx % gp.w_tileSize;
+        int my = imy % gp.h_tileSize;
+
+        imageCorner[0].setLocation(imx-mx,imy-my);
+    }
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             prevPt = e.getPoint();
@@ -163,11 +169,13 @@ public class UI {
                     (e.getPoint().getX() < (imageCorner[2].getX() + (int) round(gp.w_tileSize * 1.2))) &&
                     (e.getPoint().getY() > imageCorner[2].getY()) &&
                     (e.getPoint().getY() < (imageCorner[2].getY() + (int) round(gp.w_tileSize * 1.2)));
+
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             gp.rel = false;
+            check();
         }
     }
 

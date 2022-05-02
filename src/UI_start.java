@@ -129,6 +129,7 @@ public class UI_start  extends JFrame implements KeyListener{
         gamePanel.newMap(map);
         gamePanel.mapCache = true;
         nmenu = false;
+        UI.ab = true;
     }
 
     @Override
