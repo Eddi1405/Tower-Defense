@@ -24,6 +24,7 @@ public class UI_shop {
     Point prevPt;
     //TODO mehre tower von einer sorte auf dem
     //TODO Collison mit weg
+    //test
     public UI_shop(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
