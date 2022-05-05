@@ -4,13 +4,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.*;
+import java.util.Objects;
 
 import static java.lang.Math.round;
 
 public class UI_shop {
     private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
-    boolean[] dragValid;
+    static boolean[] dragValid;
     double breite;
     static boolean ab = true;
     UI_gamepanel gp;
@@ -49,7 +50,9 @@ public class UI_shop {
         }
 
     }
+    public void drawMenu(Graphics2D g2){
 
+    }
     public void draw(Graphics2D g2) {
         setPoint();
         //Schriftart wird gesetzt
@@ -77,6 +80,15 @@ public class UI_shop {
         g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
         g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
 
+        Color c1 = new Color(93, 93, 93, 61);
+        g2.setColor(c1);
+        if (dragValid[1]){
+            g2.fillOval((int) imageCorner[1].getX()+UI_gamepanel.w_tileSize/2-250, (int) imageCorner[1].getY()+UI_gamepanel.h_tileSize/2-250,500,500);
+        }
+        if (dragValid[2]){
+            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-150, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-150,300,300);
+        }
+        g2.setColor(Color.BLACK);
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
         int coins = 10;
@@ -127,7 +139,6 @@ public class UI_shop {
             e.printStackTrace();
         }
     }
-
     public void newTower(Graphics2D g2,int index){
 
         g2.drawImage(tower[0].image, (int) imageCorner[index].getX(), (int) imageCorner[index].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);

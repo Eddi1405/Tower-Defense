@@ -8,14 +8,12 @@ import java.util.Objects;
 
 
 public class mapGen {
-
     UI_gamepanel gp;
     Tile[] tile;
     int[][] mapTileNum;
 
 
     public mapGen(UI_gamepanel gp) {
-
         this.gp = gp;
         tile = new Tile[20];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
