@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
     JFrame window = new JFrame();
-    UI_menu mm = new UI_menu();
-    UI_EscMenu em = new UI_EscMenu();
+    UI_mapmenu mm = new UI_mapmenu();
+    UI_escmenu em = new UI_escmenu();
 
     public boolean nstart;
     public boolean escopen;
@@ -129,7 +129,7 @@ public class UI_start  extends JFrame implements KeyListener{
         gamePanel.newMap(map);
         gamePanel.mapCache = true;
         nmenu = false;
-        UI.ab = true;
+        UI_shop.ab = true;
     }
 
     @Override

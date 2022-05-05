@@ -4,14 +4,14 @@ import java.awt.*;
 /**
  * Ist nur da damit die Form benutzt werden kann.
  */
-public class UI_menu {
+public class UI_mapmenu {
 
     public JButton Map1;
     public JButton Map2;
     public JButton Map3;
     public JPanel menu_panel;
 
-    public UI_menu() {
+    public UI_mapmenu() {
         //Map Preview Bilder werden scaliert
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_ui/map1.png"));
         Image image = icon.getImage();

@@ -20,7 +20,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     Thread gameThread;
     mapGen tileM;
     Gegner gg;
-    UI ui;
+    UI_shop ui;
     //Spawner s = new Spawner(this);
 
     //Panel definieren
@@ -41,7 +41,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             gg = new Gegner(this);
         }
         if(ui == null){
-            ui = new UI(this);
+            ui = new UI_shop(this);
         }
     }
 
@@ -93,6 +93,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         //UI
         ui.draw(g2);
+
 
         g2.dispose();
 

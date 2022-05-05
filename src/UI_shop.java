@@ -7,7 +7,7 @@ import java.io.*;
 
 import static java.lang.Math.round;
 
-public class UI {
+public class UI_shop {
     //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
     private int coins = 10;
     private int leben = 150;
@@ -22,9 +22,8 @@ public class UI {
     Tile[] sidebar;
     Point[] imageCorner;
     Point prevPt;
-    //TODO Grid
     //TODO mehre tower von einer sorte auf dem bildschirm
-    public UI(UI_gamepanel gp) {
+    public UI_shop(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
         sidebar = new Tile[2];
@@ -75,7 +74,7 @@ public class UI {
         g2.drawImage(feahigkeiten[1].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2), 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         g2.drawImage(feahigkeiten[2].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2) * 2, 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         //2 reihe
-        g2.drawImage(tower[0].image, (int) imageCorner[0].getX(), (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
+        g2.drawImage(tower[0].image,gp.screen + (int) round(breite * 13) , ((int) round(gp.h_tileSize * 1.2) + 50), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
         g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
         g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
 
@@ -95,7 +94,6 @@ public class UI {
             g2.drawImage(sidebar[1].image, gp.screen + (int) round(breite * 5), 5, (int) round(gp.w_tileSize * 0.6), (int) round(gp.h_tileSize * 0.6), null);
             g2.drawString(String.valueOf(coins), gp.screen + (int) round(breite * 18.3), 50);
         }
-
     }
 
     //Hier werden die Bilder geladen
@@ -129,6 +127,12 @@ public class UI {
         }
     }
 
+    public void newTower(Graphics2D g2,int index){
+
+        g2.drawImage(tower[0].image, (int) imageCorner[index].getX(), (int) imageCorner[index].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
+
+    }
+
     //hier wird die Schriftart geladen
     public void setFont() {
 
@@ -145,11 +149,19 @@ public class UI {
     private void check(int index){
         int imx =(int)imageCorner[index].getX();
         int imy =(int)imageCorner[index].getY();
-        if(imx < gp.screen && imy < gp.height) {
-            double mx = imx % gp.w_tileSize;
-            int my = imy % gp.h_tileSize;
+        double mx = imx % gp.w_tileSize;
+        int my = imy % gp.h_tileSize;
 
-            imageCorner[index].setLocation(imx - mx, imy - my);
+        if(imx < gp.screen-50 && imy < gp.height) {
+            if(mx < gp.w_tileSize/2 && my < gp.h_tileSize/2){
+                imageCorner[index].setLocation(imx - mx, imy - my);
+            } else if (mx > gp.w_tileSize/2 && my < gp.h_tileSize/2) {
+                imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy - my);
+            } else if (mx < gp.w_tileSize/2 && my > gp.h_tileSize/2) {
+                imageCorner[index].setLocation(imx - mx, imy + (gp.h_tileSize-my));
+            }else {
+                imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy + (gp.h_tileSize-my));
+            }
         }
     }
 
@@ -172,6 +184,7 @@ public class UI {
                 (e.getPoint().getX() < (imageCorner[index].getX() + (int) round(gp.w_tileSize * 1.0))) &&
                 (e.getPoint().getY() > imageCorner[index].getY()) &&
                 (e.getPoint().getY() < (imageCorner[index].getY() + (int) round(gp.w_tileSize * 1.0)));
+
     }
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
@@ -200,6 +213,7 @@ public class UI {
             drag(e,0,currentPt);
             drag(e,1,currentPt);
             drag(e,2,currentPt);
+
             prevPt = currentPt;
         }
     }

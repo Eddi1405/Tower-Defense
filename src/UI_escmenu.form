@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI_EscMenu">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI_escmenu">
   <grid id="27dc6" binding="esc_panel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="136" y="90" width="462" height="432"/>
