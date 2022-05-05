@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 
 public class mapGen {
 
     UI_gamepanel gp;
     Tile[] tile;
-    int mapTileNum[][];
+    int[][] mapTileNum;
 
 
     public mapGen(UI_gamepanel gp) {
@@ -45,7 +46,7 @@ public class mapGen {
       scaling sc = new scaling();
       try {
           tile[index]= new Tile();
-          tile[index].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/"+path+".png"));
+          tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures_map/" + path + ".png")));
           tile[index].image = sc.scale(tile[index].image, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize);
           tile[index].collision = collision;
       }catch (IOException e){
@@ -59,6 +60,7 @@ public class mapGen {
         try {
             //Textdatei wird eingelesen
             InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -67,7 +69,7 @@ public class mapGen {
             while (col < gp.maxScreenCol && row < gp.maxScreenRow){
                 String line = br.readLine();
                 while (col < gp.maxScreenCol ){
-                    String numbers[] = line.split(" ");
+                    String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
@@ -92,14 +94,14 @@ public class mapGen {
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.w_tileSize, gp.h_tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize, null);
             col++;
-            x += gp.w_tileSize;
+            x += UI_gamepanel.w_tileSize;
             if(col == gp.maxScreenCol){
                 col = 0;
                 x = 0;
                 row++;
-                y += gp.h_tileSize;
+                y += UI_gamepanel.h_tileSize;
             }
         }
     }

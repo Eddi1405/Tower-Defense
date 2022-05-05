@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Objects;
 
 public class UI_start  extends JFrame implements KeyListener{
     //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
@@ -18,13 +18,10 @@ public class UI_start  extends JFrame implements KeyListener{
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
-
-
-    int map = 0;
     UI_gamepanel gamePanel;
 
     public UI_start(){
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_map/icon.png"));
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_map/icon.png")));
         window.setIconImage(icon.getImage());
 
         //window eigenschaften
@@ -48,55 +45,52 @@ public class UI_start  extends JFrame implements KeyListener{
     }
 
     public void buttonListeners(){
-        ActionListener buttonListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                Object o = ae.getSource();
-                //TODO switch geht nicht
-                if(o == mm.Map1 ){
-                    System.out.println("Sie haben die Map 1 gewaehlt" );
-                    mapAuswahl(1);
+        ActionListener buttonListener = ae -> {
+            Object o = ae.getSource();
+            //TODO switch geht nicht
+            if(o == mm.Map1 ){
+                System.out.println("Sie haben die Map 1 gewaehlt" );
+                mapAuswahl(1);
 
-                }else if (o == mm.Map2) {
-                    System.out.println("Sie haben die Map 2 gewaehlt" );
-                    mapAuswahl(2);
+            }else if (o == mm.Map2) {
+                System.out.println("Sie haben die Map 2 gewaehlt" );
+                mapAuswahl(2);
 
-                }else if (o == mm.Map3){
-                    System.out.println("Sie haben die Map 3 gewaehlt" );
-                    mapAuswahl(3);
+            }else if (o == mm.Map3){
+                System.out.println("Sie haben die Map 3 gewaehlt" );
+                mapAuswahl(3);
 
-                }else if (o == start_button){
-                    System.out.println("Start");
-                    start_panel.setVisible(false);
-                    window.setContentPane(mm.menu_panel);
-                    mm.menu_panel.setVisible(true);
-                    nstart = true;
-                    nmenu = true;
-                }else if (o == exit_button){
-                    System.out.println("Exit");
-                    System.exit(0);
-                //ESC Menü Buttons
-                }else if (o == em.weiter_button){
-                    System.out.println("Continue");
-                    em.esc_panel.setVisible(false);
-                    escopen = false;
-                }
-                else if (o == em.exit_button){
-                    System.out.println("exitovermenu");
-                    System.exit(0);
-                }
-                else if (o == em.menu_button){
-                    System.out.println("Main menu");
-                    em.esc_panel.setVisible(false);
-                    window.setContentPane(mm.menu_panel);
-                    mm.menu_panel.setVisible(true);
-                    nstart = true;
-                    escopen = false;
-                    nmenu = true;
-                }
-
-
+            }else if (o == start_button){
+                System.out.println("Start");
+                start_panel.setVisible(false);
+                window.setContentPane(mm.menu_panel);
+                mm.menu_panel.setVisible(true);
+                nstart = true;
+                nmenu = true;
+            }else if (o == exit_button){
+                System.out.println("Exit");
+                System.exit(0);
+            //ESC Menü Buttons
+            }else if (o == em.weiter_button){
+                System.out.println("Continue");
+                em.esc_panel.setVisible(false);
+                escopen = false;
             }
+            else if (o == em.exit_button){
+                System.out.println("exitovermenu");
+                System.exit(0);
+            }
+            else if (o == em.menu_button){
+                System.out.println("Main menu");
+                em.esc_panel.setVisible(false);
+                window.setContentPane(mm.menu_panel);
+                mm.menu_panel.setVisible(true);
+                nstart = true;
+                escopen = false;
+                nmenu = true;
+            }
+
+
         };
         //TODO Auslagern in eine Class
         mm.Map1.addActionListener(buttonListener);
@@ -121,7 +115,7 @@ public class UI_start  extends JFrame implements KeyListener{
     public void mapAuswahl(int map){
         Rectangle r = window.getBounds();
         if(gamePanel == null) {
-            gamePanel = new UI_gamepanel(map,r.width,r.height);
+            gamePanel = new UI_gamepanel(r.width,r.height);
         }
         mm.menu_panel.setVisible(false);
         window.setContentPane(gamePanel);

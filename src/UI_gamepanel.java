@@ -9,7 +9,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
     static int w_tileSize;
     static int h_tileSize;
     Boolean mapCache;
-    int map;
     boolean rel = false;
     protected int width;
     protected int height;
@@ -24,13 +23,13 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Spawner s = new Spawner(this);
 
     //Panel definieren
-    public UI_gamepanel(int map,int width,int height) {
+    public UI_gamepanel(int width,int height) {
         this.setDoubleBuffered(true);
 
         //80% des screens wird für die map verwendet deswegen /10+8.
         //Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
-        w_tileSize = (int) round((width/10*8)/maxScreenCol);
-        h_tileSize = (int) round(height/maxScreenRow)+1;
+        w_tileSize = round(width/10*8/maxScreenCol);
+        h_tileSize = round(height/maxScreenRow)+1;
         screen = w_tileSize*maxScreenCol;
         this.width = width;
         this.height = height;

@@ -8,8 +8,6 @@ import java.io.*;
 import static java.lang.Math.round;
 
 public class UI_shop {
-    //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
-    private int coins = 10;
     private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
     boolean[] dragValid;
@@ -24,7 +22,6 @@ public class UI_shop {
     Point prevPt;
     //TODO mehre tower von einer sorte auf dem
     //TODO Collison mit weg
-    //test
     public UI_shop(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
@@ -81,6 +78,8 @@ public class UI_shop {
         g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
 
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
+        //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
+        int coins = 10;
         if (system.contains("nix") || system.contains("nux")) {
             //Leben
             g2.drawImage(sidebar[0].image, gp.screen + (int) round(breite * 81.7), 5, (int) round(gp.w_tileSize * 0.6), (int) round(gp.h_tileSize * 0.6), null);
@@ -167,7 +166,7 @@ public class UI_shop {
         }
     }
 
-    public void drag(MouseEvent e,int index,Point currentPt){
+    public void drag(int index,Point currentPt){
 
         //Checkt für jedes bild ob es bewegt werden darf
         if (dragValid[index]) {
@@ -212,9 +211,9 @@ public class UI_shop {
         public void mouseDragged(MouseEvent e) {
             Point currentPt = e.getPoint();
             //ermöglicht das bewegen der Türme
-            drag(e,0,currentPt);
-            drag(e,1,currentPt);
-            drag(e,2,currentPt);
+            drag(0,currentPt);
+            drag(1,currentPt);
+            drag(2,currentPt);
 
             prevPt = currentPt;
         }
