@@ -25,29 +25,29 @@ public class mapGen {
         //Tiles werden defieniert
 
         if (gp.rel) {
-            setup(0, "grid");
+            setup(0, "grid",false);
 
         } else {
-            setup(0, "grass");
+            setup(0, "grass",false);
         }
 
-        setup(2, "grass1.2");
-        setup(5, "grass2.5");
-        setup(7, "grass3.7");
-        setup(8, "grass3.8");
-        setup(9, "grass3.9");
-        setup(10, "grass3.10");
-        setup(11, "grass4.11");
-        setup(12, "baum.12");
+        setup(2, "grass1.2",true);
+        setup(5, "grass2.5",true);
+        setup(7, "grass3.7",true);
+        setup(8, "grass3.8",true);
+        setup(9, "grass3.9",true);
+        setup(10, "grass3.10",true);
+        setup(11, "grass4.11",true);
+        setup(12, "baum.12",true);
     }
-    public void setup(int index,String path){
+    public void setup(int index,String path,boolean collision){
 
       scaling sc = new scaling();
       try {
           tile[index]= new Tile();
           tile[index].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/"+path+".png"));
           tile[index].image = sc.scale(tile[index].image, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize);
-
+          tile[index].collision = collision;
       }catch (IOException e){
           e.printStackTrace();
       }

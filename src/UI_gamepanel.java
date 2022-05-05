@@ -89,7 +89,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             System.out.println("Gegner gespawnt");
             gg.draw(g2);
         }*/
-        gg.draw(g2);
+        //gg.draw(g2);
 
         //UI
         ui.draw(g2);

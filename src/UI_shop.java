@@ -22,7 +22,8 @@ public class UI_shop {
     Tile[] sidebar;
     Point[] imageCorner;
     Point prevPt;
-    //TODO mehre tower von einer sorte auf dem bildschirm
+    //TODO mehre tower von einer sorte auf dem
+    //TODO Collison mit weg
     public UI_shop(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
