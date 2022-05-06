@@ -11,9 +11,9 @@ import static java.lang.Math.round;
 public class UI_shop {
     private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
-    static boolean[] dragValid;
+    boolean[] dragValid;
     double breite;
-    static boolean ab = true;
+    boolean ab = true;
     UI_gamepanel gp;
     Font Seven;
     Tile[] tower;
@@ -211,7 +211,7 @@ public class UI_shop {
         @Override
         public void mouseReleased(MouseEvent e) {
             gp.rel = false;
-            //checkt ob das bild richtig sitz
+            //checkt, ob das bild richtig sitz
             check(0);
             check(1);
             check(2);

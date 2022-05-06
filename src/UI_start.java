@@ -123,7 +123,7 @@ public class UI_start  extends JFrame implements KeyListener{
         gamePanel.newMap(map);
         gamePanel.mapCache = true;
         nmenu = false;
-        UI_shop.ab = true;
+        gamePanel.ui.ab = true;
     }
 
     @Override
