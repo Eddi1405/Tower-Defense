@@ -20,7 +20,6 @@ public class Tower {
     //public static final Tower1 = new Tower1(0).ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower2.png"));
     //public static final Tower1 = new Tower1(0).ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower3.png"));
 
-
     public int id;
     public Tower(int id)
     {
