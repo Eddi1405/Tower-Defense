@@ -9,7 +9,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
     static int w_tileSize;
     static int h_tileSize;
     Boolean mapCache;
-    int map;
     boolean rel = false;
     protected int width;
     protected int height;
@@ -24,17 +23,16 @@ public class UI_gamepanel extends JPanel implements Runnable {
     //Spawner s = new Spawner(this);
 
     //Panel definieren
-    public UI_gamepanel(int map,int width,int height) {
+    public UI_gamepanel(int width,int height) {
         this.setDoubleBuffered(true);
 
         //80% des screens wird für die map verwendet deswegen /10+8.
         //Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
-        w_tileSize = (int) round((width/10*8)/maxScreenCol);
-        h_tileSize = (int) round(height/maxScreenRow)+1;
+        w_tileSize = round(width/10*8/maxScreenCol);
+        h_tileSize = round(height/maxScreenRow)+1;
         screen = w_tileSize*maxScreenCol;
         this.width = width;
         this.height = height;
-
         if(tileM == null){
             tileM = new mapGen(this);
         }
@@ -67,7 +65,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             }//TODO delay ohne thread.sleep
 */
 
-            gg.move();
+            //gg.move();
 
             repaint();
         }
@@ -79,15 +77,18 @@ public class UI_gamepanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        //Map wird neu gezeichnet, wenn nötig
-
+        //Map wird gezeichnet wenn nötig
         if(mapCache || rel)  {
             tileM.getTileimage();
             tileM.draw(g2);
             mapCache = true;
         }
-
-        gg.draw(g2);
+        //Gegner Ist vom Loop mit betroffen ergo unendlich
+        /*for(int i = 0;i < 5; i++ ){
+            System.out.println("Gegner gespawnt");
+            gg.draw(g2);
+        }*/
+        //gg.draw(g2);
 
         //UI
         ui.draw(g2);

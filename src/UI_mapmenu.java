@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * Ist nur da damit die Form benutzt werden kann.
@@ -13,19 +14,19 @@ public class UI_mapmenu {
 
     public UI_mapmenu() {
         //Map Preview Bilder werden scaliert
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/pictures_ui/map1.png"));
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_ui/map1.png")));
         Image image = icon.getImage();
         Image sImage = image.getScaledInstance(300,200, Image.SCALE_SMOOTH);
         icon = new ImageIcon(sImage);
         Map1.setIcon(icon);
 
-        icon = new ImageIcon(this.getClass().getResource("/pictures_ui/map2.png"));
+        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_ui/map2.png")));
         image = icon.getImage();
         sImage = image.getScaledInstance(300,200, Image.SCALE_SMOOTH);
         icon = new ImageIcon(sImage);
         Map2.setIcon(icon);
 
-        icon = new ImageIcon(this.getClass().getResource("/pictures_ui/map3.png"));
+        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_ui/map3.png")));
         image = icon.getImage();
         sImage = image.getScaledInstance(300,200, Image.SCALE_SMOOTH);
         icon = new ImageIcon(sImage);
