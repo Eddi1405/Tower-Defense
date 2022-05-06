@@ -20,7 +20,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
     mapGen tileM;
     Gegner gg;
     UI_shop ui;
-    CollisionChecker cc =new CollisionChecker(this);
     //Spawner s = new Spawner(this);
 
     //Panel definieren
@@ -72,7 +71,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
         }
 
     }
-
 
     //Map wird gezeichnent
     public void paintComponent(Graphics g) {
