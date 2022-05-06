@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Gegner {
     //static Random randomGenerator = new Random();
-    private  int x;
+    private int x;
     private int y;
     private Image image;
     private int dx;
@@ -14,8 +14,12 @@ public class Gegner {
     private int i;
     private final int strength=10;
     private boolean zielErreicht;
-    private static int hp=100;
+    private  int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
+    public boolean valid;
+    public  int walkFrame = 0;
+    public  int walkSpeed = 40;
+
     UI_gamepanel gp;
 
     loop lp = new loop();
@@ -27,7 +31,7 @@ public class Gegner {
         startPoint();
         dx= 1;
         dy = 1;
-
+        valid = true;
         //lp.start(Gegner::move,0,100);
         //Dynamische größe wird in eine variable gepackt
     }
@@ -50,13 +54,15 @@ public class Gegner {
         return image;
     }
 
-    public void move() {    //Movement with delay
+    public void move() {//Movement with delay
 
-            x = x+5;
-        if (x == 50){
-            lp.stop();
+        if(walkFrame >= walkSpeed){
+            x = x + 1;
+            System.out.println(x);
+            walkFrame = 0;
+        }else {
+            walkFrame++;
         }
-        System.out.println(x);
     }
 
 

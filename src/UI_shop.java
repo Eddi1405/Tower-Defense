@@ -50,9 +50,7 @@ public class UI_shop {
         }
 
     }
-    public void drawMenu(Graphics2D g2){
 
-    }
     public void draw(Graphics2D g2) {
         setPoint();
         //Schriftart wird gesetzt
