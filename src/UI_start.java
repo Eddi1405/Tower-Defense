@@ -20,7 +20,7 @@ public class UI_start  extends JFrame implements KeyListener{
     private JButton exit_button;
 
 
-    int map = 0;
+
     UI_gamepanel gamePanel;
 
     public UI_start(){
