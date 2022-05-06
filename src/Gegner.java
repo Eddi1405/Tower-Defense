@@ -16,7 +16,7 @@ public class Gegner {
     private static int hp=100;
     public String EnemyY = "pictures_map/yellow2.png";
     UI_gamepanel gp;
-    static loop lp = new loop();
+    loop lp = new loop();
     //Timer timer = new Timer(5,this);
     public Gegner(UI_gamepanel gp) {    //Set skin and enemy position
         this.gp = gp;

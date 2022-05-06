@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import static java.lang.Math.round;
 
-public class UI_shop {
+public class UI_shop extends Entity {
     private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
     boolean[] dragValid;
@@ -37,6 +37,7 @@ public class UI_shop {
         DragListener dragListener = new DragListener();
         gp.addMouseListener(clickListener);
         gp.addMouseMotionListener(dragListener);
+        solidarea = new Rectangle(30,20,gp.w_tileSize-60,gp.h_tileSize-40);
 
     }
 
@@ -54,6 +55,7 @@ public class UI_shop {
 
     }
     public void draw(Graphics2D g2) {
+
         setPoint();
         //Schriftart wird gesetzt
         g2.setFont(Seven);
@@ -76,17 +78,31 @@ public class UI_shop {
         g2.drawImage(feahigkeiten[1].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2), 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         g2.drawImage(feahigkeiten[2].image, gp.screen + (int) round(breite * 10) + (int) round(gp.w_tileSize * 1.2) * 2, 50, (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2), null);
         //2 reihe
-        g2.drawImage(tower[0].image,gp.screen + (int) round(breite * 13) , ((int) round(gp.h_tileSize * 1.2) + 50), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
+        g2.drawImage(tower[0].image,(int) imageCorner[0].getX() , (int) imageCorner[0].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
         g2.drawImage(tower[1].image,(int) imageCorner[1].getX(), (int) imageCorner[1].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
         g2.drawImage(tower[2].image, (int) imageCorner[2].getX(), (int) imageCorner[2].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
 
         Color c1 = new Color(93, 93, 93, 61);
         g2.setColor(c1);
-        if (dragValid[1]){
+        if (dragValid[0] && gp.rel && !collisionOn){
+            g2.fillOval((int) imageCorner[0].getX()+UI_gamepanel.w_tileSize/2-150, (int) imageCorner[0].getY()+UI_gamepanel.h_tileSize/2-150,300,300);
+        }
+        if (dragValid[1] && gp.rel && !collisionOn){
             g2.fillOval((int) imageCorner[1].getX()+UI_gamepanel.w_tileSize/2-250, (int) imageCorner[1].getY()+UI_gamepanel.h_tileSize/2-250,500,500);
         }
-        if (dragValid[2]){
-            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-150, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-150,300,300);
+        if (dragValid[2] && gp.rel && !collisionOn){
+            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-175, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-175,350,350);
+        }
+        Color c2 = new Color(232, 25, 25, 61);
+        g2.setColor(c2);
+        if (dragValid[0] && collisionOn){
+            g2.fillOval((int) imageCorner[0].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[0].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
+        }
+        if (dragValid[1] && collisionOn){
+            g2.fillOval((int) imageCorner[1].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[1].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
+        }
+        if (dragValid[2] && collisionOn){
+            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
         }
         g2.setColor(Color.BLACK);
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
@@ -139,11 +155,6 @@ public class UI_shop {
             e.printStackTrace();
         }
     }
-    public void newTower(Graphics2D g2,int index){
-
-        g2.drawImage(tower[0].image, (int) imageCorner[index].getX(), (int) imageCorner[index].getY(), (int) round(gp.w_tileSize * 1.0), (int) round(gp.h_tileSize * 1.0), null);
-
-    }
 
     //hier wird die Schriftart geladen
     public void setFont() {
@@ -159,12 +170,15 @@ public class UI_shop {
     }
 
     private void check(int index){
+        collisionOn = false;
+        gp.cc.check(this,index);
+
         int imx =(int)imageCorner[index].getX();
         int imy =(int)imageCorner[index].getY();
         double mx = imx % gp.w_tileSize;
         int my = imy % gp.h_tileSize;
 
-        if(imx < gp.screen-50 && imy < gp.height) {
+        if(imx < gp.screen-50 && imy < gp.height && !collisionOn) {
             if(mx < gp.w_tileSize/2 && my < gp.h_tileSize/2){
                 imageCorner[index].setLocation(imx - mx, imy - my);
             } else if (mx > gp.w_tileSize/2 && my < gp.h_tileSize/2) {
@@ -185,6 +199,9 @@ public class UI_shop {
                     (int) (currentPt.getX() - prevPt.getX()),
                     (int) (currentPt.getY() - prevPt.getY())
             );
+            collisionOn = false;
+            gp.cc.check(this,index);
+
             gp.rel = true;
         }
 
