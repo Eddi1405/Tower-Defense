@@ -26,12 +26,12 @@ public class UI_start  extends JFrame implements KeyListener{
 
         //window eigenschaften
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(true);
+        window.setResizable(false);
         window.setTitle("Tower Defense");
         window.setLocationRelativeTo(null);
         window.setFocusable(true);
         window.requestFocusInWindow();
-        //window.setSize(2048,  1080); //1920*1080
+        window.setSize(1000,  600); //1920*1080
         window.setContentPane(start_panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //window.setUndecorated(true);

@@ -58,7 +58,7 @@ public class Gegner {
 
         if(walkFrame >= walkSpeed){
             x = x + 1;
-            System.out.println(x);
+            //System.out.println(x);
             walkFrame = 0;
         }else {
             walkFrame++;

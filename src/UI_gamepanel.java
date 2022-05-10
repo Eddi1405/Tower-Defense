@@ -92,7 +92,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         //UI
         ui.draw(g2);
-
+        ui.drawMenu(g2);
         ss.spawn(g2);
 
         g2.dispose();

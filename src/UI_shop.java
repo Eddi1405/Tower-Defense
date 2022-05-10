@@ -14,12 +14,14 @@ public class UI_shop extends Entity {
     boolean[] dragValid;
     double breite;
     boolean ab = true;
+    boolean pressed = true;
     UI_gamepanel gp;
     Font Seven;
     Tile[] tower;
     Tile[] feahigkeiten;
     Tile[] sidebar;
     Point[] imageCorner;
+    Point[] prevImageCorner;
     Point prevPt;
     //TODO mehre tower von einer sorte auf dem
     //TODO Collison mit weg
@@ -28,6 +30,7 @@ public class UI_shop extends Entity {
         feahigkeiten = new Tile[3];
         sidebar = new Tile[2];
         imageCorner = new Point[10];
+        prevImageCorner = new Point[3];
         dragValid = new boolean[10];
         this.gp = gp;
         setFont();
@@ -38,7 +41,7 @@ public class UI_shop extends Entity {
         gp.addMouseListener(clickListener);
         gp.addMouseMotionListener(dragListener);
         solidarea = new Rectangle(30,20,gp.w_tileSize-60,gp.h_tileSize-40);
-
+        setPoint();
     }
 
     public void setPoint(){
@@ -47,14 +50,29 @@ public class UI_shop extends Entity {
             imageCorner[0] = new Point(gp.screen + (int) round(breite * 13), (int) round(gp.h_tileSize * 1.2) + 50);
             imageCorner[1] = new Point(gp.screen + (int) round(breite * 13) + (int) round(gp.w_tileSize * 1.2), (int) round(gp.h_tileSize * 1.2) + 50);
             imageCorner[2] = new Point(gp.screen + (int) round(breite * 13) + (int) round(gp.w_tileSize * 1.2) * 2, (int) round(gp.h_tileSize * 1.2) + 50);
+            for(int i=0;i<prevImageCorner.length;i++){
+                prevImageCorner[i] =new Point((int)imageCorner[i].getX(),(int)imageCorner[i].getY()) ;
+            }
             ab = false;
         }
 
     }
 
+    public void drawMenu(Graphics2D g2){
+
+        if(dragValid[0]) {
+            Color c = new Color(161, 130, 61, 255);
+            g2.setColor(c);
+            g2.fillRoundRect(gp.screen - round((int) breite * 208), gp.height - round((int) breite * 90), round((int) breite * 200), round((int) breite * 67), 25, 25);
+            Color c1 = new Color(0, 0, 0, 255);
+            g2.setColor(c1);
+            g2.drawString("Sell", gp.screen - round((int) breite * 208), gp.height - round((int) breite * 75));
+        }
+    }
+
     public void draw(Graphics2D g2) {
 
-        setPoint();
+
         //Schriftart wird gesetzt
         g2.setFont(Seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60));
@@ -179,13 +197,23 @@ public class UI_shop extends Entity {
         if(imx < gp.screen-50 && imy < gp.height && !collisionOn) {
             if(mx < gp.w_tileSize/2 && my < gp.h_tileSize/2){
                 imageCorner[index].setLocation(imx - mx, imy - my);
+                gp.cc.addPosition((int)(imx-mx)/gp.w_tileSize,(int)(imy-my)/gp.h_tileSize);
+                System.out.println((int)(imx-mx)/gp.w_tileSize+"-|-"+(int)(imy-my)/gp.h_tileSize);
             } else if (mx > gp.w_tileSize/2 && my < gp.h_tileSize/2) {
                 imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy - my);
+                gp.cc.addPosition((int)(imx + (gp.w_tileSize-mx))/gp.w_tileSize,(int)(imy-my)/gp.h_tileSize);
+                System.out.println((int)(imx + (gp.w_tileSize-mx))/gp.w_tileSize+"+|-"+(int)(imy-my)/gp.h_tileSize);
             } else if (mx < gp.w_tileSize/2 && my > gp.h_tileSize/2) {
                 imageCorner[index].setLocation(imx - mx, imy + (gp.h_tileSize-my));
+                gp.cc.addPosition((int)(imx-mx)/gp.w_tileSize,(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
+                System.out.println((int)(imx-mx)/gp.w_tileSize+"-|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }else {
                 imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy + (gp.h_tileSize-my));
+                gp.cc.addPosition((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize),(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
+                System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }
+        }else if(collisionOn && dragValid[index]){
+            imageCorner[index].setLocation(prevImageCorner[index].getX(),prevImageCorner[index].getY());;
         }
     }
 
@@ -206,12 +234,10 @@ public class UI_shop extends Entity {
     }
 
     public void setDragValid(MouseEvent e,int index){
-
         dragValid[index] = (e.getPoint().getX() > imageCorner[index].getX()) &&
                 (e.getPoint().getX() < (imageCorner[index].getX() + (int) round(gp.w_tileSize * 1.0))) &&
                 (e.getPoint().getY() > imageCorner[index].getY()) &&
                 (e.getPoint().getY() < (imageCorner[index].getY() + (int) round(gp.w_tileSize * 1.0)));
-
     }
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
@@ -230,6 +256,7 @@ public class UI_shop extends Entity {
             check(0);
             check(1);
             check(2);
+            pressed = true;
         }
     }
 
