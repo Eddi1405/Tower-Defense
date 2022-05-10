@@ -45,7 +45,7 @@ public class mapGen {
       try {
           tile[index]= new Tile();
           tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures_map/" + path + ".png")));
-          tile[index].image = sc.scale(tile[index].image, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize);
+          tile[index].image = sc.scale(tile[index].image, gp.w_tileSize, gp.h_tileSize);
           tile[index].collision = collision;
       }catch (IOException e){
           e.printStackTrace();
@@ -92,14 +92,14 @@ public class mapGen {
 
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, UI_gamepanel.w_tileSize, UI_gamepanel.h_tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.w_tileSize, gp.h_tileSize, null);
             col++;
-            x += UI_gamepanel.w_tileSize;
+            x += gp.w_tileSize;
             if(col == gp.maxScreenCol){
                 col = 0;
                 x = 0;
                 row++;
-                y += UI_gamepanel.h_tileSize;
+                y += gp.h_tileSize;
             }
         }
     }

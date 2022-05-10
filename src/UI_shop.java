@@ -101,24 +101,24 @@ public class UI_shop extends Entity {
         Color c1 = new Color(93, 93, 93, 61);
         g2.setColor(c1);
         if (dragValid[0] && gp.rel && !collisionOn){
-            g2.fillOval((int) imageCorner[0].getX()+UI_gamepanel.w_tileSize/2-150, (int) imageCorner[0].getY()+UI_gamepanel.h_tileSize/2-150,300,300);
+            g2.fillOval((int) imageCorner[0].getX()+gp.w_tileSize/2-150, (int) imageCorner[0].getY()+gp.h_tileSize/2-150,300,300);
         }
         if (dragValid[1] && gp.rel && !collisionOn){
-            g2.fillOval((int) imageCorner[1].getX()+UI_gamepanel.w_tileSize/2-250, (int) imageCorner[1].getY()+UI_gamepanel.h_tileSize/2-250,500,500);
+            g2.fillOval((int) imageCorner[1].getX()+gp.w_tileSize/2-250, (int) imageCorner[1].getY()+gp.h_tileSize/2-250,500,500);
         }
         if (dragValid[2] && gp.rel && !collisionOn){
-            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-175, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-175,350,350);
+            g2.fillOval((int) imageCorner[2].getX()+gp.w_tileSize/2-175, (int) imageCorner[2].getY()+gp.h_tileSize/2-175,350,350);
         }
         Color c2 = new Color(232, 25, 25, 61);
         g2.setColor(c2);
         if (dragValid[0] && collisionOn){
-            g2.fillOval((int) imageCorner[0].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[0].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
+            g2.fillOval((int) imageCorner[0].getX()+gp.w_tileSize/2-50, (int) imageCorner[0].getY()+gp.h_tileSize/2-50,100,100);
         }
         if (dragValid[1] && collisionOn){
-            g2.fillOval((int) imageCorner[1].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[1].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
+            g2.fillOval((int) imageCorner[1].getX()+gp.w_tileSize/2-50, (int) imageCorner[1].getY()+gp.h_tileSize/2-50,100,100);
         }
         if (dragValid[2] && collisionOn){
-            g2.fillOval((int) imageCorner[2].getX()+UI_gamepanel.w_tileSize/2-50, (int) imageCorner[2].getY()+UI_gamepanel.h_tileSize/2-50,100,100);
+            g2.fillOval((int) imageCorner[2].getX()+gp.w_tileSize/2-50, (int) imageCorner[2].getY()+gp.h_tileSize/2-50,100,100);
         }
         g2.setColor(Color.BLACK);
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist

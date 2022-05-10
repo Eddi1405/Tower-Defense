@@ -10,17 +10,15 @@ public class UI_start  extends JFrame implements KeyListener{
     JFrame window = new JFrame();
     UI_mapmenu mm = new UI_mapmenu();
     UI_escmenu em = new UI_escmenu();
-
+    UI_gamepanel gamePanel;
     public boolean nstart;
     public boolean escopen;
     public boolean nmenu;
-
     public JPanel start_panel;
     private JButton start_button;
     private JButton exit_button;
-    UI_gamepanel gamePanel;
-
     public UI_start(){
+        //Icon von dem Fenster
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_map/icon.png")));
         window.setIconImage(icon.getImage());
 
@@ -159,6 +157,4 @@ public class UI_start  extends JFrame implements KeyListener{
             }
         }
     }
-
-
 }
