@@ -18,7 +18,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     mapGen tileM;
     Gegner gg;
     UI_shop ui;
-    CollisionChecker cc;
+    collisionChecker cc;
     SpawnSystem ss,sss;
     public int spawnTime = 1000, spawnFrame = 0;
 
@@ -43,7 +43,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             ui = new UI_shop(this);
         }
         if(cc == null){
-            cc = new CollisionChecker(this);
+            cc = new collisionChecker(this);
         }
         if(ss == null && sss == null){
             ss = new SpawnSystem(this);
