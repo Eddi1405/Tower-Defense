@@ -1,4 +1,4 @@
-import java.awt.*;
+package old;
 
 public class Spawner {
     private int GelbAnzahl, RotAnzahl, BlauAnzahl, waveCount;
@@ -9,8 +9,6 @@ public class Spawner {
         this.gp = gp;
         zielWelle = false;
         mapEnde = false;
-
-
     }
 
     public void setBlauAnzahl(int blauAnzahl) {
@@ -37,13 +35,18 @@ public class Spawner {
         return RotAnzahl;
     }
 
-    public void start(Graphics2D g2) {
-        setGelbAnzahl(2);
+    public void start() {
         while (!zielWelle) {
 
-            for (int i = 0; i < getGelbAnzahl(); ) {
+            for (int i = 0; i < getBlauAnzahl(); ) {
                 Gegner gg = new Gegner(gp);
-                spawn(g2,gg);
+                for (int j = 0; j < getGelbAnzahl(); ) {
+                    //GegnerY gy = new GegnerY(gp);
+                    for (int k = 0; k < getRotAnzahl(); ) {
+                        //GegnerR gr = new GegnerR(gp);
+                    }
+
+                }
 
                 while (!mapEnde) {
 
@@ -58,24 +61,9 @@ public class Spawner {
                         setGelbAnzahl(+5);
                     }
                 }
-                /*
-                for (int j = 0; j < getGelbAnzahl(); ) {
-                    //GegnerY gy = new GegnerY(gp);
-                    for (int k = 0; k < getRotAnzahl(); ) {
-                        //GegnerR gr = new GegnerR(gp);
-                    }
-*/
-                }
-
-
 
 
             }
         }
-
-        public void spawn(Graphics2D g2,Gegner g){
-            g.draw(g2);
-            g.move();
-        }
     }
-
+}
