@@ -52,15 +52,5 @@ public class SpawnSystem {
     }
 
 
-    public void spawner(Graphics2D g2){
-        //Gegner[] mobs = new Gegner[5];
-        setMobs();
-        for(int i=0; i< mobs.length; i++){
-            //mobs[i] = new Gegner(gp);
-            mobs[i].draw(g2);
-            mobs[i].move();
-
-        }
-    }
 
 }
