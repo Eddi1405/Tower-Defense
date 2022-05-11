@@ -19,7 +19,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
     Gegner gg;
     UI_shop ui;
     CollisionChecker cc;
-    SpawnSystem ss;
+    SpawnSystem ss,sss;
+    public int spawnTime = 1000, spawnFrame = 0;
+
     //Panel definieren
     public UI_gamepanel(int width,int height) {
         this.setDoubleBuffered(true);
@@ -43,9 +45,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
         if(cc == null){
             cc = new CollisionChecker(this);
         }
-        if(ss == null){
+        if(ss == null && sss == null){
             ss = new SpawnSystem(this);
+            sss = new SpawnSystem(this);
             ss.start();
+            //sss.start();
         }
     }
 
@@ -84,6 +88,16 @@ public class UI_gamepanel extends JPanel implements Runnable {
         ui.drawMenu(g2);
         //Gegner
         ss.spawn(g2);
+        //sss.spawn(g2);
+        //ss.spawner(g2);
+
+        if (spawnFrame >= spawnTime) {
+            //sss.spawner(g2);
+            spawnFrame = 0;
+        } else {
+            spawnFrame += 1;
+        }
+
 
         g2.dispose();
     }
