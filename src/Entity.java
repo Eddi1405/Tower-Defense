@@ -1,6 +1,6 @@
 import java.awt.*;
 
 public class Entity {
-    public Rectangle solidarea;
+    public Rectangle solidArea;
     public boolean collisionOn = false;
 }

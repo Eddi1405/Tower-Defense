@@ -22,87 +22,86 @@ public class mapGen {
 
     public void getTileimage() {
         //Tiles werden defieniert
-
-        if (gp.rel) {
-            setup(0, "grid",false);
-
+        //Abfrage ob das grid true ist.
+        if (gp.grid) {
+            setup(0, "grid", false);
         } else {
-            setup(0, "grass",false);
+            setup(0, "grass", false);
         }
-
-        setup(2, "grass1.2",true);
-        setup(5, "grass2.5",true);
-        setup(7, "grass3.7",true);
-        setup(8, "grass3.8",true);
-        setup(9, "grass3.9",true);
-        setup(10, "grass3.10",true);
-        setup(11, "grass4.11",true);
-        setup(12, "baum.12",true);
+        setup(2, "grass1.2", true);
+        setup(5, "grass2.5", true);
+        setup(7, "grass3.7", true);
+        setup(8, "grass3.8", true);
+        setup(9, "grass3.9", true);
+        setup(10, "grass3.10", true);
+        setup(11, "grass4.11", true);
+        setup(12, "baum.12", true);
     }
-    public void setup(int index,String path,boolean collision){
+    // Die Daten von tile werden gesetzt und Scaliert.
+    public void setup(int index, String path, boolean collision) {
 
-      scaling sc = new scaling();
-      try {
-          tile[index]= new Tile();
-          tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures_map/" + path + ".png")));
-          tile[index].image = sc.scale(tile[index].image, gp.w_tileSize, gp.h_tileSize);
-          tile[index].collision = collision;
-      }catch (IOException e){
-          e.printStackTrace();
-      }
+        scaling sc = new scaling();
+        try {
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures_map/" + path + ".png")));
+            tile[index].image = sc.scale(tile[index].image, gp.w_TileSize, gp.h_TileSize);
+            tile[index].collision = collision;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //Map wird geladen
-    public void loadMap(int map){
+    public void loadMap(int map) {
 
         try {
             //Textdatei wird eingelesen
-            InputStream is = getClass().getResourceAsStream("map/map"+map+".txt");
+            InputStream is = getClass().getResourceAsStream("map/map" + map + ".txt");
             assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
             int row = 0;
 
-            while (col < gp.maxScreenCol && row < gp.maxScreenRow){
+            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
                 String line = br.readLine();
-                while (col < gp.maxScreenCol ){
+                while (col < gp.maxScreenCol) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if(col == gp.maxScreenCol){
+                if (col == gp.maxScreenCol) {
                     col = 0;
                     row++;
                 }
             }
             br.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error Map laden");
         }
     }
-
-    public void draw(Graphics2D g2){
+    //Die Map wird gezeichnet durch ausgeklügelte und komplexe Berechnungen.
+    public void drawMap(Graphics2D g2) {
 
         int col = 0;
         int row = 0;
         int x = 0;
         int y = 0;
 
-        while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
             int tileNum = mapTileNum[col][row];
-            g2.drawImage(tile[tileNum].image, x, y, gp.w_tileSize, gp.h_tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gp.w_TileSize, gp.h_TileSize, null);
             col++;
-            x += gp.w_tileSize;
-            if(col == gp.maxScreenCol){
+            x += gp.w_TileSize;
+            if (col == gp.maxScreenCol) {
                 col = 0;
                 x = 0;
                 row++;
-                y += gp.h_tileSize;
+                y += gp.h_TileSize;
             }
         }
     }
 
-    }
+}
 

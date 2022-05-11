@@ -10,7 +10,7 @@ public class UI_mapmenu {
     public JButton Map1;
     public JButton Map2;
     public JButton Map3;
-    public JPanel menu_panel;
+    public JPanel menu_Panel;
 
     public UI_mapmenu() {
         //Map Preview Bilder werden scaliert

@@ -6,17 +6,23 @@ import java.awt.event.KeyListener;
 import java.util.Objects;
 
 public class UI_start  extends JFrame implements KeyListener{
-    //Main wie aus C, der Start eines Programms der die erste Klasse aufruft
+    //Instanzen
     JFrame window = new JFrame();
     UI_mapmenu mm = new UI_mapmenu();
     UI_escmenu em = new UI_escmenu();
     UI_gamepanel gamePanel;
-    public boolean nstart;
-    public boolean escopen;
-    public boolean nmenu;
-    public JPanel start_panel;
-    private JButton start_button;
-    private JButton exit_button;
+
+    //Variablen
+    public boolean nStart;
+    public boolean escOpen;
+    public boolean nMenu;
+
+    //Swing Components
+    public JPanel start_Panel;
+    private JButton start_Button;
+    private JButton exit_Button;
+
+    //Konstruktor
     public UI_start(){
         //Icon von dem Fenster
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/pictures_map/icon.png")));
@@ -30,9 +36,12 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setFocusable(true);
         window.requestFocusInWindow();
         window.setSize(1000,  600); //1920*1080
-        window.setContentPane(start_panel);
+        window.setContentPane(start_Panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        //Vollbild
         //window.setUndecorated(true);
+
         window.setVisible(true);
 
         //Aktiviert den KeyListener Für das den JFrame Window (ab da fängt er die Signale der Tastatur auf)
@@ -44,61 +53,67 @@ public class UI_start  extends JFrame implements KeyListener{
 
     public void buttonListeners(){
         ActionListener buttonListener = ae -> {
+            //Speicher die Quelle des Events in eine Variable
             Object o = ae.getSource();
-            //TODO switch geht nicht
+
             if(o == mm.Map1 ){
-                System.out.println("Sie haben die Map 1 gewaehlt" );
+                System.out.println("Sie haben die Map 1 Gewaehlt" );
                 mapAuswahl(1);
 
             }else if (o == mm.Map2) {
-                System.out.println("Sie haben die Map 2 gewaehlt" );
+                System.out.println("Sie haben die Map 2 Gewaehlt" );
                 mapAuswahl(2);
 
             }else if (o == mm.Map3){
-                System.out.println("Sie haben die Map 3 gewaehlt" );
+                System.out.println("Sie haben die Map 3 Gewaehlt" );
                 mapAuswahl(3);
 
-            }else if (o == start_button){
+            //Start Button Funktion.
+            }else if (o == start_Button){
                 System.out.println("Start");
-                start_panel.setVisible(false);
-                window.setContentPane(mm.menu_panel);
-                mm.menu_panel.setVisible(true);
-                nstart = true;
-                nmenu = true;
-            }else if (o == exit_button){
+                start_Panel.setVisible(false);
+                window.setContentPane(mm.menu_Panel);
+                mm.menu_Panel.setVisible(true);
+                //Damit in Start nicht das Startmenü aufgerufen werden kann.
+                nStart = true;
+                //Damit man das Menü im Menü nicht sieht.
+                nMenu = true;
+                //Exit Button Funktion
+            }else if (o == exit_Button){
                 System.out.println("Exit");
                 System.exit(0);
             //ESC Menü Buttons
-            }else if (o == em.weiter_button){
+            }else if (o == em.weiter_Button){
                 System.out.println("Continue");
-                em.esc_panel.setVisible(false);
-                escopen = false;
-            }
-            else if (o == em.exit_button){
+                em.esc_Panel.setVisible(false);
+                //Gibt an ob das Esc Menü offen oder geschlossen ist.
+                escOpen = false;
+            }//Exit Button Funktion
+            else if (o == em.exit_Button){
                 System.out.println("exitovermenu");
                 System.exit(0);
             }
-            else if (o == em.menu_button){
+            else if (o == em.menu_Button){
                 System.out.println("Main menu");
-                em.esc_panel.setVisible(false);
-                window.setContentPane(mm.menu_panel);
-                mm.menu_panel.setVisible(true);
-                nstart = true;
-                escopen = false;
-                nmenu = true;
+                em.esc_Panel.setVisible(false);
+                window.setContentPane(mm.menu_Panel);
+                mm.menu_Panel.setVisible(true);
+                nStart = true;
+                escOpen = false;
+                nMenu = true;
             }
 
 
         };
-        //TODO Auslagern in eine Class
+        //Weist den ActionListener zu
         mm.Map1.addActionListener(buttonListener);
         mm.Map2.addActionListener(buttonListener);
         mm.Map3.addActionListener(buttonListener);
-        exit_button.addActionListener(buttonListener);
-        start_button.addActionListener(buttonListener);
-        em.weiter_button.addActionListener(buttonListener);
-        em.exit_button.addActionListener(buttonListener);
-        em.menu_button.addActionListener(buttonListener);
+        exit_Button.addActionListener(buttonListener);
+        start_Button.addActionListener(buttonListener);
+        em.weiter_Button.addActionListener(buttonListener);
+        em.exit_Button.addActionListener(buttonListener);
+        em.menu_Button.addActionListener(buttonListener);
     }
 
 
@@ -115,12 +130,12 @@ public class UI_start  extends JFrame implements KeyListener{
         if(gamePanel == null) {
             gamePanel = new UI_gamepanel(r.width,r.height);
         }
-        mm.menu_panel.setVisible(false);
+        mm.menu_Panel.setVisible(false);
         window.setContentPane(gamePanel);
         gamePanel.startGameThread();
         gamePanel.newMap(map);
         gamePanel.mapCache = true;
-        nmenu = false;
+        nMenu = false;
         gamePanel.ui.ab = true;
     }
 
@@ -136,24 +151,22 @@ public class UI_start  extends JFrame implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getKeyCode());
-        if(keyEvent.getKeyCode() == 27 && nstart){
-            if(escopen){
-                em.esc_panel.setVisible(false );
-                escopen = false;
-                System.out.println("close");
+        //Wenn die Esc Taste gedrückt wird und es noch nicht geöffnet ist, wird es sichtbar gemacht.
+        if(keyEvent.getKeyCode() == 27 && nStart){
+            if(escOpen){
+                em.esc_Panel.setVisible(false );
+                escOpen = false;
             }
             else {
-                escopen = true;
-                em.esc_panel.setVisible(true);
+                escOpen = true;
+                em.esc_Panel.setVisible(true);
                 //Ist dafür da das es als overlay angezeigt wird. klappt aber noch nicht ganz
                 Rectangle r = window.getBounds();
                 window.setLayout(null);
-                window.add(em.esc_panel);
-                em.menu_button.setVisible(!nmenu);
-                em.esc_panel.setBounds(0, 0, r.width, r.height);
+                window.add(em.esc_Panel);
+                em.menu_Button.setVisible(!nMenu);
+                em.esc_Panel.setBounds(0, 0, r.width, r.height);
                 SwingUtilities.updateComponentTreeUI(window);
-                System.out.println("open");
             }
         }
     }

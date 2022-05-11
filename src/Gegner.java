@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Gegner {
+    ///Variablen
+
     private int x;
     private int y;
     private Image image;
@@ -15,6 +14,7 @@ public class Gegner {
     public  int walkFrame = 0;
     public  int walkSpeed = 5;
 
+    //Instanzen
     UI_gamepanel gp;
 
 
@@ -30,11 +30,12 @@ public class Gegner {
     }
 
     public void startPoint(){
-        int stepH = gp.h_tileSize;
+        int stepH = gp.h_TileSize;
         x = 10;
         y = stepH *2;
 
     }
+    //Getter
     public int getX() { //Get function
         return x;
     }
@@ -47,8 +48,7 @@ public class Gegner {
         return image;
     }
 
-    public void move() {//Movement with delay
-
+    public void move() {//Fortbewegung mit Verzögerung
 
         if(walkFrame >= walkSpeed){
             x = x + 1;
@@ -60,9 +60,9 @@ public class Gegner {
 
 
 
-
+    //Zeichnet den Gegner auf dem GamePanel
     public void draw(Graphics2D g2) {
-        g2.drawImage(image , getX(),getY(),gp.w_tileSize-10,gp.h_tileSize-10, null);
+        g2.drawImage(image , getX(),getY(),gp.w_TileSize -10,gp.h_TileSize -10, null);
     }
 
 

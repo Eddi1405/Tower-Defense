@@ -1,27 +1,31 @@
 import java.awt.*;
 
 public class SpawnSystem {
+    //Instanzen
     UI_gamepanel gp;
-    private int wave, waveCounter;
     private Gegner[] mobs = new Gegner[5];
-    private int j = 0;
 
+    //Variabeln
+    private int wave, waveCounter;
+    private int j;
+    public int spawnTime = 500, spawnFrame = 0;
+
+    //Konstruktor mit Übergabe des GamePanels
     public SpawnSystem(UI_gamepanel gp) {
         this.gp = gp;
+        j = 0;
     }
-
+    //Die Methode start() ruft setMobs auf welche die Gegner reinlädt
     public void start() {
         setMobs();
     }
-
+    //Lädt Gegner bzw füllt ein Array mit Gegnern
     public void setMobs() {
         for (int i = 0; i < mobs.length; i++) {
             mobs[i] = new Gegner(gp);
         }
     }
-
-    public int spawnTime = 500, spawnFrame = 0;
-
+// Die Methode spawn() Spawnt unter Berücksichtigung des SpawnTimers die geladenen Gegner und bewegt diese
     public void spawn(Graphics2D g2) {
         if (spawnFrame >= spawnTime && j < mobs.length) {
             mobs[j].valid = true;
@@ -35,15 +39,6 @@ public class SpawnSystem {
                 mobs[i].draw(g2);
                 mobs[i].move();
             }
-        }
-    }
-
-
-    public void spawner(Graphics2D g2) {
-        setMobs();
-        for (int i = 0; i < mobs.length; i++) {
-            mobs[i].draw(g2);
-            mobs[i].move();
         }
     }
 }

@@ -3,13 +3,13 @@ import java.awt.*;
 import static java.lang.Math.round;
 
 public class UI_gamepanel extends JPanel implements Runnable {
-    //Screen Settings
+    //Screen Settings und Variablen
     final int maxScreenCol = 17; //17
     final int maxScreenRow = 12; //12
-    public int w_tileSize;
-    public int h_tileSize;
+    public int w_TileSize;
+    public int h_TileSize;
     public boolean mapCache;
-    public boolean rel = false;
+    public boolean grid = false;
     public int width;
     public int height;
     public int screen;
@@ -19,20 +19,19 @@ public class UI_gamepanel extends JPanel implements Runnable {
     Gegner gg;
     UI_shop ui;
     collisionChecker cc;
-    SpawnSystem ss,sss;
-    public int spawnTime = 1000, spawnFrame = 0;
+    SpawnSystem ss;
 
     //Panel definieren
     public UI_gamepanel(int width,int height) {
         this.setDoubleBuffered(true);
         //80% des screens wird für die map verwendet deswegen /10+8.
         //Es wird durch die Rows der Map geteilt hat deswegen /maxScreenRow, das gleiche bei height
-        w_tileSize = round(width/10*8/maxScreenCol);
-        h_tileSize = round(height/maxScreenRow)+1;
-        screen = w_tileSize*maxScreenCol;
+        w_TileSize = round(width/10*8/maxScreenCol);
+        h_TileSize = round(height/maxScreenRow)+1;
+        screen = w_TileSize *maxScreenCol;
         this.width = width;
         this.height = height;
-        //Es wird nur ne neue Instans erstellt wen noch keine vorhanden ist
+        //Es wird nur eine neue Instanz erstellt, wenn noch keine vorhanden ist
         if(tileM == null){
             tileM = new mapGen(this);
         }
@@ -45,11 +44,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
         if(cc == null){
             cc = new collisionChecker(this);
         }
-        if(ss == null && sss == null){
+        if(ss == null){
             ss = new SpawnSystem(this);
-            sss = new SpawnSystem(this);
             ss.start();
-            //sss.start();
         }
     }
 
@@ -70,7 +67,6 @@ public class UI_gamepanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //gg.move();
             repaint();
         }
     }
@@ -82,22 +78,12 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         //Map
         tileM.getTileimage();
-        tileM.draw(g2);
+        tileM.drawMap(g2);
         //UI
         ui.draw(g2);
         ui.drawMenu(g2);
-        //Gegner
+        //Gegner spawnen
         ss.spawn(g2);
-        //sss.spawn(g2);
-        //ss.spawner(g2);
-
-        if (spawnFrame >= spawnTime) {
-            //sss.spawner(g2);
-            spawnFrame = 0;
-        } else {
-            spawnFrame += 1;
-        }
-
 
         g2.dispose();
     }
