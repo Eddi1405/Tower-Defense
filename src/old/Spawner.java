@@ -1,3 +1,5 @@
+package old;
+
 public class Spawner {
     private int GelbAnzahl, RotAnzahl, BlauAnzahl, waveCount;
     private boolean zielWelle, mapEnde;
@@ -7,8 +9,6 @@ public class Spawner {
         this.gp = gp;
         zielWelle = false;
         mapEnde = false;
-
-
     }
 
     public void setBlauAnzahl(int blauAnzahl) {

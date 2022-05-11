@@ -28,7 +28,7 @@ public class UI_shop extends Entity {
     public UI_shop(UI_gamepanel gp) {
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
-        sidebar = new Tile[2];
+        sidebar = new Tile[4];
         imageCorner = new Point[10];
         prevImageCorner = new Point[3];
         dragValid = new boolean[10];
@@ -59,14 +59,9 @@ public class UI_shop extends Entity {
     }
 
     public void drawMenu(Graphics2D g2){
-
         if(dragValid[0]) {
-            Color c = new Color(161, 130, 61, 255);
-            g2.setColor(c);
-            g2.fillRoundRect(gp.screen - round((int) breite * 208), gp.height - round((int) breite * 90), round((int) breite * 200), round((int) breite * 67), 25, 25);
-            Color c1 = new Color(0, 0, 0, 255);
-            g2.setColor(c1);
-            g2.drawString("Sell", gp.screen - round((int) breite * 208), gp.height - round((int) breite * 75));
+            g2.drawImage(sidebar[2].image,(int) imageCorner[0].getX()-(int)breite*4 , (int) imageCorner[0].getY()-(int)breite*4, (int) round(gp.w_tileSize * 0.5), (int) round(gp.h_tileSize * 0.5), null);
+            g2.drawImage(sidebar[3].image,(int) imageCorner[0].getX()+(int)breite*15 , (int) imageCorner[0].getY()-(int)breite*4, (int) round(gp.w_tileSize * 0.5), (int) round(gp.h_tileSize * 0.5), null);
         }
     }
 
@@ -164,7 +159,10 @@ public class UI_shop extends Entity {
             sidebar[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Heart.png"));
             sidebar[1] = new Tile();
             sidebar[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Coin.png"));
-
+            sidebar[2] = new Tile();
+            sidebar[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/sell.png"));
+            sidebar[3] = new Tile();
+            sidebar[3].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/upgrade.png"));
 
         } catch (IOException e) {
             System.out.println("bild fehler");
@@ -198,19 +196,19 @@ public class UI_shop extends Entity {
             if(mx < gp.w_tileSize/2 && my < gp.h_tileSize/2){
                 imageCorner[index].setLocation(imx - mx, imy - my);
                 gp.cc.addPosition((int)(imx-mx)/gp.w_tileSize,(int)(imy-my)/gp.h_tileSize);
-                System.out.println((int)(imx-mx)/gp.w_tileSize+"-|-"+(int)(imy-my)/gp.h_tileSize);
+                //System.out.println((int)(imx-mx)/gp.w_tileSize+"-|-"+(int)(imy-my)/gp.h_tileSize);
             } else if (mx > gp.w_tileSize/2 && my < gp.h_tileSize/2) {
                 imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy - my);
                 gp.cc.addPosition((int)(imx + (gp.w_tileSize-mx))/gp.w_tileSize,(int)(imy-my)/gp.h_tileSize);
-                System.out.println((int)(imx + (gp.w_tileSize-mx))/gp.w_tileSize+"+|-"+(int)(imy-my)/gp.h_tileSize);
+                //System.out.println((int)(imx + (gp.w_tileSize-mx))/gp.w_tileSize+"+|-"+(int)(imy-my)/gp.h_tileSize);
             } else if (mx < gp.w_tileSize/2 && my > gp.h_tileSize/2) {
                 imageCorner[index].setLocation(imx - mx, imy + (gp.h_tileSize-my));
                 gp.cc.addPosition((int)(imx-mx)/gp.w_tileSize,(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
-                System.out.println((int)(imx-mx)/gp.w_tileSize+"-|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
+                //System.out.println((int)(imx-mx)/gp.w_tileSize+"-|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }else {
                 imageCorner[index].setLocation(imx + (gp.w_tileSize-mx), imy + (gp.h_tileSize-my));
                 gp.cc.addPosition((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize),(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
-                System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
+                //System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }
         }else if(collisionOn && dragValid[index]){
             imageCorner[index].setLocation(prevImageCorner[index].getX(),prevImageCorner[index].getY());;
