@@ -3,10 +3,10 @@ package old;
 public class Spawner {
     private int GelbAnzahl, RotAnzahl, BlauAnzahl, waveCount;
     private boolean zielWelle, mapEnde;
-    UI_gamepanel gp;
+    //UI_gamepanel gp;
 
-    public Spawner(UI_gamepanel gp) {
-        this.gp = gp;
+    public Spawner() {
+        //this.gp = gp;
         zielWelle = false;
         mapEnde = false;
     }
@@ -39,7 +39,7 @@ public class Spawner {
         while (!zielWelle) {
 
             for (int i = 0; i < getBlauAnzahl(); ) {
-                Gegner gg = new Gegner(gp);
+                //Gegner gg = new Gegner(gp);
                 for (int j = 0; j < getGelbAnzahl(); ) {
                     //GegnerY gy = new GegnerY(gp);
                     for (int k = 0; k < getRotAnzahl(); ) {
@@ -50,7 +50,7 @@ public class Spawner {
 
                 while (!mapEnde) {
 
-                    gg.move();
+                   // gg.move();
                     //gy.move();
                     //gr.move();
 

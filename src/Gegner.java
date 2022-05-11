@@ -13,7 +13,7 @@ public class Gegner {
     public String EnemyY = "pictures_map/yellow2.png";
     public boolean valid;
     public  int walkFrame = 0;
-    public  int walkSpeed = 40;
+    public  int walkSpeed = 5;
 
     UI_gamepanel gp;
 
@@ -24,7 +24,7 @@ public class Gegner {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(EnemyY));
         image = ii.getImage();
         startPoint();
-        valid = true;
+        valid = false;
         zielErreicht = false;
         //Dynamische größe wird in eine variable gepackt
     }
