@@ -5,6 +5,7 @@
       <xy x="20" y="20" width="3289" height="1016"/>
     </constraints>
     <properties>
+      <background color="-12352210"/>
       <enabled value="true"/>
     </properties>
     <border type="none"/>

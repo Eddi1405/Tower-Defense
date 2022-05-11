@@ -1,9 +1,8 @@
-public class CollisionChecker {
-
+public class collisionChecker {
     UI_gamepanel gp;
     boolean[][] checkTower;
 
-    public CollisionChecker(UI_gamepanel gp) {
+    public collisionChecker(UI_gamepanel gp) {
         this.gp = gp;
         checkTower = new boolean[gp.maxScreenCol][gp.maxScreenRow];
     }
