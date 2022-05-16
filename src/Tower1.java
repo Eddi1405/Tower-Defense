@@ -13,7 +13,7 @@ public class Tower1 extends Tower{
     }
 
     public void setpoint(){
-        for(int i;i <= start.length;i++){
+        for(int i = 0;i <= start.length;i++){
         start[i] = new Point(gp.screen + (int) round(breite * 13), (int) round(gp.h_TileSize * 1.2) + 50);
     }}
 
