@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Gegner {
+public class Gegner extends Entity {
     ///Variablen
 
     private int x;
@@ -16,16 +16,18 @@ public class Gegner {
 
     //Instanzen
     UI_gamepanel gp;
-
+    path ph;
 
 
     public Gegner(UI_gamepanel gp) {    //Aussehen und Position gesetzt
         this.gp = gp;
+        ph = new path(gp);
         ImageIcon ii = new ImageIcon(this.getClass().getResource(EnemyY));
         image = ii.getImage();
         startPoint();
         valid = false;
         zielErreicht = false;
+        solidArea = new Rectangle(30,20,gp.w_TileSize -60,gp.h_TileSize -40);
         //Dynamische größe wird in eine variable gepackt
     }
 
@@ -49,7 +51,7 @@ public class Gegner {
     }
 
     public void move() {//Fortbewegung mit Verzögerung
-
+        ph.check(this,x,y);
         if(walkFrame >= walkSpeed){
             x = x + 1;
             walkFrame = 0;

@@ -29,7 +29,7 @@ public class collisionChecker {
             tileNum2 = gp.tileM.mapTileNum[entityRC][entityTR];
             tileNum3 = gp.tileM.mapTileNum[entityLC][entityBR];
             tileNum4 = gp.tileM.mapTileNum[entityRC][entityBR];
-
+            //System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
             //Die ersten 4 Abfragen sind für die gezeichneten Tiles, die nächsten 4 sind für die Tower die aufgestellt worden.
             if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || gp.tileM.tile[tileNum3].collision || gp.tileM.tile[tileNum4].collision
                     || checkPosition(entityLC, entityTR) || checkPosition(entityRC, entityTR) || checkPosition(entityLC, entityBR) || checkPosition(entityRC, entityBR)) {

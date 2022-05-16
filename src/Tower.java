@@ -5,6 +5,8 @@ import java.awt.*;
  * https://youtu.be/69R6IoT2ZoA?t=1754
  * https://youtu.be/ZQg8Se0Ywiw?t=2362*/
 public class Tower {
+    UI_gamepanel gp;
+    public int breite;
     public int angreifenGegner = 0;
     public boolean angriff = false;
 
@@ -30,7 +32,7 @@ public class Tower {
     //Tower ID zuweisen
     //TODO Static entfernen
     public final Tower[] UI_shop = new Tower[20];
-    public static final Tower tower1 = new Tower1(0);
+    public final Tower tower1 = new Tower1(gp);
     public static final Tower tower2 = new Tower2(1);
     public static final Tower tower3 = new Tower3(2);
 
@@ -59,8 +61,10 @@ public class Tower {
     }
 
 
-    public Tower(int id) {
+    public Tower(UI_gamepanel gp) {
         // towerlist[id] = this.id = id;
+        this.gp = gp;
+        breite = (gp.width - gp.screen) / 100;
     }
 
 

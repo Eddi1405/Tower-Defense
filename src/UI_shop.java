@@ -70,13 +70,11 @@ public class UI_shop extends Entity {
     public void drawMenu(Graphics2D g2){
         if(dragValid[0]) {
             g2.drawImage(sidebar[2].image,(int) imageCorner[0].getX()-(int)breite*4 , (int) imageCorner[0].getY()-(int)breite*4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
-            g2.drawImage(sidebar[3].image,(int) imageCorner[0].getX()+(int)breite*15 , (int) imageCorner[0].getY()-(int)breite*4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
+            g2.drawImage(sidebar[3].image,(int) imageCorner[0].getX()+(int)breite*19 , (int) imageCorner[0].getY()-(int)breite*4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
         }
     }
 
     public void draw(Graphics2D g2) {
-
-
         //Schriftart wird gesetzt
         g2.setFont(seven);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60));

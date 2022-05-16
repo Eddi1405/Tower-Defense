@@ -20,6 +20,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
     UI_shop ui;
     collisionChecker cc;
     SpawnSystem ss;
+    Tower tw;
 
     //Panel definieren
     public UI_gamepanel(int width,int height) {
@@ -47,6 +48,9 @@ public class UI_gamepanel extends JPanel implements Runnable {
         if(ss == null){
             ss = new SpawnSystem(this);
             ss.start();
+        }
+        if(tw == null){
+            tw = new Tower(this);
         }
     }
 
