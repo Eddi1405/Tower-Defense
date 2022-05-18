@@ -59,6 +59,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
         if(gameThread == null) {
             gameThread = new Thread(this);
             gameThread.start();
+
         }
     }
 
@@ -91,6 +92,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
 
         g2.dispose();
     }
+
     public void newMap(int map){
         tileM.loadMap(map);
     }
