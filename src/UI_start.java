@@ -35,7 +35,7 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setLocationRelativeTo(null);
         window.setFocusable(true);
         window.requestFocusInWindow();
-        window.setSize(1000,  600); //1920*1080
+        window.setSize(854,480); //1920*1080
         window.setContentPane(start_Panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -102,8 +102,6 @@ public class UI_start  extends JFrame implements KeyListener{
                 escOpen = false;
                 nMenu = true;
             }
-
-
         };
         //Weist den ActionListener zu
         mm.Map1.addActionListener(buttonListener);

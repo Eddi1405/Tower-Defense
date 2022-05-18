@@ -91,5 +91,14 @@ public class Tower /*extends UI_gamepanel*/ {
         breite = (gp.width - gp.screen) / 100;
     }
 
+    public void radius(int radius){
+
+
+    }
+
+    public void redradius(){
+
+
+    }
 
 }

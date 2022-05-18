@@ -28,14 +28,14 @@ public class mapGen {
         } else {
             setup(0, "grass", false);
         }
-        setup(2, "grass1.2", true);
-        setup(5, "grass2.5", true);
-        setup(7, "grass3.7", true);
-        setup(8, "grass3.8", true);
-        setup(9, "grass3.9", true);
-        setup(10, "grass3.10", true);
-        setup(11, "grass4.11", true);
-        setup(12, "baum.12", true);
+        setup(1, "grass1.2", true);
+        setup(2, "grass2.5", true);
+        setup(3, "grass3.7", true);
+        setup(4, "grass3.8", true);
+        setup(5, "grass3.9", true);
+        setup(6, "grass3.10", true);
+        setup(7, "grass4.11", true);
+        setup(8, "baum.12", true);
     }
     // Die Daten von tile werden gesetzt und Scaliert.
     public void setup(int index, String path, boolean collision) {
