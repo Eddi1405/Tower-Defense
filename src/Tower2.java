@@ -5,6 +5,7 @@ public class Tower2 extends Tower{
         super(gp);
     }
 
+
     public void Tower2(int kosten, int schaden)
     {
         this.kosten = 10;

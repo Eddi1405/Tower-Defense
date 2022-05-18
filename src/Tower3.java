@@ -11,4 +11,5 @@ public class Tower3 extends Tower{
         this.kosten = 10;
         this.schaden = 5;
     }
+
 }

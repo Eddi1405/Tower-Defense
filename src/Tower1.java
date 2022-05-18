@@ -22,6 +22,7 @@ public class Tower1 extends Tower {
         this.schaden = 5;
     }
 
+
     public void setpoint(){
         for(int i = 0;i <= start.length;i++){
         start[i] = new Point(gp.screen + (int) round(breite * 13), (int) round(gp.h_TileSize * 1.2) + 50);

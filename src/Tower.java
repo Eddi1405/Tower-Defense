@@ -16,6 +16,7 @@ public class Tower /*extends UI_gamepanel*/ {
     //Projektil spawn cycle (Line)
     public boolean feuern = false;
 
+
     //Angriff logik hierhin
 //prüft ob Gegner noch in Angriffs range ist oder nicht
     public void rangeCheck() {
