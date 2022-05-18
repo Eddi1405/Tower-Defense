@@ -49,7 +49,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             ss = new SpawnSystem(this);
             ss.start();
         }
-        if(tw == null){
+        if(tw != null){
             tw = new Tower(this);
         }
     }
