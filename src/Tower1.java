@@ -10,12 +10,17 @@ public class Tower1 extends Tower{
     public Tower1(UI_gamepanel gp) {
         super(gp);
         start = new Point[2];
+        setpoint();
     }
 
     public void setpoint(){
         for(int i = 0;i <= start.length;i++){
         start[i] = new Point(gp.screen + (int) round(breite * 13), (int) round(gp.h_TileSize * 1.2) + 50);
-    }}
+        }
+
+
+
+    }
 
 
 }

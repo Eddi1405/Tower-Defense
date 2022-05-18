@@ -13,6 +13,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public int width;
     public int height;
     public int screen;
+    public int leben = 999; //max = 999
+    public int coins = 999999; //max = 999999
     //neue Instanzen
     Thread gameThread;
     mapGen tileM;
@@ -49,7 +51,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
             ss = new SpawnSystem(this);
             ss.start();
         }
-        if(tw == null){
+        if(tw != null){
             tw = new Tower(this);
         }
     }

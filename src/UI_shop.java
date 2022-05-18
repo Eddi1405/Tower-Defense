@@ -9,7 +9,6 @@ import static java.lang.Math.round;
 
 public class UI_shop extends Entity {
     //Variablen
-    private int leben = 150;
     private String system = System.getProperty("os.name").toLowerCase();
     boolean[] dragValid;
     double breite;
@@ -27,10 +26,8 @@ public class UI_shop extends Entity {
     Point prevPt;
 
     //TODO mehre tower von einer sorte auf dem
-    //TODO Collison mit weg
 
     public UI_shop(UI_gamepanel gp) {
-
         tower = new Tile[20];
         feahigkeiten = new Tile[3];
         sidebar = new Tile[4];
@@ -43,6 +40,7 @@ public class UI_shop extends Entity {
         getImageTower();
 
         //Drag and Drop
+        //TODO auslagern in ne eigene Klasse wenn es geht
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();
         gp.addMouseListener(clickListener);
@@ -77,7 +75,7 @@ public class UI_shop extends Entity {
     public void draw(Graphics2D g2) {
         //Schriftart wird gesetzt
         g2.setFont(seven);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) breite*18));
 
         //zeichnet ein rechteck
         Color c = new Color(196, 157, 73);
@@ -129,21 +127,20 @@ public class UI_shop extends Entity {
 
         //Da die Darstellung auf Linux, Windows und Mac unterschiedlich ist musste hier gecheckt werden welches System verwendet wird damit die Anzeige richitg ist
         //TODO Coinsmenge muss spaeter angepasst werden und Incre/decrementiert werden
-        int coins = 10;
         if (system.contains("nix") || system.contains("nux")) {
             //Leben
             g2.drawImage(sidebar[0].image, gp.screen + (int) round(breite * 81.7), 5, (int) round(gp.w_TileSize * 0.6), (int) round(gp.h_TileSize * 0.6), null);
-            g2.drawString(String.valueOf(leben), gp.screen + (int) round(breite * 101.7), 50);
+            g2.drawString(String.valueOf(gp.leben), gp.screen + (int) round(breite * 101.7), gp.height/100*5);
             //Goldstücke
             g2.drawImage(sidebar[1].image, gp.screen + (int) round(breite * 5), 5, (int) round(gp.w_TileSize * 0.6), (int) round(gp.h_TileSize * 0.6), null);
-            g2.drawString(String.valueOf(coins), gp.screen + (int) round(breite * 23.3), 50);
+            g2.drawString(String.valueOf(gp.coins), gp.screen + (int) round(breite * 23.3), gp.height/100*5);
         } else {
             //Leben
             g2.drawImage(sidebar[0].image, gp.screen + (int) round(breite * 62.7), 5, (int) round(gp.w_TileSize * 0.6), (int) round(gp.h_TileSize * 0.6), null);
-            g2.drawString(String.valueOf(leben), gp.screen + (int) round(breite * 75.7), 50);
+            g2.drawString(String.valueOf(gp.leben), gp.screen + (int) round(breite * 75.7), 50);
             //Goldstücke
             g2.drawImage(sidebar[1].image, gp.screen + (int) round(breite * 5), 5, (int) round(gp.w_TileSize * 0.6), (int) round(gp.h_TileSize * 0.6), null);
-            g2.drawString(String.valueOf(coins), gp.screen + (int) round(breite * 18.3), 50);
+            g2.drawString(String.valueOf(gp.coins), gp.screen + (int) round(breite * 18.3), 50);
         }
     }
 
@@ -194,6 +191,7 @@ public class UI_shop extends Entity {
         }
     }
     //Hier wird überprüft, ob eine Kollision besteht, wenn das der Fall ist, wird der Turm zurückgesetzt, wenn nicht, wird er in das nächste Kästchen gezogen und das Kästchen aus dem er stammt wird Markiert
+    //TODO Auslagern in tower
     private void check(int index){
         collisionOn = false;
         gp.cc.check(this,index);
