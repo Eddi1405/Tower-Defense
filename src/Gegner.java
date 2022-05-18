@@ -50,7 +50,8 @@ public class Gegner extends Entity {
         return image;
     }
 
-    public void move() {//Fortbewegung mit Verzögerung
+    public void move(int x,int y) {//Fortbewegung mit Verzögerung
+
         ph.check(this,x,y);
         if(walkFrame >= walkSpeed){
             x = x + 1;
