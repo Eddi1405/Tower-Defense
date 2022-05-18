@@ -83,8 +83,12 @@ public class UI_shop extends Entity {
     public void draw(Graphics2D g2) {
         //Schriftart wird gesetzt
         g2.setFont(seven);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) breite*18));
-
+        if (system.contains("nix") || system.contains("nux")) {
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) breite * 18));
+        }
+        else{
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) breite * 12));
+        }
         //zeichnet ein rechteck
         Color c = new Color(196, 157, 73);
         g2.setColor(c);
@@ -212,7 +216,9 @@ public class UI_shop extends Entity {
 
         if(imx < gp.screen-50 && imy < gp.height && !collisionOn) {
             if(mx < gp.w_TileSize /2 && my < gp.h_TileSize /2){
+                //Koordinaten
                 imageCorner[index].setLocation(imx - mx, imy - my);
+                //Position im Grid
                 gp.cc.addPosition((int)(imx-mx)/gp.w_TileSize,(int)(imy-my)/gp.h_TileSize);
                 //System.out.println((int)(imx-mx)/gp.w_tileSize+"-|-"+(int)(imy-my)/gp.h_tileSize);
             } else if (mx > gp.w_TileSize /2 && my < gp.h_TileSize /2) {

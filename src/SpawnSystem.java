@@ -9,7 +9,7 @@ public class SpawnSystem {
     //Variabeln
     private int wave, waveCounter;
     private int j;
-    public int spawnTime = 250, spawnFrame = 0;
+    public int spawnTime = 50, spawnFrame = 0;
 
     //Konstruktor mit Übergabe des GamePanels
     public SpawnSystem(UI_gamepanel gp) {

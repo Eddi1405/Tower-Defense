@@ -27,7 +27,7 @@ public class path {
             tileNum2 = gp.tileM.mapTileNum[entityRC][entityTR];
             tileNum3 = gp.tileM.mapTileNum[entityLC][entityBR];
             tileNum4 = gp.tileM.mapTileNum[entityRC][entityBR];
-            //System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
+            System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
 
         }
 

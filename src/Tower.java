@@ -55,8 +55,8 @@ public class Tower /*extends UI_gamepanel*/ {
     //TODO Static entfernen
     public final Tower[] UI_shop = new Tower[20];
     public final Tower tower1 = new Tower1(gp);
-    public  final Tower tower2 = new Tower2(gp);
-    public  final Tower tower3 = new Tower3(gp);
+    public final Tower tower2 = new Tower2(gp);
+    public final Tower tower3 = new Tower3(gp);
 
     //Nummerieren von 1-X von links nach rechts
     /*123
