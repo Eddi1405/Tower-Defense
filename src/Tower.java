@@ -1,29 +1,51 @@
 import java.awt.*;
+import java.time.temporal.ValueRange;
 
 /*Haupttower Klasse die weitergegeben wird*/
 /*https://www.youtube.com/watch?v=zoScABLWwUY&t=251s
  * https://youtu.be/69R6IoT2ZoA?t=1754
  * https://youtu.be/ZQg8Se0Ywiw?t=2362*/
-public class Tower {
+public class Tower /*extends UI_gamepanel*/ {
     UI_gamepanel gp;
+    public int kosten;
+    public int schaden;
     public int breite;
     public int angreifenGegner = 0;
+    //Angriff cycle
     public boolean angriff = false;
+    //Projektil spawn cycle (Line)
+    public boolean feuern = false;
 
-    //Angrifflogik hierhin
-//Checkt ob Gegner noch in Angriffsrange ist oder nicht
+
+    //Angriff logik hierhin
+//prüft ob Gegner noch in Angriffs range ist oder nicht
     public void rangeCheck() {
+
         angriff = false;
 //Hier Range Circle abfragen ob Gegner in Range
+
+        /* if(hier abgleich von X Y){
+
+
+
+        }*/
+        System.out.println("IN RANGE");
         angriff = true;
     }
 
+
+
+
     //Wenn Angriff = True, draw Projektil
-    public void kampf(Graphics g) {
+    public void kampf(Graphics  g) {
         if (angriff) {
-            //g.drawImage("Projektil")
+
         }
 
+        if(feuern) {
+            //g.setColor(new Color(255,255,0));
+            //g.drawLine();
+        }
 
     }
 
@@ -61,11 +83,22 @@ public class Tower {
     }
 
 
+
+
+
     public Tower(UI_gamepanel gp) {
-        // towerlist[id] = this.id = id;
         this.gp = gp;
         breite = (gp.width - gp.screen) / 100;
     }
 
+    public void radius(int radius){
+
+
+    }
+
+    public void redradius(){
+
+
+    }
 
 }
