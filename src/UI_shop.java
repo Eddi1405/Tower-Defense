@@ -206,7 +206,7 @@ public class UI_shop extends Entity {
     //TODO Auslagern in tower
     private void check(int index){
         collisionOn = false;
-        gp.cc.check(this,index);
+        gp.cc.check(this,imageCorner[index]);
         //Aktuelle x Position
         int imx =(int)imageCorner[index].getX();
         //Aktuelle y Position
@@ -248,7 +248,7 @@ public class UI_shop extends Entity {
                     (int) (currentPt.getY() - prevPt.getY())
             );
             collisionOn = false;
-            gp.cc.check(this,index);
+            gp.cc.check(this,imageCorner[index]);
 
             gp.grid = true;
         }

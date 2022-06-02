@@ -4,12 +4,12 @@ public class SpawnSystem {
     //Instanzen
     UI_gamepanel gp;
     path ph;
-    private Gegner[] mobs = new Gegner[1];
+    private Gegner[] mobs = new Gegner[5];
 
     //Variabeln
     private int wave, waveCounter;
     private int j;
-    public int spawnTime = 50, spawnFrame = 0;
+    public int spawnTime = 10, spawnFrame = 0;
 
     //Konstruktor mit Übergabe des GamePanels
     public SpawnSystem(UI_gamepanel gp) {
@@ -30,6 +30,7 @@ public class SpawnSystem {
     public void spawn(Graphics2D g2) {
         if (spawnFrame >= spawnTime && j < mobs.length) {
             mobs[j].valid = true;
+            mobs[j].startGegnerThread();
             spawnFrame = 0;
             j++;
         } else {
@@ -38,7 +39,7 @@ public class SpawnSystem {
         for (int i = 0; i < mobs.length; i++) {
             if (mobs[i].valid) {
                 mobs[i].draw(g2);
-                mobs[i].move();
+                //mobs[i].move();
             }
         }
     }

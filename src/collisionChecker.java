@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class collisionChecker {
     //Instanzen
     UI_gamepanel gp;
@@ -10,12 +12,12 @@ public class collisionChecker {
         checkTower = new boolean[gp.maxScreenCol][gp.maxScreenRow];
     }
     //Hier wird überprüft ob der Mauscursor über den jeweiligen Bereich gleitet
-    public void check(Entity entity, int index) {
+    public void check(Entity entity, Point imageCorner) {
 
-        int entityLX = (int) gp.ui.imageCorner[index].getX() + entity.solidArea.x;
-        int entityRX = (int) gp.ui.imageCorner[index].getX() + entity.solidArea.x + entity.solidArea.width;
-        int entityLY = (int) gp.ui.imageCorner[index].getY() + entity.solidArea.y;
-        int entityRY = (int) gp.ui.imageCorner[index].getY() + entity.solidArea.y + entity.solidArea.height;
+        int entityLX = (int) imageCorner.getX() + entity.solidArea.x;
+        int entityRX = (int) imageCorner.getX() + entity.solidArea.x + entity.solidArea.width;
+        int entityLY = (int) imageCorner.getY() + entity.solidArea.y;
+        int entityRY = (int) imageCorner.getY() + entity.solidArea.y + entity.solidArea.height;
 
         int entityLC = entityLX / gp.w_TileSize;
         int entityRC = entityRX / gp.w_TileSize;
