@@ -12,6 +12,8 @@ public class mapGen {
     Tile[] tile;
     int[][] mapTileNum;
 
+    int mapsave = 1;
+
 
     public mapGen(UI_gamepanel gp) {
         this.gp = gp;
@@ -30,14 +32,14 @@ public class mapGen {
         }
         setup(1, "grass1.2",    true);
         setup(2, "grass2.5",    true);
-        setup(3, "grass3.7",    true); //up
-        setup(4, "grass3.8",    true); //up
-        setup(5, "grass3.9",    true); //up
-        setup(6, "grass3.10",   true); //up
-        setup(9, "grass3.7",    true); //down
-        setup(10, "grass3.8",   true); //down
-        setup(11, "grass3.9",   true); //down
-        setup(12, "grass3.10",  true); //down
+        setup(3, "grass3.7",    true); //up 9
+        setup(4, "grass3.8",    true); //up 10
+        setup(5, "grass3.9",    true); //up 11
+        setup(6, "grass3.10",   true); //up 12
+        setup(9, "grass3.7",    true); //down a
+        setup(10, "grass3.8",   true); //down b
+        setup(11, "grass3.9",   true); //down c
+        setup(12, "grass3.10",  true); //down d
         setup(7, "grass4.11",   true);
         setup(8, "baum.12",     true);
     }
@@ -57,7 +59,7 @@ public class mapGen {
 
     //Map wird geladen
     public void loadMap(int map) {
-
+        mapsave = map;
         try {
             //Textdatei wird eingelesen
             InputStream is = getClass().getResourceAsStream("map/map" + map + ".txt");
@@ -71,6 +73,20 @@ public class mapGen {
                 String line = br.readLine();
                 while (col < gp.maxScreenCol) {
                     String[] numbers = line.split(" ");
+                    switch (numbers[col]){
+                        case "a":
+                            numbers[col] = "9";
+                            break;
+                        case "b":
+                            numbers[col] = "10";
+                            break;
+                        case "c":
+                            numbers[col] = "11";
+                            break;
+                        case "d":
+                            numbers[col] = "12";
+                            break;
+                    }
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;

@@ -13,8 +13,8 @@ public class Gegner extends Entity implements Runnable {
     public boolean valid;
     public int walkFrame = 0;
     public int walkSpeed = 40;
-    public boolean waagerechterWeg,xLinks,yHoch,tile,weiter;
-    public int i,j,oldTileY,oldTileX,ieck;
+    public boolean waagerechterWeg,xLinks,yHoch,tile,test;
+    public int i,j,ieck,save;
     //Instanzen
     UI_gamepanel gp;
     path ph;
@@ -26,7 +26,6 @@ public class Gegner extends Entity implements Runnable {
         ph = new path(gp);
         ImageIcon ii = new ImageIcon(this.getClass().getResource(EnemyY));
         image = ii.getImage();
-        startPoint();
         valid = false;
         zielErreicht = false;
         solidArea = new Rectangle(15,5,gp.w_TileSize - 50, gp.h_TileSize - 20);
@@ -34,8 +33,9 @@ public class Gegner extends Entity implements Runnable {
         j = 0;
         ieck = 0;
         tile = false;
+        test =  true;
         //Dynamische größe wird in eine variable gepackt
-
+        save = gp.tileM.mapsave;
     }
 
     public void startGegnerThread() {
@@ -53,16 +53,18 @@ public class Gegner extends Entity implements Runnable {
                 e.printStackTrace();
             }
             move();
+            if(save != gp.tileM.mapsave){
+                test = true;
+                save = gp.tileM.mapsave;
+            }
         }
     }
 
     public void startPoint() {
-        int stepH = gp.h_TileSize;
         x = -35;
-        y = stepH * 2;
-        oldTileX = 0;
-        oldTileY = 2;
-
+        System.out.println(y);
+        y = gp.h_TileSize * ph.checkstart();
+        test = false;
     }
 
     //Getter
@@ -79,9 +81,10 @@ public class Gegner extends Entity implements Runnable {
     }
 
     public void move() {//Fortbewegung mit Verzögerung
+        if(test){
+            startPoint();
+        }
         ph.check(this, x, y);
-        System.out.println(ph.mitte);
-        //System.out.println(oldTileX+"ö"+ph.mitteX+"+"+ph.mitteY+"ö"+oldTileY);
 
         if(ph.mitte == 1 || ph.mitte == 2 || ph.mitte == 7){
             ieck = 0;
@@ -91,24 +94,20 @@ public class Gegner extends Entity implements Runnable {
             case 1:
                 moveY();
                 waagerechterWeg = true;
-                //System.out.println("1");
                 break;
             case 2:
                 moveX();
                 waagerechterWeg = false;
-                //System.out.println("2");
                 break;
             case 3:
                 yHoch = true;
                 xLinks = true;
                 yThenx();
-                //System.out.println("3");
                 break;
             case 4:
                 yHoch = true;
                 xLinks = false;
                 xTheny();
-                //System.out.println("4");
                 break;
             case 5:
                 yHoch = true;
@@ -120,7 +119,6 @@ public class Gegner extends Entity implements Runnable {
                 yHoch = true;
                 xLinks = false;
                 yThenx();
-                //System.out.println("6");
                 break;
             case 7:
                 if(waagerechterWeg){
@@ -128,7 +126,6 @@ public class Gegner extends Entity implements Runnable {
                 }else{
                     moveX();
                 }
-                //System.out.println("7");
                 break;
             case 9:
                 yHoch = false;
@@ -167,7 +164,7 @@ public class Gegner extends Entity implements Runnable {
             }
         }
     }
-        //System.out.println(x);
+
     public void moveY(){
         if(j<gp.h_TileSize){
             if(yHoch){
@@ -181,7 +178,6 @@ public class Gegner extends Entity implements Runnable {
                 j = 0;
             }
         }
-        //System.out.println(x);
     }
 
     public void xTheny(){

@@ -4,7 +4,7 @@ public class SpawnSystem {
     //Instanzen
     UI_gamepanel gp;
     path ph;
-    private Gegner[] mobs = new Gegner[5];
+    private Gegner[] mobs = new Gegner[1];
 
     //Variabeln
     private int wave, waveCounter;
@@ -38,7 +38,9 @@ public class SpawnSystem {
         }
         for (int i = 0; i < mobs.length; i++) {
             if (mobs[i].valid) {
-                mobs[i].draw(g2);
+                if(!mobs[i].test){
+                    mobs[i].draw(g2);
+                }
                 //mobs[i].move();
             }
         }

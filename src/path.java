@@ -3,7 +3,7 @@ public class path {
     UI_gamepanel gp;
     Gegner gg;
     //In Konstruktor wird eine Matrix erstellt.
-    public int tileNum1, tileNum2, tileNum3, tileNum4,entityLC,entityRC,entityTR,entityBR,mitteX,mitteY,mitte;
+    public int tileNum1, tileNum2, tileNum3, tileNum4,entityLC,entityRC,entityTR,entityBR,mitteX,mitteY,mitte,savei;
     public path(UI_gamepanel gp) {
         this.gp = gp;
     }
@@ -32,8 +32,16 @@ public class path {
             //System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
 
         }
+    }
 
-
+    public int checkstart(){
+        for(int i = 0;i<=gp.maxScreenRow;i++){
+            if(gp.tileM.mapTileNum[0][i] == 2){
+                savei = i;
+                break;
+            }
+        }
+        return savei;
     }
 }
 
