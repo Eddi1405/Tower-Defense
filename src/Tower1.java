@@ -8,17 +8,23 @@ import java.awt.event.MouseMotionAdapter;
 import static java.lang.Math.round;
 
 public class Tower1{
-
-    Point[] start;
-    boolean dragValid;
+    int nr;
+    Point[] pointTower;
+    boolean dragValid,set;
     Point prevPt;
     UI_gamepanel gp;
     Tower tw;
+    public boolean valid;
     public Tower1(UI_gamepanel gp,Tower tw) {
         this.gp = gp;
         this.tw = tw;
-        start = new Point[2];
+        pointTower = new Point[2];
         setpoint();
+        tw.getImageTower();
+        Tower1.ClickListener clickListener = new Tower1.ClickListener();
+        Tower1.DragListener dragListener = new Tower1.DragListener();
+        gp.addMouseListener(clickListener);
+        gp.addMouseMotionListener(dragListener);
     }
 
     public void Tower1(int kosten, int schaden)
@@ -27,57 +33,68 @@ public class Tower1{
         tw.schaden = 5;
     }
 
-    public void radius(int radius,Graphics2D g2,Point imageCorner){
+    public void radius(int radius,Graphics2D g2){
         Color c1 = new Color(93, 93, 93, 61);
         g2.setColor(c1);
         if (dragValid&& gp.grid && !tw.collisionOn){
-            g2.fillOval((int) imageCorner.getX()+gp.w_TileSize /2-radius/2, (int) imageCorner.getY()+gp.h_TileSize /2-radius/2,radius,radius);
+            g2.fillOval((int) pointTower[0].getX()+gp.w_TileSize /2-radius/2, (int) pointTower[0].getY()+gp.h_TileSize /2-radius/2,radius,radius);
         }
 
     }
 
-    public void redradius(Graphics2D g2,Point imageCorner){
+    public void redradius(Graphics2D g2){
         Color c2 = new Color(232, 25, 25, 61);
         g2.setColor(c2);
         if (dragValid && tw.collisionOn){
-            g2.fillOval((int) imageCorner.getX()+gp.w_TileSize /2-50, (int) imageCorner.getY()+gp.h_TileSize /2-50,100,100);
+            g2.fillOval((int) pointTower[0].getX()+gp.w_TileSize /2-50, (int) pointTower[0].getY()+gp.h_TileSize /2-50,100,100);
         }
 
+    }
+
+    public void drawTower(Graphics2D g2){
+        g2.drawImage(tw.towerPic[0].image,(int) pointTower[0].getX() , (int) pointTower[0].getY(), (int) round(gp.w_TileSize * 1.0), (int) round(gp.h_TileSize * 1.0), null);
     }
 
     public void setpoint(){
-        for(int i = 0;i < start.length;i++){
-        start[i] = new Point(gp.screen + (int) round(tw.breite * 13), (int) round(gp.h_TileSize * 1.2) + 50);
+        for(int i = 0;i < pointTower.length;i++){
+        pointTower[i] = new Point(gp.screen + round(tw.breite * 13), (int) round(gp.h_TileSize * 1.2) + 50);
         }
     }
 
-    public void setDragValid(MouseEvent e, Point imageCorner){
-        dragValid = (e.getPoint().getX() > imageCorner.getX()) &&
-                (e.getPoint().getX() < (imageCorner.getX() + (int) round(gp.w_TileSize * 1.0))) &&
-                (e.getPoint().getY() > imageCorner.getY()) &&
-                (e.getPoint().getY() < (imageCorner.getY() + (int) round(gp.w_TileSize * 1.0)));
+    public void setDragValid(MouseEvent e){
+        dragValid = (e.getPoint().getX() > pointTower[0].getX()) &&
+                (e.getPoint().getX() < (pointTower[0].getX() + (int) round(gp.w_TileSize * 1.0))) &&
+                (e.getPoint().getY() > pointTower[0].getY()) &&
+                (e.getPoint().getY() < (pointTower[0].getY() + (int) round(gp.w_TileSize * 1.0)));
     }
     private class ClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             prevPt = e.getPoint();
-            //Damit nur wenn auf das bild geklickt wird sich das bild bewegt
-            setDragValid(e,start[0]);
+            //Damit nur, wenn auf das bild geklickt wird sich das bild bewegt
+            setDragValid(e);
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            gp.grid = false;
-            //checkt, ob das bild richtig sitz
-            tw.check(start[0],start[1],dragValid);
+            if(dragValid){
+                gp.grid = false;
+                //checkt, ob das bild richtig sitz
+                tw.check(pointTower[0],pointTower[1],dragValid);
+                valid = false;
+                set = true;
+            }
         }
     }
     private class DragListener extends MouseMotionAdapter {
         public void mouseDragged(MouseEvent e) {
-            Point currentPt = e.getPoint();
-            //Ermöglicht das Bewegen der Türme
-            tw.drag(dragValid,currentPt,start[0],prevPt);
-
-            prevPt = currentPt;
+            if(dragValid) {
+                Point currentPt = e.getPoint();
+                //Ermöglicht das Bewegen der Türme
+                tw.drag(dragValid, currentPt, pointTower[0], prevPt);
+                valid = true;
+                gp.moved = true;
+                prevPt = currentPt;
+            }
         }
     }
 }

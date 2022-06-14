@@ -8,11 +8,12 @@ public class UI_gamepanel extends JPanel implements Runnable {
     final int maxScreenRow = 12; //12
     public int w_TileSize;
     public int h_TileSize;
-    public boolean mapCache;
+    public boolean mapCache,moved;
     public boolean grid = false;
     public int width;
     public int height;
     public int screen;
+    public int anzT1,anzT2,anzT3,ueberT1,ueberT2,ueberT3;
     public int leben = 999; //max = 999
     public int coins = 999999; //max = 999999
     //neue Instanzen
@@ -34,6 +35,7 @@ public class UI_gamepanel extends JPanel implements Runnable {
         screen = w_TileSize *maxScreenCol;
         this.width = width;
         this.height = height;
+        moved = true;
         //Es wird nur eine neue Instanz erstellt, wenn noch keine vorhanden ist
         if(tileM == null){
             tileM = new mapGen(this);
@@ -87,10 +89,11 @@ public class UI_gamepanel extends JPanel implements Runnable {
         tileM.drawMap(g2);
         //UI
         ui.draw(g2);
-        ui.drawMenu(g2);
+        //ui.drawMenu(g2);
         //Gegner spawnen
         ss.spawn(g2);
-
+        //Tower
+        tw.draw(g2);
 
         g2.dispose();
     }

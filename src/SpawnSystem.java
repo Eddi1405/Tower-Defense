@@ -3,7 +3,6 @@ import java.awt.*;
 public class SpawnSystem {
     //Instanzen
     UI_gamepanel gp;
-    path ph;
     private Gegner[] mobs = new Gegner[1];
 
     //Variabeln

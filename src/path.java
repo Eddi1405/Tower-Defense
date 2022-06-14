@@ -1,9 +1,8 @@
 public class path {
     //Instanzen
     UI_gamepanel gp;
-    Gegner gg;
     //In Konstruktor wird eine Matrix erstellt.
-    public int tileNum1, tileNum2, tileNum3, tileNum4,entityLC,entityRC,entityTR,entityBR,mitteX,mitteY,mitte,savei;
+    public int entityLC,entityRC,entityTR,entityBR,mitteX,mitteY,mitte,savei;
     public path(UI_gamepanel gp) {
         this.gp = gp;
     }
@@ -24,13 +23,7 @@ public class path {
 
         //Überprüft, ob in dem gezeichneten bereich befindet
         if (entityLC < 17 && entityRC < 17 && entityTR < 12 && entityBR < 12) {
-            tileNum1 = gp.tileM.mapTileNum[entityLC][entityTR];
-            tileNum2 = gp.tileM.mapTileNum[entityRC][entityTR];
-            tileNum3 = gp.tileM.mapTileNum[entityLC][entityBR];
-            tileNum4 = gp.tileM.mapTileNum[entityRC][entityBR];
             mitte = gp.tileM.mapTileNum[mitteX][mitteY];
-            //System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
-
         }
     }
 

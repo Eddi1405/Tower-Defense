@@ -1,8 +1,6 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.time.temporal.ValueRange;
+import java.io.IOException;
 
 import static java.lang.Math.round;
 
@@ -20,7 +18,10 @@ public class Tower extends Entity {
     public boolean angriff = false;
     //Projektil spawn cycle (Line)
     public boolean feuern = false;
-
+    Tile[] towerPic;
+    Tower1[] tower1 = new Tower1[2];
+    Tower2[] tower2 = new Tower2[20];
+    Tower3[] tower3 = new Tower3[20];
 
     //Angriff logik hierhin
 //prüft ob Gegner noch in Angriffs range ist oder nicht
@@ -70,22 +71,7 @@ public class Tower extends Entity {
      * */
 
     /*Bilder einlesen der Tower hier rein auslagern*/
-    public void getImageTower() {
-/*
-        try {
-            //Türme
-            tower[0] = new Tile();
-            tower[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower1.png"));
-            tower[1] = new Tile();
-            tower[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower2.png"));
-            tower[2] = new Tile();
-            tower[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower3.png"));
 
-        } catch (IOException e) {
-            System.out.println("bild fehler");
-            e.printStackTrace();
-        } */
-    }
 
 
 
@@ -94,29 +80,30 @@ public class Tower extends Entity {
     public Tower(UI_gamepanel gp) {
         this.gp = gp;
         breite = (gp.width - gp.screen) / 100;
-        Tower1 tower1 = new Tower1(gp,this);
+        gp.ueberT1 = tower1.length;
+        gp.ueberT2 = tower2.length;
+        gp.ueberT3 = tower3.length;
+        towerPic = new Tile[3];
+        solidArea = new Rectangle(30,20,gp.w_TileSize -60,gp.h_TileSize -40);
+        newTower();
     }
+    public void getImageTower() {
 
-/*
+        try {
+            //Türme
+            towerPic[0] = new Tile();
+            towerPic[0].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower1.png"));
+            towerPic[1] = new Tile();
+            towerPic[1].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower2.png"));
+            towerPic[2] = new Tile();
+            towerPic[2].image = ImageIO.read(getClass().getResourceAsStream("/pictures_map/Tower3.png"));
 
-    public void radius(int radius,Graphics2D g2,Point imageCorner){
-        Color c1 = new Color(93, 93, 93, 61);
-        g2.setColor(c1);
-        if (dragValid[0] && gp.grid && !collisionOn){
-            g2.fillOval((int) imageCorner.getX()+gp.w_TileSize /2-radius/2, (int) imageCorner.getY()+gp.h_TileSize /2-radius/2,radius,radius);
+        } catch (IOException e) {
+            System.out.println("bild fehler");
+            e.printStackTrace();
         }
-
     }
 
-    public void redradius(Graphics2D g2,Point imageCorner){
-        Color c2 = new Color(232, 25, 25, 61);
-        g2.setColor(c2);
-        if (dragValid[0] && collisionOn){
-            g2.fillOval((int) imageCorner.getX()+gp.w_TileSize /2-50, (int) imageCorner.getY()+gp.h_TileSize /2-50,100,100);
-        }
-
-    }
-*/
     public void check(Point imageCorner,Point old,boolean dragValid){
         collisionOn = false;
         gp.cc.check(this,imageCorner);
@@ -148,7 +135,8 @@ public class Tower extends Entity {
                 //System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }
         }else if(collisionOn && dragValid){
-            imageCorner.setLocation(old.getX(),old.getY());;
+            //imageCorner.setLocation(old.getX(),old.getY());;
+
         }
     }
     public void drag(boolean dragValid,Point currentPt,Point imageCorner,Point prevPt){
@@ -166,36 +154,53 @@ public class Tower extends Entity {
         }
 
     }
-/*
-    public void setDragValid(MouseEvent e, int index ,Point imageCorner){
-        dragValid[index] = (e.getPoint().getX() > imageCorner.getX()) &&
-                (e.getPoint().getX() < (imageCorner.getX() + (int) round(gp.w_TileSize * 1.0))) &&
-                (e.getPoint().getY() > imageCorner.getY()) &&
-                (e.getPoint().getY() < (imageCorner.getY() + (int) round(gp.w_TileSize * 1.0)));
-    }
-    private class ClickListener extends MouseAdapter {
-        public void mousePressed(MouseEvent e) {
-            prevPt = e.getPoint();
-            //Damit nur wenn auf das bild geklickt wird sich das bild bewegt
-            setDragValid(e,0);
-        }
 
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            gp.grid = false;
-            //checkt, ob das bild richtig sitz
-            check(0);
-            pressed = true;
+    //nur das erzeugen was benötigt wird
+    public void newTower(){
+        for(int i = 0;i<tower1.length;i++){
+            tower1[i] = new Tower1(gp,this);
+            tower1[i].nr = i;
+        }
+        for(int i = 0;i<tower2.length;i++){
+            tower2[i] = new Tower2(gp,this);
+            tower2[i].nr = i;
+        }
+        for(int i = 0;i<tower2.length;i++){
+            tower3[i] = new Tower3(gp,this);
+            tower3[i].nr = i;
         }
     }
+    public void draw(Graphics2D g2){
 
-    private class DragListener extends MouseMotionAdapter {
-        public void mouseDragged(MouseEvent e) {
-            Point currentPt = e.getPoint();
-            //Ermöglicht das Bewegen der Türme
-            drag(0,currentPt);
 
-            prevPt = currentPt;
+        for(int i = 0;i<gp.anzT1;i++){
+
+            if(tower1[i] != null){
+                tower1[i].drawTower(g2);
+                if(tower1[i].valid){
+                    tower1[i].radius(300,g2);
+                    tower1[i].redradius(g2);
+                }
+            }
         }
-    }*/
+        for(int i = 0;i<gp.anzT2;i++){
+            if(tower2[i] != null){
+                tower2[i].drawTower(g2);
+                if(tower2[i].valid){
+                    tower2[i].radius(500,g2);
+                    tower2[i].redradius(g2);
+                }
+            }
+        }
+        for(int i = 0;i<gp.anzT3;i++){
+            if(tower3[i] != null){
+                tower3[i].drawTower(g2);
+                if(tower3[i].valid){
+                    tower3[i].radius(350,g2);
+                    tower3[i].redradius(g2);
+                }
+            }
+
+        }
+    }
 }
