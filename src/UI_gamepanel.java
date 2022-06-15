@@ -14,8 +14,8 @@ public class UI_gamepanel extends JPanel implements Runnable {
     public int height;
     public int screen;
     public int anzT1,anzT2,anzT3,ueberT1,ueberT2,ueberT3;
-    public int leben = 999; //max = 999
-    public int coins = 999999; //max = 999999
+    public int leben = 150; //max = 999
+    public int coins = 1000; //max = 999999
     //neue Instanzen
     Thread gameThread;
     mapGen tileM;

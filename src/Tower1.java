@@ -8,9 +8,9 @@ import java.awt.event.MouseMotionAdapter;
 import static java.lang.Math.round;
 
 public class Tower1{
-    int nr;
+    int nr = 100;
     Point[] pointTower;
-    boolean dragValid,set;
+    boolean dragValid,set,spawn;
     Point prevPt;
     UI_gamepanel gp;
     Tower tw;
@@ -31,6 +31,22 @@ public class Tower1{
     {
         tw.kosten = 10;
         tw.schaden = 5;
+    }
+
+    // Zeichnet das Turmmenü.
+    public void drawMenu(Graphics2D g2){
+        if (gp.ui.system.contains("nix") || gp.ui.system.contains("nux")) {
+            if (dragValid) {
+                g2.drawImage(gp.ui.sidebar[2].image, (int) pointTower[0].getX() - (int) tw.breite * 4, (int) pointTower[0].getY() - (int) tw.breite * 4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
+                g2.drawImage(gp.ui.sidebar[3].image, (int) pointTower[0].getX() + (int) tw.breite * 19, (int) pointTower[0].getY() - (int) tw.breite * 4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
+            }
+        }
+        else{
+            if (dragValid) {
+                g2.drawImage(gp.ui.sidebar[2].image, (int) pointTower[0].getX() - (int) tw.breite * 4, (int) pointTower[0].getY() - (int) tw.breite * 4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
+                g2.drawImage(gp.ui.sidebar[3].image, (int) pointTower[0].getX() + (int) tw.breite * 15, (int) pointTower[0].getY() - (int) tw.breite * 4, (int) round(gp.w_TileSize * 0.5), (int) round(gp.h_TileSize * 0.5), null);
+            }
+        }
     }
 
     public void radius(int radius,Graphics2D g2){
@@ -72,6 +88,7 @@ public class Tower1{
             prevPt = e.getPoint();
             //Damit nur, wenn auf das bild geklickt wird sich das bild bewegt
             setDragValid(e);
+
         }
 
         @Override
@@ -90,6 +107,7 @@ public class Tower1{
             if(dragValid) {
                 Point currentPt = e.getPoint();
                 //Ermöglicht das Bewegen der Türme
+                //System.out.println(nr+"<"+set);
                 tw.drag(dragValid, currentPt, pointTower[0], prevPt);
                 valid = true;
                 gp.moved = true;

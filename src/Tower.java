@@ -135,9 +135,9 @@ public class Tower extends Entity {
                 //System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }
         }else if(collisionOn && dragValid){
-            //imageCorner.setLocation(old.getX(),old.getY());;
-
+            imageCorner.setLocation(old.getX(),old.getY());;
         }
+
     }
     public void drag(boolean dragValid,Point currentPt,Point imageCorner,Point prevPt){
 
@@ -171,12 +171,10 @@ public class Tower extends Entity {
         }
     }
     public void draw(Graphics2D g2){
-
-
         for(int i = 0;i<gp.anzT1;i++){
-
             if(tower1[i] != null){
                 tower1[i].drawTower(g2);
+                tower1[i].drawMenu(g2);
                 if(tower1[i].valid){
                     tower1[i].radius(300,g2);
                     tower1[i].redradius(g2);
