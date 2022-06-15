@@ -3,7 +3,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import static java.lang.Math.round;
-
+//TODO Range Check und Interaktion mit Baloon
 /*Haupttower Klasse die weitergegeben wird*/
 /*https://www.youtube.com/watch?v=zoScABLWwUY&t=251s
  * https://youtu.be/69R6IoT2ZoA?t=1754
@@ -32,8 +32,10 @@ public class Tower extends Entity {
 
         /* if(hier abgleich von X Y){
 
-
-
+Gegner gp, Spawnsystem gegner getxy
+Point Tower 0 in Tower ist Tower Spot hinterlegt
+Solidarea Tower
+Solidarea Gegner
         }*/
         System.out.println("IN RANGE");
         angriff = true;
