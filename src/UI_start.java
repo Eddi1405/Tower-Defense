@@ -16,6 +16,7 @@ public class UI_start  extends JFrame implements KeyListener{
     public boolean nStart;
     public boolean escOpen;
     public boolean nMenu;
+    Color c = new Color(33,35,39);
 
     //Swing Components
     public JPanel start_Panel;
@@ -38,9 +39,10 @@ public class UI_start  extends JFrame implements KeyListener{
         window.setSize(854,480); //1920*1080
         window.setContentPane(start_Panel);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        window.setBackground(c);
 
         //Vollbild
-        //window.setUndecorated(true);
+        window.setUndecorated(true);
 
         window.setVisible(true);
 
@@ -162,6 +164,7 @@ public class UI_start  extends JFrame implements KeyListener{
                 Rectangle r = window.getBounds();
                 window.setLayout(null);
                 window.add(em.esc_Panel);
+                em.esc_Panel.setBackground(c);
                 em.menu_Button.setVisible(!nMenu);
                 em.esc_Panel.setBounds(0, 0, r.width, r.height);
                 SwingUtilities.updateComponentTreeUI(window);

@@ -13,6 +13,7 @@ public class Tower extends Entity {
     public int kosten;
     public int schaden;
     public int breite;
+    public boolean check;
     public int angreifenGegner = 0;
     //Angriff cycle
     public boolean angriff = false;
@@ -106,7 +107,7 @@ Solidarea Gegner
         }
     }
 
-    public void check(Point imageCorner,Point old,boolean dragValid){
+    public boolean check(Point imageCorner,Point old,boolean dragValid){
         collisionOn = false;
         gp.cc.check(this,imageCorner);
         //Aktuelle x Position
@@ -136,10 +137,12 @@ Solidarea Gegner
                 gp.cc.addPosition((int)((imx + (gp.w_TileSize -mx))/gp.w_TileSize),(int)(imy + (gp.h_TileSize -my))/gp.h_TileSize);
                 //System.out.println((int)((imx + (gp.w_tileSize-mx))/gp.w_tileSize)+"+|+"+(int)(imy + (gp.h_tileSize-my))/gp.h_tileSize);
             }
+            check = false;
         }else if(collisionOn && dragValid){
-            imageCorner.setLocation(old.getX(),old.getY());;
+            //imageCorner.setLocation(old.getX(),old.getY());;
+            check = true;
         }
-
+        return check;
     }
     public void drag(boolean dragValid,Point currentPt,Point imageCorner,Point prevPt){
 
@@ -176,11 +179,20 @@ Solidarea Gegner
         for(int i = 0;i<gp.anzT1;i++){
             if(tower1[i] != null){
                 tower1[i].drawTower(g2);
-                tower1[i].drawMenu(g2);
                 if(tower1[i].valid){
                     tower1[i].radius(300,g2);
                     tower1[i].redradius(g2);
                 }
+                if(tower1[i].set){
+                    tower1[i].drawMenu(g2);
+                    tower1[i].radius(300,g2);
+                }
+                if(tower1[i].check)
+                    tower1[i] = null;
+                    tower1[i].del();
+            }else{
+                tower1[i] = new Tower1(gp,this);
+                tower1[i].nr = i;
             }
         }
         for(int i = 0;i<gp.anzT2;i++){

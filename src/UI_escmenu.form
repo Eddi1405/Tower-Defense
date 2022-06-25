@@ -5,6 +5,7 @@
       <xy x="136" y="90" width="462" height="432"/>
     </constraints>
     <properties>
+      <enabled value="false"/>
       <opaque value="true"/>
     </properties>
     <border type="none" title=""/>

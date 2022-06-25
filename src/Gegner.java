@@ -62,7 +62,6 @@ public class Gegner extends Entity implements Runnable {
 
     public void startPoint() {
         x = -35;
-        System.out.println(y);
         y = gp.h_TileSize * ph.checkstart();
         test = false;
     }
@@ -113,7 +112,6 @@ public class Gegner extends Entity implements Runnable {
                 yHoch = true;
                 xLinks = true;
                 xTheny();
-                //System.out.println("5");
                 break;
             case 6:
                 yHoch = true;

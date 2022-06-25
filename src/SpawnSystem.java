@@ -3,17 +3,18 @@ import java.awt.*;
 public class SpawnSystem {
     //Instanzen
     UI_gamepanel gp;
-    private Gegner[] mobs = new Gegner[1];
+    private Gegner[] mobs = new Gegner[10];
 
     //Variabeln
     private int wave, waveCounter;
     private int j;
-    public int spawnTime = 10, spawnFrame = 0;
+    public int spawnTime = 50, spawnFrame = 0;
 
     //Konstruktor mit Übergabe des GamePanels
     public SpawnSystem(UI_gamepanel gp) {
         this.gp = gp;
         j = 0;
+        spawnTime = 50;
     }
     //Die Methode start() ruft setMobs auf welche die Gegner reinlädt
     public void start() {

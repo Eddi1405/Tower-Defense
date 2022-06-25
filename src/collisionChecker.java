@@ -5,6 +5,7 @@ public class collisionChecker {
     UI_gamepanel gp;
     //Variablen
     boolean[][] checkTower;
+    int saveCol,saveRow;
 
     //In Konstruktor wird eine Matrix erstellt.
     public collisionChecker(UI_gamepanel gp) {
@@ -34,7 +35,7 @@ public class collisionChecker {
             //System.out.println(tileNum1+":1-"+tileNum2+":2-"+tileNum3+":3-"+tileNum4+":4");
             //Die ersten 4 Abfragen sind für die gezeichneten Tiles, die nächsten 4 sind für die Tower die aufgestellt worden.
             if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision || gp.tileM.tile[tileNum3].collision || gp.tileM.tile[tileNum4].collision
-                    || checkPosition(entityLC, entityTR) || checkPosition(entityRC, entityTR) || checkPosition(entityLC, entityBR) || checkPosition(entityRC, entityBR)) {
+                || checkPosition(entityLC, entityTR) || checkPosition(entityRC, entityTR) || checkPosition(entityLC, entityBR) || checkPosition(entityRC, entityBR)) {
                 entity.collisionOn = true;
             }
         }
@@ -43,6 +44,7 @@ public class collisionChecker {
     //Wenn ein neu aufgestellt wird, wird eine die Position auf true gesetzt.
     public void addPosition(int col, int row) {
         checkTower[col][row] = true;
+        savePosition(col,row);
     }
 
     //Die Position wird überprüft.
@@ -51,8 +53,12 @@ public class collisionChecker {
     }
 
     //Wenn ein gelöscht wird, wird eine die Position auf false gesetzt.
-    public void delPosition(int col, int row) {
-        checkTower[col][row] = false;
+    public void delPosition() {
+        checkTower[saveCol][saveRow] = false;
+    }
+    public void savePosition(int col, int row) {
+        saveCol = col;
+        saveRow = row;
     }
 }
 

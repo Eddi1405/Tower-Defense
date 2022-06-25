@@ -197,7 +197,7 @@ public class UI_shop extends Entity {
                 case 0:
                     if(gp.moved && gp.anzT1 < gp.tw.tower1.length){
                         gp.anzT1++;
-                        gp.ueberT1--;
+                        //gp.ueberT1--;
                         gp.moved = false;
                     }
                     break;
